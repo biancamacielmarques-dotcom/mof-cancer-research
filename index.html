@@ -1,0 +1,720 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light}body{margin:0}</style><title>ZIF-8 e o Câncer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: guia em abas, escuro por padrão. Cristal luminoso em 3D (zinco azul, ligante verde-água, fármaco laranja, tumor magenta). */
+:root{--bg:#060A18;--bg2:#0B1330;--surf:#101A3C;--ink:#EAF0FF;--mut:#9DAAD3;--line:#243464;--zn:#8AA0FF;--zn-s:#1A2660;--drug:#FFAA4D;--drug-s:#3B2A10;--tum:#FF6AA0;--tum-s:#42172F;--ok:#38D9C1;--ok-s:#0E3B36;--glow1:rgba(110,140,255,.22);--glow2:rgba(255,100,160,.14);
+--fd:'Syne','Segoe UI',system-ui,sans-serif;--fb:'Figtree','Segoe UI',system-ui,sans-serif;--fm:'IBM Plex Mono',ui-monospace,Menlo,monospace;color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#F3F5FC;--bg2:#E9EDFB;--surf:#FFFFFF;--ink:#0B1330;--mut:#4F5B85;--line:#D3DBF0;--zn:#3753E6;--zn-s:#E0E6FF;--drug:#E5730A;--drug-s:#FDE7CE;--tum:#D41F68;--tum-s:#FADAE7;--ok:#0A9884;--ok-s:#D0F0E9;--glow1:rgba(80,110,255,.16);--glow2:rgba(255,80,140,.10);color-scheme:light}}
+:root[data-theme="light"]{--bg:#F3F5FC;--bg2:#E9EDFB;--surf:#FFFFFF;--ink:#0B1330;--mut:#4F5B85;--line:#D3DBF0;--zn:#3753E6;--zn-s:#E0E6FF;--drug:#E5730A;--drug-s:#FDE7CE;--tum:#D41F68;--tum-s:#FADAE7;--ok:#0A9884;--ok-s:#D0F0E9;--glow1:rgba(80,110,255,.16);--glow2:rgba(255,80,140,.10);color-scheme:light}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 var(--fb);padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background-image:radial-gradient(900px 500px at 85% -5%,var(--glow1),transparent 70%),radial-gradient(700px 500px at -5% 40%,var(--glow2),transparent 70%);background-repeat:no-repeat;background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+.w{max-width:1100px;margin:0 auto}
+h1,h2,h3{font-family:var(--fd);margin:0;line-height:1.04;text-wrap:balance;letter-spacing:-.02em}
+h2{font-size:clamp(28px,4.4vw,50px);margin-bottom:14px}
+h3{font-size:21px}
+h4{font:700 16px var(--fd);margin:0 0 6px}
+p{margin:0 0 12px}
+a{color:var(--zn)}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--zn);outline-offset:2px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.top .w{display:flex;align-items:center;gap:12px;padding-block:8px}
+.logo{font:800 18px var(--fd);white-space:nowrap}.logo b{color:var(--tum)}
+.tabs{display:flex;gap:2px;overflow-x:auto;flex:1;scrollbar-width:none;min-width:0}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{border:0;background:none;color:var(--mut);font:600 14px var(--fb);padding:8px 12px;border-radius:99px;white-space:nowrap}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tg{border:1px solid var(--line);background:var(--surf);color:var(--ink);font:500 12px var(--fm);padding:6px 10px;border-radius:8px}
+.pane{padding-block:44px 72px}
+.pane[hidden]{display:none}
+.kick{font:500 12px var(--fm);letter-spacing:.14em;text-transform:uppercase;color:var(--tum);margin-bottom:10px}
+.lead{font-size:18px;color:var(--mut);max-width:62ch;margin-bottom:28px}
+.sub{font-size:clamp(24px,3.4vw,38px);margin:48px 0 10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.g2>*,.g3>*{min-width:0}
+.panel{background:linear-gradient(165deg,var(--bg2),var(--surf));border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(0,0,0,.6)}
+.panel svg{display:block;width:100%;height:auto}
+.pad{padding:22px}
+.cap{font:400 12px var(--fm);color:var(--mut);padding:10px 18px;border-top:1px solid var(--line)}
+.btn{border:1px solid var(--line);background:var(--surf);color:var(--ink);font:600 14px var(--fb);padding:9px 16px;border-radius:99px}
+.btn:hover{border-color:var(--zn);color:var(--zn)}
+.btn[aria-pressed="true"]{border-color:var(--zn);color:var(--zn);background:var(--zn-s)}
+.btn.pri{background:var(--zn);border-color:var(--zn);color:var(--bg)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surf);color:var(--ink);border-radius:99px;font:500 13px var(--fm);padding:7px 13px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:20px;padding:22px}
+.card p{color:var(--mut);margin:8px 0 0;font-size:15px}
+.badge{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font:800 15px var(--fd);color:#fff;margin-bottom:14px}
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:28px;align-items:center}
+.hero h1{font-size:clamp(42px,7.4vw,92px);font-weight:800;letter-spacing:-.045em;margin:8px 0 22px}
+.hero h1 span{background:linear-gradient(100deg,var(--zn),var(--ok));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 em{font-style:normal;color:var(--tum)}
+.hero p.big{font-size:19px;color:var(--mut);max-width:44ch}
+.cv{width:100%;aspect-ratio:1/1;display:block;touch-action:pan-y;cursor:grab}
+.cv:active{cursor:grabbing}
+.stage{position:relative;border-radius:28px;border:1px solid var(--line);background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--zn) 20%,transparent),transparent 62%),var(--bg2);overflow:hidden}
+.stage .ctl{padding:14px 18px 16px;border-top:1px solid var(--line);display:grid;gap:8px;background:color-mix(in srgb,var(--bg) 60%,transparent)}
+.ctl label{font:500 13px var(--fm);display:flex;justify-content:space-between;gap:10px}
+.stage .hint{position:absolute;left:16px;top:12px;font:400 11px var(--fm);color:var(--mut)}
+input[type=range]{width:100%;accent-color:var(--zn)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:40px}
+.fact{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--surf)}
+.fact b{display:block;font:800 30px var(--fd);letter-spacing:-.02em;color:var(--zn);line-height:1.1}
+.fact span{font-size:13px;color:var(--mut)}
+.fact small{display:block;font:400 11px var(--fm);color:var(--mut);margin-top:6px}
+.prob{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:12px}
+.prob .card h3{display:flex;gap:10px;align-items:center}
+/* hotspots */
+.hs{cursor:pointer}
+.hs .hl{fill:none;stroke:var(--tum);stroke-width:0;stroke-dasharray:5 4;transition:stroke-width .2s}
+.hs.sel .hl,.hs:hover .hl{stroke-width:3}
+.info{padding:20px 22px}
+.info h3{margin-bottom:6px}
+.info p{color:var(--mut);margin:0}
+.mv{transition:transform 1.1s cubic-bezier(.5,0,.2,1),opacity .8s}
+.rail{display:flex;gap:6px;flex-wrap:wrap;padding:14px 16px;border-top:1px solid var(--line);align-items:center}
+.rail button{border:1px solid var(--line);background:var(--bg);color:var(--ink);font:600 13px var(--fb);padding:7px 13px;border-radius:99px}
+.rail button[aria-pressed="true"]{background:var(--zn);color:var(--bg);border-color:var(--zn)}
+.jt{padding:6px 22px 24px}.jt h3{margin-bottom:4px}.jt p{color:var(--mut);margin:0;max-width:68ch}
+/* journey */
+.rbc{animation:flow 9s linear infinite}
+@keyframes flow{from{transform:translateX(-60px)}to{transform:translateX(780px)}}
+.mac .pa{--x:130px;--y:70px}.mac .pb{--x:230px;--y:68px}.mac .pc{--x:330px;--y:72px}
+.pa,.pb,.pc{transform:translate(var(--x),var(--y))}
+.mac[data-s="2"] .pa{--x:380px;--y:70px}.mac[data-s="2"] .pb{--x:430px;--y:120px}.mac[data-s="2"] .pc{--x:395px;--y:170px}
+.mac[data-s="3"] .pa{--x:350px;--y:215px}.mac[data-s="3"] .pb{--x:470px;--y:205px}.mac[data-s="3"] .pc{--x:420px;--y:245px}
+.mac .tint{opacity:0;transition:opacity 1s}.mac[data-s="3"] .tint{opacity:.9}
+.mic .pg{transform:translate(60px,150px)}
+.mic[data-s="4"] .pg{transform:translate(180px,150px)}
+.mic[data-s="5"] .pg{transform:translate(285px,150px)}
+.mic[data-s="6"] .pg{transform:translate(285px,150px);opacity:.15}
+.mic .eng{opacity:0}.mic[data-s="4"] .eng,.mic[data-s="5"] .eng{opacity:1}
+.mic .acid{opacity:0}.mic[data-s="5"] .acid{opacity:1}
+.mic .shell{opacity:1}.mic[data-s="5"] .shell,.mic[data-s="6"] .shell{opacity:.15}
+.dd{transform:translate(var(--ax),var(--ay));opacity:0;transition:transform 1.1s cubic-bezier(.5,0,.2,1),opacity .6s}
+.mic .dd{--ax:285px;--ay:150px}
+.mic[data-s="5"] .dd{opacity:1;--ax:calc(285px + var(--ox));--ay:calc(150px + var(--oy))}
+.mic[data-s="6"] .dd{opacity:1;--ax:calc(472px + var(--nx));--ay:calc(150px + var(--ny))}
+.nuc{fill:url(#gNuc);stroke:var(--zn);stroke-width:3;transition:stroke .8s}
+.mic[data-s="6"] .nuc{stroke:var(--tum)}
+.cel{stroke:var(--mut);fill:url(#gCell);stroke-width:3;transition:stroke-dasharray .5s,stroke .5s}
+.mic[data-s="6"] .cel{stroke:var(--tum);stroke-dasharray:14 10}
+.dmg{opacity:0;transition:opacity .8s}.mic[data-s="6"] .dmg{opacity:1}
+.sl{display:grid;gap:10px;padding:18px 20px}
+.sl label{font:500 13px var(--fm);display:flex;justify-content:space-between;gap:10px}
+.ph-state{font:700 16px var(--fd);min-height:24px}
+/* chem zoom */
+.chem .hp{transform:translate(var(--hx),var(--hy));transition:transform 1.3s cubic-bezier(.5,0,.2,1)}
+.chem[data-on="1"] .hp{transform:translate(var(--hx2),var(--hy2))}
+.chem .znm{transition:transform 1.3s cubic-bezier(.5,0,.2,1)}
+.chem[data-on="1"] .znm{transform:translate(-58px,-22px)}
+.chem .bond{transition:opacity .8s}.chem[data-on="1"] .bond{opacity:.08}
+.chem .lone{opacity:0;transition:opacity .8s}.chem[data-on="1"] .lone{opacity:1}
+/* therapy */
+.sc .on{opacity:0;transition:opacity .6s}.sc[data-on="1"] .on{opacity:1}
+.sc .off{opacity:1;transition:opacity .6s}.sc[data-on="1"] .off{opacity:0}
+.sc .cl{fill:url(#gCell);stroke:var(--mut);stroke-width:3;transition:stroke .7s}
+.sc[data-on="1"] .cl{stroke:var(--tum);stroke-dasharray:12 9}
+.sc .mito{fill:var(--ok-s);stroke:var(--ok);stroke-width:2;transition:fill .7s,stroke .7s}
+.sc[data-on="1"].hit .mito{fill:var(--tum-s);stroke:var(--tum)}
+.pulse{transform-origin:90px 140px;transform-box:view-box;animation:pul 2s ease-out infinite;opacity:0}
+.sc[data-on="1"] .pulse{opacity:.8}
+@keyframes pul{0%{transform:scale(.4);opacity:.9}100%{transform:scale(2.3);opacity:0}}
+.wave{opacity:0}
+.sc[data-on="1"] .wave{animation:wv 1.6s ease-out infinite}
+@keyframes wv{0%{opacity:.9;transform:scale(.5)}100%{opacity:0;transform:scale(1.6)}}
+.drg{transform:translate(90px,140px);opacity:0;transition:transform 1.2s cubic-bezier(.5,0,.2,1),opacity .6s}
+.sc[data-on="1"] .drg{transform:translate(var(--tx),var(--ty));opacity:1}
+.tcell{transform:translate(40px,40px);transition:transform 1.4s cubic-bezier(.5,0,.2,1)}
+.sc[data-on="1"] .tcell{transform:translate(78px,78px)}
+.tc{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center}
+.tc ul,.ul{margin:8px 0 0;padding-left:18px;color:var(--mut);font-size:15px}
+/* timeline */
+.tl{display:grid;gap:14px}
+.ev{display:grid;grid-template-columns:96px 1fr;gap:18px;background:var(--surf);border:1px solid var(--line);border-radius:20px;padding:22px}
+.ev .y{font:800 36px var(--fd);letter-spacing:-.03em;color:var(--zn)}
+.ev h3{margin:8px 0 6px;font-size:19px;line-height:1.2}
+.ev p{color:var(--mut);margin:0 0 8px;font-size:15px}
+.ev small{font:400 12px var(--fm);color:var(--mut)}
+.ev[hidden]{display:none}
+.tag{display:inline-block;font:500 11px var(--fm);border-radius:6px;padding:3px 8px;background:var(--ok-s);color:var(--ok);margin:0 6px 4px 0}
+.tag.v{background:var(--zn-s);color:var(--zn)}.tag.o{background:var(--drug-s);color:var(--drug)}.tag.p{background:var(--tum-s);color:var(--tum)}
+/* reading */
+.road{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;counter-reset:r;margin-bottom:30px}
+.road div{background:linear-gradient(150deg,var(--zn-s),var(--surf));border:1px solid var(--line);border-radius:18px;padding:18px;counter-increment:r}
+.road div::before{content:counter(r);font:800 40px var(--fd);color:var(--zn);opacity:.7;display:block;line-height:1}
+.road b{font-family:var(--fd);font-size:18px;display:block;margin:6px 0 4px}
+.road span{font-size:14px;color:var(--mut)}
+.flt{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+.flt div{display:grid;gap:6px}
+.flt small{font:500 11px var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.books{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.bk{background:var(--surf);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.bk[hidden]{display:none}
+.bk h3{font-size:17px;line-height:1.25}
+.bk p{color:var(--mut);font-size:14.5px;margin:0}
+.bk .j{font:400 12px var(--fm);color:var(--mut)}
+.bk a.go{margin-top:auto;font:600 14px var(--fb);padding-top:6px}
+details{background:var(--surf);border:1px solid var(--line);border-radius:14px;margin-bottom:8px}
+summary{cursor:pointer;padding:14px 18px;font:700 16px var(--fd);list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--tum);font-size:20px;line-height:1}
+details[open] summary::after{content:"−"}
+details>p,details>ul{padding:0 18px 14px;margin:0;color:var(--mut)}
+details>ul{padding-left:36px}
+.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-top:14px}
+.gl div{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-width:0}
+.gl dt{font:700 15px var(--fd)}.gl dd{margin:2px 0 0;color:var(--mut);font-size:14px}
+input[type=search],input[type=number]{font:400 15px var(--fb);width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surf);color:var(--ink)}
+input[type=search]{max-width:360px}
+.q{background:var(--surf);border:1px solid var(--line);border-radius:20px;padding:22px}
+.q .opts{display:grid;gap:8px;margin:14px 0}
+.q .opts button{text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:500 15px var(--fb);padding:11px 14px;border-radius:12px}
+.q .opts button.ok{border-color:var(--ok);background:var(--ok-s)}
+.q .opts button.no{border-color:var(--tum);background:var(--tum-s)}
+.fb{color:var(--mut);font-size:14.5px;min-height:44px}
+/* cancer & pipeline */
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.cc{background:var(--surf);border:1px solid var(--line);border-radius:22px;padding:22px;min-width:0}
+.cc .ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;margin-bottom:12px;background:var(--tum-s)}
+.cc p{color:var(--mut);font-size:14.5px;margin:6px 0 0}
+.pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
+.pipe button{border:1px solid var(--line);background:var(--surf);color:var(--ink);border-radius:16px;padding:14px 10px;text-align:center;font:600 13px var(--fb);min-width:0}
+.pipe button b{display:block;font:800 22px var(--fd);color:var(--zn)}
+.pipe button[aria-pressed="true"]{background:var(--zn);color:var(--bg);border-color:var(--zn)}
+.pipe button[aria-pressed="true"] b{color:var(--bg)}
+.calc{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.calc label{font:500 12px var(--fm);color:var(--mut);display:grid;gap:6px}
+.res{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.res div{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.res b{font:800 34px var(--fd);color:var(--zn);display:block;line-height:1}
+.res span{font-size:13px;color:var(--mut)}
+footer{border-top:1px solid var(--line);padding-block:26px 48px;color:var(--mut);font-size:13px}
+@media (max-width:820px){.hero,.g2,.tc{grid-template-columns:1fr}.ev{grid-template-columns:1fr;gap:2px}.logo{display:none}.pane{padding-block:28px 52px}.pipe{grid-template-columns:1fr 1fr}.calc{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<radialGradient id="sZn" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#D3DCFF"/><stop offset=".45" stop-color="#7791FF"/><stop offset="1" stop-color="#2237B5"/></radialGradient>
+<radialGradient id="sDr" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#FFE9CC"/><stop offset=".45" stop-color="#FFA94D"/><stop offset="1" stop-color="#B85200"/></radialGradient>
+<radialGradient id="sLg" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#CFFFF6"/><stop offset=".45" stop-color="#35D6BE"/><stop offset="1" stop-color="#087568"/></radialGradient>
+<radialGradient id="sTu" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#FFD0E1"/><stop offset=".45" stop-color="#FF5C97"/><stop offset="1" stop-color="#9C1148"/></radialGradient>
+<radialGradient id="gCell" cx=".4" cy=".35" r=".8"><stop offset="0" style="stop-color:var(--surf)"/><stop offset="1" style="stop-color:var(--tum-s)"/></radialGradient>
+<radialGradient id="gNuc" cx=".4" cy=".35" r=".8"><stop offset="0" style="stop-color:var(--bg2)"/><stop offset="1" style="stop-color:var(--zn-s)"/></radialGradient>
+<linearGradient id="gBeam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--drug);stop-opacity:0"/><stop offset="1" style="stop-color:var(--drug);stop-opacity:.75"/></linearGradient>
+<linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE9A0"/><stop offset=".5" stop-color="#F2B632"/><stop offset="1" stop-color="#A66A00"/></linearGradient>
+<filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity=".35"/></filter>
+<filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs></svg>
+
+<header class="top"><div class="w"><span class="logo">ZIF-8 <b>e o câncer</b></span>
+<div class="tabs" role="tablist" id="tabs"></div><button class="tg" id="tg" type="button">Tema</button></div></header>
+
+<main class="w">
+
+<section class="pane" data-tab="inicio">
+ <div class="hero">
+  <div>
+   <div class="kick">Nanomedicina, sem jargão</div>
+   <h1>Um cristal de <span>zinco</span> que só abre no <em>tumor</em>.</h1>
+   <p class="big">A ZIF-8 é um material feito de zinco e uma molécula orgânica, com milhões de poros microscópicos. Os pesquisadores colocam remédio dentro dele. Em meio ácido, como o de um tumor, o cristal se desfaz e solta a carga.</p>
+   <div class="row" style="margin-top:22px"><button class="btn pri" data-go="cristal" type="button">Ver o cristal por dentro</button><button class="btn" data-go="viagem" type="button">Seguir a viagem</button></div>
+  </div>
+  <div class="stage">
+   <span class="hint">arraste para girar</span>
+   <canvas id="hc" class="cv" aria-label="Cristal de ZIF-8 em 3D que se desfaz quando o pH cai"></canvas>
+   <div class="ctl"><label for="hph"><span>Acidez do meio (pH)</span><span id="hphv"></span></label><input id="hph" type="range" min="4.5" max="7.4" step="0.05" value="7.4">
+    <div class="row"><button class="chip" data-hp="7.4" type="button">Sangue 7,4</button><button class="chip" data-hp="6.5" type="button">Tumor 6,5</button><button class="chip" data-hp="5.0" type="button">Lisossomo 5,0</button></div></div>
+  </div>
+ </div>
+ <div class="facts">
+  <div class="fact"><b>≈ 11,6 Å</b><span>diâmetro da cavidade onde a carga fica</span></div>
+  <div class="fact"><b>≈ 3,4 Å</b><span>abertura da janela entre cavidades</span></div>
+  <div class="fact"><b>1.300–1.800 m²/g</b><span>área superficial típica, a de um campo de futebol em poucos gramas</span><small>valores típicos da literatura</small></div>
+  <div class="fact"><b>pH 7,4 → 5</b><span>de estável a em colapso</span></div>
+ </div>
+ <h2 class="sub">O problema que a ZIF-8 tenta resolver</h2>
+ <div class="prob">
+  <div class="card"><div class="badge" style="background:var(--tum)">1</div><h3>Remédio que atinge tudo</h3><p>Quimioterápicos clássicos circulam pelo corpo todo e agridem células saudáveis. Daí vêm náusea, queda de cabelo e dano ao coração e aos rins.</p></div>
+  <div class="card"><div class="badge" style="background:var(--drug)">2</div><h3>Remédio que não dissolve</h3><p>Muitos compostos promissores, como a curcumina, dissolvem mal em água e se degradam antes de chegar ao tumor.</p></div>
+  <div class="card"><div class="badge" style="background:var(--zn)">3</div><h3>Tumor que resiste</h3><p>Células tumorais aprendem a expulsar o fármaco ou a se proteger. Levar a carga para dentro da célula, de uma vez, ajuda a vencer essa barreira.</p></div>
+ </div>
+ <div class="card" style="margin-top:16px"><h3>A ideia</h3><p style="font-size:17px;color:var(--ink)">Empacotar o remédio numa partícula milhares de vezes menor que um fio de cabelo, que fica fechada no sangue e abre onde o ambiente é ácido. O tumor e o interior das células têm essa acidez. O resto do corpo, não.</p></div>
+</section>
+
+<section class="pane" data-tab="cristal" hidden>
+ <div class="kick">Estrutura</div>
+ <h2>Por dentro da ZIF-8</h2>
+ <p class="lead">A fórmula é simples: um zinco e dois imidazolatos, Zn(2-metilimidazolato)₂. O encaixe das peças cria gaiolas vazias, e é nelas que a carga fica guardada.</p>
+ <div class="g2">
+  <div class="panel"><div class="stage" style="border:0;border-radius:0"><span class="hint">arraste para girar</span><canvas id="cc" class="cv" aria-label="Gaiola sodalita da ZIF-8 em 3D"></canvas></div>
+   <div class="rail" id="cc-b"></div>
+   <div class="sl"><label for="cph"><span>Acidez (pH)</span><span id="cphv"></span></label><input id="cph" type="range" min="4.5" max="7.4" step="0.05" value="7.4"></div></div>
+  <div style="display:grid;gap:14px">
+   <div class="panel info"><h3>A gaiola sodalita</h3><p>Cada gaiola tem 24 zincos nos vértices e 36 pontes de imidazolato nas arestas, como um octaedro de pontas cortadas. As seis faces quadradas e as oito hexagonais formam a parede. Nas faces hexagonais ficam as janelas de entrada.</p></div>
+   <div class="panel info"><h3>Por que parece zeólita?</h3><p>O ângulo Zn–imidazolato–Zn é parecido com o Si–O–Si das zeólitas, minerais porosos usados na indústria. Por isso o nome: zeolítico. A topologia da ZIF-8 chama-se sodalita.</p></div>
+   <div class="panel info"><h3>O cristal inteiro</h3><p>Milhões dessas gaiolas, empilhadas, formam uma partícula em forma de dodecaedro rômbico, com 12 faces em losango. É a figura da página inicial.</p></div>
+  </div>
+ </div>
+ <h2 class="sub">A unidade básica</h2>
+ <p class="lead">Um zinco no centro e quatro imidazolatos ao redor. Cada anel liga dois zincos, como uma ponte. Clique nas peças.</p>
+ <div class="g2">
+  <div class="panel"><svg id="fa" viewBox="0 0 520 420" role="img" aria-label="Unidade básica da ZIF-8: um zinco ligado a quatro imidazolatos"></svg><div class="cap">Esquema simplificado, fora de escala.</div></div>
+  <div class="panel info" id="fa-info" aria-live="polite"></div>
+ </div>
+ <h2 class="sub">A janela de entrada</h2>
+ <p class="lead">A cavidade tem cerca de 11,6 Å, mas a janela tem só cerca de 3,4 Å. Tente passar moléculas diferentes.</p>
+ <div class="g2">
+  <div class="panel"><svg id="fb" viewBox="0 0 520 360" role="img" aria-label="Gaiola da ZIF-8 com cavidade e janela"></svg><div class="rail" id="fb-b"></div></div>
+  <div class="panel info" id="fb-info" aria-live="polite"><h3>Escolha uma molécula</h3><p>Moléculas pequenas, como água e CO₂, atravessam. Fármacos grandes, como a doxorrubicina, não passam pela janela. Então como elas entram? A aba Fabricação mostra.</p></div>
+ </div>
+ <h2 class="sub">Outras ZIFs</h2>
+ <div class="g3">
+  <div class="card"><h4>ZIF-8</h4><p>Zinco + 2-metilimidazol. A mais estudada em medicina por ser simples de fazer em água e abrir em meio ácido.</p></div>
+  <div class="card"><h4>ZIF-67</h4><p>Cobalto no lugar do zinco, mesma topologia. O cobalto é ativo em reações químicas, e por isso aparece em terapias catalíticas.</p></div>
+  <div class="card"><h4>ZIF-90</h4><p>Usa imidazol-2-carboxaldeído, que tem um grupo aldeído reativo. Permite prender moléculas à própria estrutura.</p></div>
+ </div>
+</section>
+
+<section class="pane" data-tab="fabricacao" hidden>
+ <div class="kick">Engenharia</div>
+ <h2>Como fabricar e carregar</h2>
+ <p class="lead">A ZIF-8 se forma em água, à temperatura ambiente, em minutos. É isso que torna possível montá-la já com o remédio dentro.</p>
+ <div class="panel"><svg id="fc" viewBox="0 0 720 300" role="img" aria-label="Zinco e imidazol formam cristal ao redor do fármaco"></svg>
+  <div class="rail" id="fc-b"></div><div class="jt"><h3 id="fc-t"></h3><p id="fc-p"></p></div></div>
+ <div class="g3" style="margin-top:16px">
+  <div class="card"><h4>Receita básica</h4><p>Um sal de zinco (nitrato ou acetato) e 2-metilimidazol, em água ou metanol. Mistura e agitação por alguns minutos.</p></div>
+  <div class="card"><h4>Controle do tamanho</h4><p>A proporção entre ligante e zinco, o solvente, a temperatura e aditivos mudam o tamanho, de dezenas de nanômetros a micrômetros. Para uso em sangue, o alvo costuma ser abaixo de poucas centenas de nanômetros.</p></div>
+  <div class="card"><h4>Verde e simples</h4><p>Sem calor nem solvente agressivo, o que protege moléculas frágeis como proteínas, enzimas e RNA.</p></div>
+ </div>
+ <h2 class="sub">Três jeitos de colocar a carga</h2>
+ <div class="chips" id="lch" style="margin-bottom:16px"></div>
+ <div class="g2"><div class="panel"><svg id="lsv" viewBox="0 0 360 240" role="img" aria-label="Estratégia de carga"></svg></div><div class="panel info" id="lin"></div></div>
+ <h2 class="sub">Uma superfície inteligente</h2>
+ <p class="lead">A ZIF-8 pura tem carga positiva e é reconhecida pelo corpo. Revestimentos dão discrição, rumo e identidade. Escolha uma camada.</p>
+ <div class="chips" id="sch" style="margin-bottom:16px"></div>
+ <div class="g2"><div class="panel"><svg id="ssv" viewBox="0 0 400 320" role="img" aria-label="Partícula com revestimento"></svg></div><div class="panel info" id="sin"></div></div>
+ <h2 class="sub">Como saber se deu certo</h2>
+ <div class="g2"><div>
+  <details open><summary>DRX: é mesmo ZIF-8?</summary><p>A difração de raios X dá um padrão de picos característico da estrutura sodalita. Se os picos batem com a ZIF-8, o cristal se formou.</p></details>
+  <details><summary>MEV e MET: forma e tamanho</summary><p>Microscopia eletrônica mostra o formato de dodecaedro rômbico e o tamanho de cada partícula, além de camadas de revestimento.</p></details>
+  <details><summary>DLS: tamanho em água</summary><p>Espalhamento de luz mede o tamanho da partícula inchada em líquido, que é maior que o visto no microscópio.</p></details></div><div>
+  <details><summary>Potencial zeta: carga da superfície</summary><p>Mostra se a superfície é positiva ou negativa. A ZIF-8 pura costuma ser positiva, e os revestimentos mudam esse valor.</p></details>
+  <details><summary>BET: área e poros</summary><p>Adsorção de nitrogênio mede a área superficial e o volume dos poros. Cai quando o fármaco ocupa o espaço, o que ajuda a provar que ele entrou.</p></details>
+  <details><summary>UV-vis e HPLC: quanto fármaco entrou</summary><p>Medem a quantidade de fármaco que sobrou na solução. Por diferença, calcula-se quanto foi carregado.</p></details></div></div>
+ <h2 class="sub">Calculadora de carga</h2>
+ <p class="lead">Dois números definem a qualidade do carregamento. Troque os valores (são um exemplo) e veja o resultado.</p>
+ <div class="card"><div class="calc">
+  <label>Fármaco adicionado (mg)<input id="c1" type="number" min="0.1" step="0.1" value="10"></label>
+  <label>Fármaco dentro da partícula (mg)<input id="c2" type="number" min="0" step="0.1" value="7.5"></label>
+  <label>Massa total da partícula (mg)<input id="c3" type="number" min="0.1" step="0.1" value="25"></label></div>
+  <div class="res"><div><b id="r1">75%</b><span>Eficiência de encapsulamento: fármaco dentro ÷ fármaco adicionado</span></div><div><b id="r2">30%</b><span>Capacidade de carga: fármaco dentro ÷ massa da partícula</span></div></div>
+  <p id="rn" style="margin-top:12px">Capacidade de carga alta significa menos material para a mesma dose.</p></div>
+</section>
+
+<section class="pane" data-tab="viagem" hidden>
+ <div class="kick">Do sangue ao tumor</div>
+ <h2>A viagem da nanopartícula</h2>
+ <p class="lead">Seis etapas, da circulação até o efeito dentro da célula. Use os botões ou toque em Reproduzir.</p>
+ <div class="panel">
+  <svg id="mac" class="mac" viewBox="0 0 720 300" data-s="1" role="img" aria-label="Nanopartículas no sangue atravessam a parede do vaso e chegam ao tumor"></svg>
+  <svg id="mic" class="mic" viewBox="0 0 720 300" data-s="4" hidden role="img" aria-label="Célula tumoral engole a nanopartícula, que abre e libera o fármaco"></svg>
+  <div class="rail" id="jr"></div>
+  <div class="jt"><h3 id="jt"></h3><p id="jp"></p></div>
+ </div>
+ <h2 class="sub">Zoom químico: por que o ácido abre o cristal</h2>
+ <div class="g2">
+  <div class="panel"><svg id="chem" class="chem" data-on="0" viewBox="0 0 400 260" role="img" aria-label="Prótons atacam o nitrogênio e soltam o zinco"></svg><div class="rail"><button class="btn pri" id="chb" type="button">Adicionar ácido (H⁺)</button></div></div>
+  <div class="panel info"><h3 id="cht">Em pH 7,4</h3><p id="chp">O nitrogênio do imidazolato está ligado ao zinco. A ligação é firme e a rede se mantém.</p></div>
+ </div>
+ <h2 class="sub">Laboratório de pH</h2>
+ <p class="lead">Mude a acidez e o tempo e veja o cristal se desfazer. É um modelo ilustrativo: as curvas mostram a ideia, não medidas de um estudo.</p>
+ <div class="g2">
+  <div class="panel"><svg id="la" viewBox="0 0 360 260" role="img" aria-label="Partícula se desfazendo conforme o pH e o tempo"></svg>
+   <div class="sl"><label for="ph"><span>pH do meio</span><span id="phv"></span></label><input id="ph" type="range" min="4.5" max="7.4" step="0.1" value="5.5">
+   <label for="tt"><span>Tempo</span><span id="ttv"></span></label><input id="tt" type="range" min="0" max="72" step="1" value="36">
+   <div class="row"><button class="btn pri" id="play" type="button">Reproduzir 72 h</button><button class="btn" data-ph="7.4" type="button">Sangue 7,4</button><button class="btn" data-ph="6.5" type="button">Tumor 6,5</button><button class="btn" data-ph="5.0" type="button">Lisossomo 5,0</button></div>
+   <div class="ph-state" id="phs"></div></div></div>
+  <div class="panel"><svg id="lb" viewBox="0 0 360 260" role="img" aria-label="Curvas de liberação do fármaco em função do tempo"></svg><div class="cap">Eixo x: horas. Eixo y: fármaco liberado (%). Pontilhado: pH 7,4 e pH 5,5 como referência.</div></div>
+ </div>
+</section>
+
+<section class="pane" data-tab="terapias" hidden>
+ <div class="kick">O que a carga faz</div>
+ <h2>Oito formas de atacar</h2>
+ <p class="lead">A ZIF-8 leva a arma até o tumor. Escolha uma estratégia e ative a cena.</p>
+ <div class="chips" id="tch" style="margin-bottom:20px"></div>
+ <div class="panel tc pad" id="tbox"></div>
+ <h2 class="sub">Combinar é a regra</h2>
+ <p class="lead">Os estudos recentes juntam vários mecanismos numa só partícula. Um exemplo de 2026 usa bactérias engenheiradas cobertas com ZIF-8, carregadas com fotossensibilizador e catalase, que liberam interleucina-2 e ainda ativam a piroptose, combinadas com bloqueio de PD-L1.</p>
+ <div class="g3">
+  <div class="card"><h4>Quimio + luz</h4><p>O fármaco ataca o DNA enquanto o calor ou os radicais fragilizam a célula. Uma nanoestrela de ouro em casca de ZIF-8 é um exemplo clássico.</p></div>
+  <div class="card"><h4>Zinco + fármaco</h4><p>O zinco liberado pode reverter a resistência a fármacos, como mostrou um estudo com gefitinibe em câncer de pulmão.</p></div>
+  <div class="card"><h4>Luz + imunidade</h4><p>Matar células de forma que alerte o sistema imune pode transformar um tumor “frio” em um tumor que o corpo reconhece.</p></div>
+ </div>
+</section>
+
+<section class="pane" data-tab="cancer" hidden>
+ <div class="kick">Alvos e testes</div>
+ <h2>Contra quais cânceres</h2>
+ <p class="lead">Os laboratórios testam a ZIF-8 em células tumorais cultivadas, chamadas linhagens, e depois em camundongos. Cada tipo de câncer traz um desafio diferente.</p>
+ <div class="cg" id="cg"></div>
+ <h2 class="sub">Do laboratório ao paciente</h2>
+ <p class="lead">Toque em uma etapa para ver o que se faz nela.</p>
+ <div class="pipe" id="pp"></div>
+ <div class="panel info" id="ppi" aria-live="polite"></div>
+</section>
+
+<section class="pane" data-tab="historia" hidden>
+ <div class="kick">Como chegamos aqui</div>
+ <h2>Uma linha do tempo</h2>
+ <p class="lead">Estudos que marcaram o caminho, dos primeiros fármacos às estratégias mais recentes. Filtre por fase.</p>
+ <div class="chips" id="eh" style="margin-bottom:20px"></div>
+ <div class="tl" id="tl"></div>
+</section>
+
+<section class="pane" data-tab="leituras" hidden>
+ <div class="kick">Para ir além</div>
+ <h2>Indicação de leitura</h2>
+ <p class="lead">Artigos para quem quer ler a fonte. Comece por uma revisão, depois vá para os estudos originais. Os títulos são os originais, em inglês.</p>
+ <div class="road">
+  <div><b>Comece pela revisão</b><span>Ela explica o material, as aplicações e os termos em um só lugar.</span></div>
+  <div><b>Leia os pioneiros</b><span>Os dois estudos de 2012 mostram a ideia central: liberação em meio ácido.</span></div>
+  <div><b>Escolha uma estratégia</b><span>Quimioterapia, luz, zinco, imunidade. Leia o estudo da área que mais te interessa.</span></div>
+ </div>
+ <div class="flt"><div><small>Nível</small><div class="chips" id="fl"></div></div><div><small>Tema</small><div class="chips" id="ft"></div></div></div>
+ <div class="books" id="bk"></div>
+ <h2 class="sub">Como ler um artigo científico</h2>
+ <details open><summary>Leia nesta ordem</summary><ul><li>Título e resumo (abstract).</li><li>Figuras e legendas.</li><li>Conclusão.</li><li>Só depois, métodos e resultados.</li></ul></details>
+ <details><summary>O que procurar nos resultados de ZIF-8</summary><ul><li>Quanto fármaco foi carregado (capacidade de carga) e quanto ficou preso (eficiência).</li><li>Liberação em pH 7,4 e em pH ácido.</li><li>Teste em células e, se houver, em animais.</li><li>Tamanho da partícula e toxicidade do material vazio.</li><li>Se há grupo controle com o fármaco livre.</li></ul></details>
+ <details><summary>Termos para buscar</summary><div class="chips" style="padding:0 18px 16px" id="ks"></div></details>
+</section>
+
+<section class="pane" data-tab="duvidas" hidden>
+ <div class="kick">Tire suas dúvidas</div>
+ <h2>Perguntas e quiz</h2>
+ <div class="g2" style="margin-top:20px">
+  <div>
+   <details open><summary>A ZIF-8 já é usada em pacientes?</summary><p>Os estudos são de laboratório e de animais. Ela ainda está em pesquisa pré-clínica e não é um medicamento aprovado.</p></details>
+   <details><summary>O zinco faz mal?</summary><p>O corpo precisa de zinco, mas o excesso pode ser tóxico. Alguns estudos usam o zinco liberado como parte do ataque, outros medem a segurança em órgãos e no sangue. A dose e o destino do zinco são pontos de atenção.</p></details>
+   <details><summary>Por que o cristal abre no ácido?</summary><p>Prótons competem com o zinco pelo nitrogênio do imidazol e a ligação se rompe. A rede se desfaz sozinha, sem precisar de sensor.</p></details>
+   <details><summary>Qual a diferença para a lipossoma?</summary><p>Lipossomas são bolhas de gordura, usadas em medicamentos aprovados. A ZIF-8 é um cristal rígido, com capacidade de carga alta e liberação sensível ao pH, mas com menos histórico de segurança.</p></details>
+   <details><summary>Por que o sangue não abre o cristal?</summary><p>Em pH 7,4 a rede é estável. Mas o fosfato do sangue pode degradar a ZIF-8 aos poucos, e por isso revestimentos são usados para ganhar tempo.</p></details>
+   <details><summary>Dá para dizer que cura o câncer?</summary><p>Não. Os resultados mostram potencial em modelos de laboratório. A passagem para pessoas exige estudos de segurança, produção em escala e ensaios clínicos.</p></details>
+   <details><summary>O que ainda é desafio?</summary><ul><li>Estabilidade no sangue.</li><li>Toxicidade a longo prazo e destino do zinco.</li><li>Produzir sempre as mesmas partículas, em grande escala.</li><li>Comparar estudos feitos com métodos diferentes.</li><li>Provar eficácia e segurança em humanos.</li></ul></details>
+  </div>
+  <div class="q" id="quiz"></div>
+ </div>
+ <h2 class="sub">Glossário</h2>
+ <input id="gs" type="search" placeholder="Buscar termo" aria-label="Buscar termo no glossário">
+ <dl class="gl" id="gl"></dl>
+</section>
+</main>
+<div class="w"><footer>Conteúdo educativo, não é orientação médica. A ZIF-8 em oncologia está em pesquisa; os esquemas são simplificados e fora de escala. Confira os detalhes nos artigos originais.</footer></div>
+
+<script>
+var $=function(s,r){return(r||document).querySelector(s)};
+function T(x,y,t,o){o=o||{};return '<text x="'+x+'" y="'+y+'" font-size="'+(o.s||12)+'" font-weight="'+(o.w||500)+'" fill="'+(o.c||'var(--mut)')+'" text-anchor="'+(o.a||'middle')+'" font-family="IBM Plex Mono, monospace">'+t+'</text>'}
+function rng(s){return function(){s|=0;s=s+0x6D2B79F5|0;var t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function cv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* ===== motor 3D ===== */
+var COLS={z:['#D3DCFF','#7791FF','#2237B5'],d:['#FFE9CC','#FFA94D','#B85200'],l:['#CFFFF6','#35D6BE','#087568']};
+function sprite(c){var s=document.createElement('canvas');s.width=s.height=96;var g=s.getContext('2d'),r=g.createRadialGradient(36,32,4,48,48,46);r.addColorStop(0,c[0]);r.addColorStop(.45,c[1]);r.addColorStop(1,c[2]);g.fillStyle=r;g.beginPath();g.arc(48,48,46,0,6.2832);g.fill();return s}
+var SPR={z:sprite(COLS.z),d:sprite(COLS.d),l:sprite(COLS.l)};
+function Crystal(c,o){
+ var x=c.getContext('2d'),W=0,H=0,ay=.7,ax=-.35,vy=RM?0:.005,drag=false,lx=0,ly=0,f=0,raf=0,run=false,col={},k=0,R=rng(o.seed||9),N=o.nodes,E=o.edges,L=o.ligs||[],G=o.guests||[],F=o.faces||[];
+ var opt={lig:true,faces:false,guest:true};
+ var dirs=N.map(function(p){var n=Math.hypot(p[0],p[1],p[2])||1;return[p[0]/n+(R()-.5)*.9,p[1]/n+(R()-.5)*.9,p[2]/n+(R()-.5)*.9]});
+ var ldirs=L.map(function(p){var n=Math.hypot(p[0],p[1],p[2])||1;return[p[0]/n+(R()-.5)*.9,p[1]/n+(R()-.5)*.9,p[2]/n+(R()-.5)*.9]});
+ var gdirs=G.map(function(){return[R()-.5,R()-.5,R()-.5]});
+ function size(){var d=window.devicePixelRatio||1,r=c.getBoundingClientRect();W=r.width;H=r.height;c.width=Math.round(W*d);c.height=Math.round(H*d);x.setTransform(d,0,0,d,0,0)}
+ function rot(p){var x1=p[0]*Math.cos(ay)+p[2]*Math.sin(ay),z1=-p[0]*Math.sin(ay)+p[2]*Math.cos(ay),y1=p[1]*Math.cos(ax)-z1*Math.sin(ax),z2=p[1]*Math.sin(ax)+z1*Math.cos(ax);return[x1,y1,z2]}
+ function pr(q,sc){var p=9/(9-q[2]);return[W/2+q[0]*sc*p,H/2+q[1]*sc*p,p,q[2]]}
+ function draw(){
+  k++;if(k%60===1)col={mut:cv('--mut'),tum:cv('--tum'),zn:cv('--zn'),ink:cv('--ink')};
+  if(!drag)ay+=vy;
+  x.clearRect(0,0,W,H);var sc=Math.min(W,H)/(2*o.R*1.55),disp=1.5*f;
+  var P=N.map(function(p,i){var d=dirs[i];return pr(rot([p[0]+d[0]*disp,p[1]+d[1]*disp,p[2]+d[2]*disp]),sc)});
+  var Q=L.map(function(p,i){var d=ldirs[i];return pr(rot([p[0]+d[0]*disp*1.3,p[1]+d[1]*disp*1.3,p[2]+d[2]*disp*1.3]),sc)});
+  var Gp=G.map(function(g,i){var s=1+f*(o.escape||1.9),d=gdirs[i];return pr(rot([g[0]*s+d[0]*f*1.2,g[1]*s+d[1]*f*1.2,g[2]*s+d[2]*f*1.2]),sc)});
+  if(opt.faces&&F.length){F.forEach(function(fc){var pts=fc.map(function(i){return P[i]});var z=pts.reduce(function(a,p){return a+p[3]},0)/pts.length;x.globalAlpha=Math.max(0,(.12+.14*(z+o.R)/(2*o.R))*(1-f));x.fillStyle=col.tum;x.beginPath();pts.forEach(function(p,i){i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1])});x.closePath();x.fill()})}
+  x.lineCap='round';
+  E.forEach(function(e){var a=P[e[0]],b=P[e[1]],z=(a[3]+b[3])/2,al=(1-f*1.05)*(.25+.6*(z+o.R)/(2*o.R));if(al<=.02)return;x.globalAlpha=Math.min(1,al);x.strokeStyle=col.mut;x.lineWidth=Math.max(1,(o.lw||2.2)*(a[2]+b[2])/2);x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(b[0],b[1]);x.stroke()});
+  var it=[];
+  P.forEach(function(p,i){it.push([p,'z',o.rz*(1-f*.35),1-f*.85])});
+  if(opt.lig)Q.forEach(function(p){it.push([p,'l',o.rl*(1-f*.3),(1-f*.9)])});
+  if(opt.guest)Gp.forEach(function(p,i){it.push([p,'d',G[i][3]||o.rd,1])});
+  it.sort(function(a,b){return a[0][3]-b[0][3]});
+  it.forEach(function(s){var p=s[0],r=s[2]*sc*p[2];if(s[3]<=.03)return;x.globalAlpha=Math.min(1,s[3]*(.55+.45*(p[3]+o.R)/(2*o.R)));x.drawImage(SPR[s[1]],p[0]-r,p[1]-r,2*r,2*r)});
+  x.globalAlpha=1;
+  if(run&&c.offsetParent)raf=requestAnimationFrame(draw);else if(run)raf=requestAnimationFrame(draw)}
+ c.addEventListener('pointerdown',function(e){drag=true;lx=e.clientX;ly=e.clientY;try{c.setPointerCapture(e.pointerId)}catch(_){}});
+ c.addEventListener('pointermove',function(e){if(!drag)return;ay+=(e.clientX-lx)*.01;ax=Math.max(-1.3,Math.min(1.3,ax+(e.clientY-ly)*.006));lx=e.clientX;ly=e.clientY;if(RM)draw()});
+ function up(){drag=false}c.addEventListener('pointerup',up);c.addEventListener('pointercancel',up);
+ var api={setF:function(v){f=v;if(RM||!run)draw()},opt:function(a){for(var q in a)opt[q]=a[q];if(RM||!run)draw()},go:function(on){if(on&&!run){run=true;size();draw()}else if(!on){run=false;cancelAnimationFrame(raf)}},size:size};
+ window.addEventListener('resize',function(){if(run){size()}});return api}
+function pushKey(map,p){var k=p.map(function(v){return Math.round(v*1000)}).join(',');return k}
+function rhomb(n){var pts=[],key={},ek={},edges=[],cube=[];
+ function add(p){var k=pushKey(0,p);if(!(k in key)){key[k]=pts.length;pts.push(p)}return key[k]}
+ function ed(a,b){var k=Math.min(a,b)+'-'+Math.max(a,b);if(!(k in ek)){ek[k]=1;edges.push([a,b])}}
+ for(var a=-1;a<=1;a+=2)for(var b=-1;b<=1;b+=2)for(var c=-1;c<=1;c+=2)cube.push([a,b,c]);
+ cube.forEach(function(u,i){cube.forEach(function(v,j){if(j<=i)return;var d=(u[0]!==v[0])+(u[1]!==v[1])+(u[2]!==v[2]);if(d!==1)return;var cm=[0,1,2].filter(function(k){return u[k]===v[k]}),o1=[0,0,0],o2=[0,0,0];o1[cm[0]]=2*u[cm[0]];o2[cm[1]]=2*u[cm[1]];var q=[u,o1,v,o2],ids=[];
+  for(var i2=0;i2<=n;i2++){ids[i2]=[];for(var j2=0;j2<=n;j2++){var s=i2/n,t=j2/n,p=[0,1,2].map(function(k){return(1-s)*(1-t)*q[0][k]+s*(1-t)*q[1][k]+s*t*q[2][k]+(1-s)*t*q[3][k]});ids[i2][j2]=add(p)}}
+  for(var i3=0;i3<=n;i3++)for(var j3=0;j3<=n;j3++){if(i3<n)ed(ids[i3][j3],ids[i3+1][j3]);if(j3<n)ed(ids[i3][j3],ids[i3][j3+1])}})});
+ return{nodes:pts,edges:edges}}
+function sodalite(){var pts=[],per=[[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]],key={};
+ per.forEach(function(p){for(var a=0;a<2;a++)for(var b=0;b<2;b++){var v=[0,0,0],s=[0,a?-1:1,b?-1:1];var base=[0,1,2];v[p[0]]=0;v[p[1]]=(a?-1:1)*1;v[p[2]]=(b?-1:1)*2;var k=v.join(',');if(!(k in key)){key[k]=1;pts.push(v)}}});
+ var edges=[],ligs=[];for(var i=0;i<pts.length;i++)for(var j=i+1;j<pts.length;j++){var d=0;for(var k=0;k<3;k++)d+=Math.pow(pts[i][k]-pts[j][k],2);if(Math.abs(d-2)<1e-6){edges.push([i,j]);ligs.push([0,1,2].map(function(k){return(pts[i][k]+pts[j][k])/2*1.06}))}}
+ var faces=[];for(var sx=-1;sx<=1;sx+=2)for(var sy=-1;sy<=1;sy+=2)for(var sz=-1;sz<=1;sz+=2){var nn=[sx,sy,sz],ids=[];pts.forEach(function(p,i){if(p[0]*nn[0]+p[1]*nn[1]+p[2]*nn[2]===3)ids.push(i)});
+  if(ids.length===6){var cx=0,cy=0,cz=0;ids.forEach(function(i){cx+=pts[i][0];cy+=pts[i][1];cz+=pts[i][2]});cx/=6;cy/=6;cz/=6;var u=[1,0,0];if(Math.abs(nn[0])===1&&Math.abs(nn[1])===1)u=[nn[1],-nn[0],0];var vv=[nn[1]*u[2]-nn[2]*u[1],nn[2]*u[0]-nn[0]*u[2],nn[0]*u[1]-nn[1]*u[0]];ids.sort(function(a,b){function ang(i){var dx=pts[i][0]-cx,dy=pts[i][1]-cy,dz=pts[i][2]-cz;return Math.atan2(dx*vv[0]+dy*vv[1]+dz*vv[2],dx*u[0]+dy*u[1]+dz*u[2])}return ang(a)-ang(b)});faces.push(ids)}}
+ return{nodes:pts,edges:edges,ligs:ligs,faces:faces}}
+var CR={};
+(function(){var r=rhomb(4),g=[];var R=rng(21);for(var i=0;i<12;i++){var a=R()*6.28,b=Math.acos(2*R()-1),rr=.35+R()*.8;g.push([rr*Math.sin(b)*Math.cos(a),rr*Math.cos(b),rr*Math.sin(b)*Math.sin(a),.2])}
+ CR.hero=Crystal($('#hc'),{nodes:r.nodes,edges:r.edges,guests:g,R:2,rz:.085,rl:.05,rd:.2,lw:1.6,escape:2.1,seed:4});CR.hero.opt({lig:false});
+ var s=sodalite();CR.cage=Crystal($('#cc'),{nodes:s.nodes,edges:s.edges,ligs:s.ligs,faces:s.faces,guests:[[0,0,0,.78]],R:2.3,rz:.2,rl:.13,rd:.78,lw:3.2,escape:1.6,seed:8});CR.cage.opt({guest:true})})();
+function hp(v){v=+v;var f=Math.max(0,Math.min(1,(6.9-v)/2.1));return f*f*(3-2*f)}
+var hph=$('#hph');function updH(){CR.hero.setF(hp(hph.value));$('#hphv').textContent=(+hph.value).toFixed(2).replace('.',',')}
+hph.addEventListener('input',updH);document.querySelectorAll('[data-hp]').forEach(function(b){b.addEventListener('click',function(){hph.value=b.dataset.hp;updH()})});updH();
+var cph=$('#cph');function updC(){CR.cage.setF(hp(cph.value));$('#cphv').textContent=(+cph.value).toFixed(2).replace('.',',')}cph.addEventListener('input',updC);updC();
+(function(){var b=$('#cc-b'),st={lig:true,faces:false,guest:true};[['lig','Pontes de imidazolato'],['faces','Janelas (faces hexagonais)'],['guest','Fármaco dentro']].forEach(function(t){var x=document.createElement('button');x.type='button';x.textContent=t[1];x.setAttribute('aria-pressed',st[t[0]]?'true':'false');x.addEventListener('click',function(){st[t[0]]=!st[t[0]];x.setAttribute('aria-pressed',st[t[0]]?'true':'false');var o={};o[t[0]]=st[t[0]];CR.cage.opt(o)});b.appendChild(x)})})();
+
+/* ===== abas ===== */
+var TABS=[['inicio','Início'],['cristal','O cristal'],['fabricacao','Fabricação'],['viagem','A viagem'],['terapias','Terapias'],['cancer','Cânceres'],['historia','História'],['leituras','Leituras'],['duvidas','Dúvidas']];
+var tb=$('#tabs');
+TABS.forEach(function(t){var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.dataset.t=t[0];b.textContent=t[1];b.addEventListener('click',function(){show(t[0],true)});tb.appendChild(b)});
+function show(id,push){if(!TABS.some(function(t){return t[0]===id}))id='inicio';document.querySelectorAll('[data-tab]').forEach(function(s){s.hidden=s.dataset.tab!==id});[].forEach.call(tb.children,function(b){b.setAttribute('aria-selected',b.dataset.t===id?'true':'false')});if(push){try{history.replaceState(null,'','#'+id)}catch(e){}}window.scrollTo(0,0);CR.hero.go(id==='inicio');CR.cage.go(id==='cristal');var cur=[].find.call(tb.children,function(b){return b.dataset.t===id});if(cur)cur.scrollIntoView({block:'nearest',inline:'center'})}
+document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.go,true)})});
+$('#tg').addEventListener('click',function(){var r=document.documentElement,a=r.getAttribute('data-theme'),d=a?a==='dark':!matchMedia('(prefers-color-scheme:light)').matches;r.setAttribute('data-theme',d?'light':'dark')});
+
+/* ===== FIG A: unidade ===== */
+(function(){var cx=210,cy=210,h='',angs=[-45,45,135,225];
+ var info={zn:['Íon de zinco (Zn²⁺)','No centro, o zinco se liga a quatro nitrogênios, formando um tetraedro. Ele se solta como íon quando a rede se desfaz, e pode ter efeito próprio no tumor.'],
+ lig:['Imidazolato','Anel de cinco átomos com dois nitrogênios. Cada anel liga dois zincos, como uma ponte. Na ZIF-8 o anel tem um grupo metila (CH₃) no carbono entre os nitrogênios.'],
+ bond:['Ligação Zn–N','É esta ligação que o ácido ataca. Em pH baixo, prótons (H⁺) ocupam o nitrogênio e o zinco fica solto: a rede se desfaz e a carga é liberada.'],
+ me:['Grupo metila (CH₃)','Deixa a parede interna dos poros mais hidrofóbica, o que ajuda a manter a estrutura estável em água e estreita a janela de entrada.']};
+ h+='<circle cx="210" cy="210" r="190" fill="var(--zn-s)" opacity=".35"/>';
+ angs.forEach(function(a){var r=a*Math.PI/180,lx=cx+Math.cos(r)*108,ly=cy+Math.sin(r)*108,u=[Math.cos(r),Math.sin(r)],rr=27,pt=function(k){var ang=Math.atan2(-u[1],-u[0])+k*72*Math.PI/180;return[lx+Math.cos(ang)*rr,ly+Math.sin(ang)*rr]},p=[0,1,2,3,4].map(pt);
+ var n0=p[0],n2=p[2],c2=p[1],dir=[n2[0]-lx,n2[1]-ly],dl=Math.hypot(dir[0],dir[1]),zx=n2[0]+dir[0]/dl*56,zy=n2[1]+dir[1]/dl*56,mx=lx+(c2[0]-lx)*2.05,my=ly+(c2[1]-ly)*2.05;
+ h+='<line x1="'+cx+'" y1="'+cy+'" x2="'+n0[0]+'" y2="'+n0[1]+'" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round"/>';
+ h+='<g class="hs" data-k="bond" tabindex="0" role="button" aria-label="Ligação Zn-N"><line x1="'+n2[0]+'" y1="'+n2[1]+'" x2="'+zx+'" y2="'+zy+'" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round"/><circle class="hl" cx="'+((n2[0]+zx)/2)+'" cy="'+((n2[1]+zy)/2)+'" r="14"/><circle cx="'+((n2[0]+zx)/2)+'" cy="'+((n2[1]+zy)/2)+'" r="14" fill="transparent"/></g>';
+ h+='<circle cx="'+zx+'" cy="'+zy+'" r="15" fill="url(#sZn)" opacity=".6"/>';
+ h+='<g class="hs" data-k="lig" tabindex="0" role="button" aria-label="Imidazolato"><polygon points="'+p.map(function(q){return q[0]+','+q[1]}).join(' ')+'" fill="var(--ok-s)" stroke="var(--ok)" stroke-width="3" stroke-linejoin="round" filter="url(#sh)"/><circle class="hl" cx="'+lx+'" cy="'+ly+'" r="40"/></g>';
+ h+='<circle cx="'+n0[0]+'" cy="'+n0[1]+'" r="8" fill="url(#sLg)"/><circle cx="'+n2[0]+'" cy="'+n2[1]+'" r="8" fill="url(#sLg)"/>'+T(n0[0],n0[1]+3.5,'N',{s:9,c:'#04201C',w:700})+T(n2[0],n2[1]+3.5,'N',{s:9,c:'#04201C',w:700});
+ h+='<g class="hs" data-k="me" tabindex="0" role="button" aria-label="Grupo metila"><line x1="'+c2[0]+'" y1="'+c2[1]+'" x2="'+mx+'" y2="'+my+'" stroke="var(--drug)" stroke-width="3"/><circle cx="'+mx+'" cy="'+my+'" r="15" fill="url(#sDr)"/>'+T(mx,my+4,'CH₃',{s:9,c:'#2A1500',w:700})+'<circle class="hl" cx="'+mx+'" cy="'+my+'" r="22"/></g>'});
+ h+='<g class="hs" data-k="zn" tabindex="0" role="button" aria-label="Zinco"><circle cx="'+cx+'" cy="'+cy+'" r="34" fill="url(#sZn)" filter="url(#sh)"/>'+T(cx,cy+6,'Zn',{s:17,c:'#fff',w:700})+'<circle class="hl" cx="'+cx+'" cy="'+cy+'" r="44"/></g>';
+ h+=T(260,408,'cada anel liga dois zincos',{s:11});
+ var s=$('#fa');s.innerHTML=h;var box=$('#fa-info');
+ function pick(k){box.innerHTML='<h3>'+info[k][0]+'</h3><p>'+info[k][1]+'</p>';s.querySelectorAll('.hs').forEach(function(g){g.classList.toggle('sel',g.dataset.k===k)})}
+ s.querySelectorAll('.hs').forEach(function(g){g.addEventListener('click',function(){pick(g.dataset.k)});g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(g.dataset.k)}})});pick('zn')})();
+
+/* ===== FIG B: janela ===== */
+(function(){var s=$('#fb'),cx=210,cy=180,h='',N=12,pts=[];
+ for(var i=0;i<N;i++){var a=(i/N)*6.2832;pts.push([cx+Math.cos(a)*120,cy+Math.sin(a)*120])}
+ h+='<circle cx="'+cx+'" cy="'+cy+'" r="104" fill="var(--zn-s)" opacity=".8"/><circle cx="'+cx+'" cy="'+cy+'" r="104" fill="none" stroke="var(--zn)" stroke-opacity=".3" stroke-dasharray="3 6"/>'+T(cx,cy+4,'cavidade ≈ 11,6 Å',{s:12,c:'var(--zn)',w:600});
+ pts.forEach(function(p,i){if(i===0)return;var q=pts[(i+1)%N];h+='<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+q[0]+'" y2="'+q[1]+'" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>'});
+ pts.forEach(function(p){h+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="14" fill="url(#sZn)" filter="url(#sh)"/>'});
+ var ay=(pts[0][1]+pts[1][1])/2,ax=(pts[0][0]+pts[1][0])/2;
+ h+='<line x1="'+(ax+60)+'" y1="'+(ay-60)+'" x2="'+(ax+8)+'" y2="'+(ay-6)+'" stroke="var(--tum)" stroke-width="2"/>'+T(ax+66,ay-66,'janela ≈ 3,4 Å',{s:12,c:'var(--tum)',w:600,a:'start'});
+ h+='<g id="mol" class="mv" style="transform:translate(470px,'+ay+'px)"><circle id="molc" r="10" fill="url(#sDr)" filter="url(#sh)"/></g>'+T(cx,345,'esquema fora de escala',{s:11});
+ s.innerHTML=h;
+ var M={agua:{n:'Água / CO₂',r:7,ok:1,t:'Água e CO₂ têm cerca de 3 Å. Passam pela janela sem esforço. É por isso que a ZIF-8 também é estudada para separar gases.'},dox:{n:'Doxorrubicina',r:26,ok:0,t:'A doxorrubicina tem mais de 1 nm. Não cabe numa janela de 3,4 Å. Por isso o fármaco precisa estar na mistura quando o cristal se forma, e não ser colocado depois.'},meio:{n:'Molécula média (≈ 5 Å)',r:13,ok:0,t:'Moléculas um pouco maiores que a janela às vezes entram porque a rede é flexível, ou ficam presas na superfície e em defeitos do cristal. Esse ponto ainda é debatido na literatura.'}};
+ var bx=$('#fb-b'),mol=$('#mol'),mc=$('#molc'),info=$('#fb-info'),busy=0;
+ Object.keys(M).forEach(function(k){var b=document.createElement('button');b.type='button';b.textContent=M[k].n;b.addEventListener('click',function(){if(busy)return;busy=1;var m=M[k];mc.setAttribute('r',m.r);mc.setAttribute('fill',k==='agua'?'url(#sLg)':'url(#sDr)');mol.style.transition='none';mol.style.transform='translate(470px,'+ay+'px)';void mol.getBoundingClientRect();mol.style.transition='';mol.style.transform='translate('+(ax+(k==='agua'?0:m.r+16))+'px,'+ay+'px)';
+ setTimeout(function(){mol.style.transform=k==='agua'?'translate('+cx+'px,'+(cy+60)+'px)':'translate(470px,'+(ay+40)+'px)';busy=0},1200);
+ info.innerHTML='<h3>'+m.n+(m.ok?': passa':': não passa')+'</h3><p>'+m.t+'</p>'});bx.appendChild(b)})})();
+
+/* ===== FIG C: montagem ===== */
+(function(){var s=$('#fc'),R=rng(11),h='';
+ function ring(n,r,j){return Array.from({length:n},function(_,i){var a=i/n*6.2832+(j||0);return[360+Math.cos(a)*r,150+Math.sin(a)*r]})}
+ var zS=ring(14,82),zM=ring(14,108,.2),lS=ring(14,66,.2).concat(ring(14,96,.5)),rr=function(){return[30+R()*660,20+R()*250]},items=[];
+ for(var i=0;i<14;i++)items.push({k:'z',a:rr(),b:zM[i],c:zS[i]});
+ for(var i=0;i<28;i++)items.push({k:'l',a:rr(),b:[360+(lS[i][0]-360)*1.25,150+(lS[i][1]-150)*1.25],c:lS[i]});
+ var dr=[[345,142],[375,150],[352,170],[372,128],[335,158]];
+ for(var i=0;i<5;i++)items.push({k:'d',a:rr(),b:[dr[i][0]+(R()-.5)*60,dr[i][1]+(R()-.5)*60],c:dr[i]});
+ h+='<rect width="720" height="300" fill="var(--bg2)"/><circle id="gl1" class="mv" cx="360" cy="150" r="150" fill="var(--zn)" opacity="0" filter="url(#gl)"/>';
+ items.forEach(function(it,i){var f=it.k==='z'?'url(#sZn)':it.k==='l'?'url(#sLg)':'url(#sDr)',rad=it.k==='z'?9:it.k==='l'?5.5:12;h+='<g class="mv it" data-i="'+i+'" style="transform:translate('+it.a[0]+'px,'+it.a[1]+'px)"><circle r="'+rad+'" fill="'+f+'"/></g>'});
+ h+='<circle id="shell" class="mv" cx="360" cy="150" r="124" fill="none" stroke="var(--zn)" stroke-width="3" stroke-dasharray="6 6" opacity="0"/>'+T(40,290,'● zinco',{s:12,c:'var(--zn)',a:'start',w:600})+T(130,290,'● imidazol',{s:12,c:'var(--ok)',a:'start',w:600})+T(235,290,'● fármaco',{s:12,c:'var(--drug)',a:'start',w:600});
+ s.innerHTML=h;var S=[['1. Mistura','Zinco, imidazol e o fármaco estão soltos na água, em temperatura ambiente. Não é preciso calor nem solvente agressivo, e isso é uma vantagem para moléculas frágeis.'],['2. Nucleação','Zinco e imidazol começam a se ligar. O fármaco, grande, serve de ponto de partida: os cristais crescem ao redor dele.'],['3. Partícula pronta','A rede se fecha e o fármaco fica preso nas gaiolas. A partícula agora circula carregada e só solta a carga quando o meio ficar ácido.']];
+ var rail=$('#fc-b');
+ function go(n){rail.querySelectorAll('button').forEach(function(b,i){b.setAttribute('aria-pressed',i===n?'true':'false')});s.querySelectorAll('.it').forEach(function(g){var it=items[+g.dataset.i],p=n===0?it.a:n===1?it.b:it.c;g.style.transform='translate('+p[0]+'px,'+p[1]+'px)'});$('#shell').setAttribute('opacity',n===2?'1':'0');$('#gl1').setAttribute('opacity',n===2?'.18':'0');$('#fc-t').textContent=S[n][0].slice(3);$('#fc-p').textContent=S[n][1]}
+ S.forEach(function(x,i){var b=document.createElement('button');b.type='button';b.textContent=x[0];b.addEventListener('click',function(){go(i)});rail.appendChild(b)});go(0)})();
+
+/* ===== estratégias de carga ===== */
+(function(){var ch=$('#lch'),sv=$('#lsv'),inf=$('#lin');
+ function hex(cx,cy,r,fill,stroke){var p=[];for(var i=0;i<6;i++){var a=i/6*6.2832+.5236;p.push((cx+Math.cos(a)*r)+','+(cy+Math.sin(a)*r))}return '<polygon points="'+p.join(' ')+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="3" stroke-linejoin="round"/>'}
+ function dots(n,cx,cy,r,rd,fill,seed){var R=rng(seed),o='';for(var i=0;i<n;i++){var a=R()*6.28,d=Math.sqrt(R())*r;o+='<circle cx="'+(cx+Math.cos(a)*d)+'" cy="'+(cy+Math.sin(a)*d)+'" r="'+rd+'" fill="'+fill+'"/>'}return o}
+ function lat(cx,cy,r){var o='';for(var i=-3;i<=3;i++)for(var j=-3;j<=3;j++){var x=cx+i*22,y=cy+j*22;if(Math.hypot(x-cx,y-cy)<r)o+='<circle cx="'+x+'" cy="'+y+'" r="3" fill="url(#sZn)" opacity=".7"/>'}return o}
+ var D=[
+ {n:'Encapsulamento durante a síntese',svg:function(){return hex(190,120,92,'var(--zn-s)','var(--zn)')+lat(190,120,84)+dots(9,190,120,56,10,'url(#sDr)',3)+T(190,236,'fármaco preso dentro do cristal',{s:11})},t:'O fármaco entra na mistura e o cristal cresce ao redor dele, a chamada biomineralização ou “one-pot”. Funciona bem com moléculas grandes e frágeis.',p:['Alta capacidade de carga','Etapa única, em água','Protege proteínas e RNA'],c:['Nem todo fármaco tolera o meio de síntese','O fármaco pode alterar o tamanho do cristal']},
+ {n:'Adsorção depois da síntese',svg:function(){var o=hex(210,120,86,'var(--zn-s)','var(--zn)')+lat(210,120,78);var R=rng(8);for(var i=0;i<8;i++){var a=i/8*6.28+.3;o+='<circle cx="'+(210+Math.cos(a)*100)+'" cy="'+(120+Math.sin(a)*100)+'" r="9" fill="url(#sDr)"/>'}o+='<path d="M30 120h56" stroke="var(--drug)" stroke-width="3"/><path d="M80 112l12 8-12 8z" fill="var(--drug)"/>'+T(56,100,'fármaco',{s:11,c:'var(--drug)',w:600});return o+T(190,236,'fármaco colado na superfície e em poros externos',{s:11})},t:'O cristal pronto é mergulhado numa solução do fármaco, que se prende na superfície e em poros acessíveis.',p:['Fácil de fazer','Serve para moléculas pequenas'],c:['Capacidade de carga menor','Pode vazar cedo, já no sangue']},
+ {n:'Casca sobre um núcleo',svg:function(){return hex(190,120,98,'var(--zn-s)','var(--zn)')+'<polygon points="190,62 202,100 242,100 210,124 222,162 190,140 158,162 170,124 138,100 178,100" fill="url(#gGold)" stroke="#A66A00" stroke-width="2" filter="url(#sh)"/>'+dots(6,190,120,82,8,'url(#sDr)',5)+T(190,236,'núcleo (ouro) + casca de ZIF-8',{s:11})},t:'A ZIF-8 reveste outra nanopartícula, como ouro, sílica mesoporosa ou ferro. O núcleo traz uma função extra, como gerar calor com luz, e a casca guarda o fármaco.',p:['Junta funções diferentes','Imagem e terapia no mesmo objeto'],c:['Mais etapas de fabricação','Mais difícil de reproduzir em escala']}];
+ function sel(i){ch.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-pressed',i===j?'true':'false')});var d=D[i];sv.innerHTML='<rect width="360" height="240" fill="var(--bg2)"/>'+d.svg();inf.innerHTML='<h3>'+d.n+'</h3><p>'+d.t+'</p><h4 style="margin-top:12px">Vantagens</h4><ul class="ul">'+d.p.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><h4 style="margin-top:12px">Cuidados</h4><ul class="ul">'+d.c.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>'}
+ D.forEach(function(d,i){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=d.n;b.addEventListener('click',function(){sel(i)});ch.appendChild(b)});sel(0)})();
+
+/* ===== revestimentos ===== */
+(function(){var ch=$('#sch'),sv=$('#ssv'),inf=$('#sin');
+ function core(){var p=[];for(var i=0;i<6;i++){var a=i/6*6.2832+.5236;p.push((200+Math.cos(a)*70)+','+(160+Math.sin(a)*70))}return '<polygon points="'+p.join(' ')+'" fill="var(--zn-s)" stroke="var(--zn)" stroke-width="3.5" stroke-linejoin="round" filter="url(#sh)"/>'+[[-26,-18],[10,-30],[28,0],[-8,10],[-30,22],[14,28]].map(function(d){return '<circle cx="'+(200+d[0])+'" cy="'+(160+d[1])+'" r="7" fill="url(#sDr)"/>'}).join('')+T(200,166,'',{})}
+ function ring(n,r,fn){var o='';for(var i=0;i<n;i++){var a=i/n*6.2832;o+=fn(200+Math.cos(a)*r,160+Math.sin(a)*r,a)}return o}
+ var D=[
+ {n:'PEG',svg:function(){return ring(22,86,function(x,y,a){return '<path d="M'+(200+Math.cos(a)*78)+' '+(160+Math.sin(a)*78)+'q'+(Math.cos(a+1.57)*14)+' '+(Math.sin(a+1.57)*14)+' '+(Math.cos(a)*18)+' '+(Math.sin(a)*18)+'t'+(Math.cos(a)*18)+' '+(Math.sin(a)*18)+'t'+(Math.cos(a)*14)+' '+(Math.sin(a)*14)+'" fill="none" stroke="var(--ok)" stroke-width="3" stroke-linecap="round"/>'})},t:'O polietilenoglicol forma uma nuvem de cadeias ao redor da partícula. Ela dificulta que proteínas do sangue grudem e que as células de defesa a reconheçam, o que aumenta o tempo de circulação.',u:'Discrição: circular por mais tempo.'},
+ {n:'Ácido hialurônico',svg:function(){return ring(14,90,function(x,y,a){return '<path d="M'+(200+Math.cos(a)*78)+' '+(160+Math.sin(a)*78)+'L'+x+' '+y+'" stroke="var(--drug)" stroke-width="4" stroke-linecap="round"/><circle cx="'+x+'" cy="'+y+'" r="6" fill="url(#sDr)"/>'})+'<path d="M360 60q20 100 0 200" stroke="var(--tum)" stroke-width="6" fill="none"/><path d="M360 130h-14" stroke="var(--tum)" stroke-width="5"/>'+T(366,52,'CD44',{s:11,c:'var(--tum)',w:600,a:'end'})},t:'Polímero natural que se liga ao CD44, uma proteína abundante na superfície de muitas células tumorais. Também protege a ZIF-8 e ajuda a entrar na célula.',u:'Rumo: reconhecer células tumorais com CD44.'},
+ {n:'Ácido fólico',svg:function(){return ring(12,88,function(x,y,a){var c=Math.cos(a),s=Math.sin(a);return '<line x1="'+(200+c*78)+'" y1="'+(160+s*78)+'" x2="'+(200+c*96)+'" y2="'+(160+s*96)+'" stroke="var(--zn)" stroke-width="3"/><path d="M'+(200+c*96-6*s)+' '+(160+s*96+6*c)+'L'+(200+c*108)+' '+(160+s*108)+'L'+(200+c*96+6*s)+' '+(160+s*96-6*c)+'z" fill="var(--zn)"/>'})+'<path d="M350 70v16a12 12 0 0 0 24 0v-16M362 86v140" stroke="var(--tum)" stroke-width="5" fill="none" stroke-linecap="round"/>'+T(360,56,'receptor de folato',{s:10,c:'var(--tum)',w:600,a:'end'})},t:'Muitos tumores, como ovário e mama, têm muito receptor de folato. O ácido fólico na superfície funciona como uma chave que se encaixa nesse receptor e puxa a partícula para dentro da célula.',u:'Rumo: ligar-se ao receptor de folato.'},
+ {n:'Membrana de célula',svg:function(){return '<circle cx="200" cy="160" r="98" fill="none" stroke="var(--tum)" stroke-width="8" opacity=".85"/><circle cx="200" cy="160" r="86" fill="none" stroke="var(--tum)" stroke-width="3" stroke-dasharray="2 6"/>'+ring(10,108,function(x,y,a){return '<circle cx="'+x+'" cy="'+y+'" r="6" fill="url(#sTu)"/>'})},t:'A membrana tirada de células tumorais cobre a partícula como uma capa de camuflagem. Ela carrega as proteínas da própria célula, o que ajuda o sistema imune a ignorar a partícula e a levá-la de volta ao tumor de origem.',u:'Identidade: camuflagem e reconhecimento de células iguais.'},
+ {n:'Anticorpos e peptídeos',svg:function(){return ring(9,92,function(x,y,a){var d=a*57.3+90;return '<g transform="translate('+x+' '+y+') rotate('+d+')"><path d="M0 0v-20M0 -20l-10 -12M0 -20l10 -12" stroke="var(--tum)" stroke-width="4" stroke-linecap="round" fill="none"/></g>'})},t:'Anticorpos e peptídeos, como o RGD, reconhecem moléculas específicas do tumor. São as peças mais precisas e as mais caras e difíceis de produzir em escala.',u:'Rumo: precisão contra um alvo específico.'}];
+ function sel(i){ch.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-pressed',i===j?'true':'false')});var d=D[i];sv.innerHTML='<rect width="400" height="320" fill="var(--bg2)"/>'+d.svg()+core();inf.innerHTML='<h3>'+d.n+'</h3><p>'+d.t+'</p><h4 style="margin-top:14px">Para que serve</h4><p>'+d.u+'</p>'}
+ D.forEach(function(d,i){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=d.n;b.addEventListener('click',function(){sel(i)});ch.appendChild(b)});sel(0)})();
+
+/* ===== calculadora ===== */
+(function(){function u(){var a=+$('#c1').value,b=+$('#c2').value,m=+$('#c3').value;var ee=a>0?b/a*100:0,lc=m>0?b/m*100:0;$('#r1').textContent=Math.round(ee*10)/10+'%';$('#r2').textContent=Math.round(lc*10)/10+'%';$('#rn').textContent=(b>a?'O fármaco dentro não pode superar o adicionado. Confira os valores.':b>m?'O fármaco dentro não pode superar a massa da partícula. Confira os valores.':'Capacidade de carga alta significa menos material para a mesma dose. Eficiência alta significa menos desperdício de fármaco.')}['c1','c2','c3'].forEach(function(i){$('#'+i).addEventListener('input',u)});u()})();
+
+/* ===== JORNADA ===== */
+(function(){var J=[['Circulação','No sangue (pH 7,4) a rede fica íntegra e segura a carga. Revestimentos, como polímeros ou membranas de células, ajudam a partícula a circular por mais tempo.'],['Passagem pelo vaso','Os vasos do tumor se formam rápido e têm frestas. Nanopartículas passam por elas e ficam retidas. É o chamado efeito EPR, que funciona melhor em alguns tumores do que em outros.'],['Chegada ao tumor','O entorno do tumor é um pouco mais ácido (pH 6,5 a 6,8). Revestimentos como ácido fólico ou hialurônico ajudam a partícula a reconhecer células tumorais.'],['Entrada na célula','A célula engole a partícula por endocitose, que a envolve numa bolha de membrana chamada endossomo.'],['Abertura','Dentro do endossomo e do lisossomo o pH cai para 4,5 a 5,5. A rede se desfaz e libera o fármaco e os íons de zinco.'],['Efeito','A carga age: o quimioterápico danifica o DNA, o zinco desequilibra a célula, o fotossensibilizador reage à luz. A célula tumoral morre.']];
+ function pt(){return '<circle r="15" fill="var(--zn-s)" stroke="var(--zn)" stroke-width="3" filter="url(#sh)"/><circle r="4" fill="url(#sDr)"/><circle cx="6" cy="-5" r="3.2" fill="url(#sDr)"/><circle cx="-6" cy="4" r="3.2" fill="url(#sDr)"/>'}
+ var m='<rect width="720" height="300" fill="var(--bg2)"/><rect class="tint" x="0" y="140" width="720" height="160" fill="var(--tum-s)"/><rect x="0" y="22" width="720" height="92" fill="var(--tum-s)" opacity=".5"/>';
+ m+='<path d="M0 22H720M0 114H380M470 114H720" stroke="var(--tum)" stroke-width="5" fill="none"/>'+T(10,14,'vaso sanguíneo · pH 7,4',{s:12,c:'var(--tum)',w:600,a:'start'})+T(425,134,'fresta',{s:11,c:'var(--tum)'});
+ for(var i=0;i<6;i++)m+='<ellipse class="rbc" style="animation-delay:'+(-i*1.5)+'s" cx="0" cy="'+(48+(i%3)*22)+'" rx="15" ry="8" fill="var(--tum)" opacity=".5"/>';
+ [[90,200],[230,240],[290,185],[560,190],[620,245],[480,260],[170,260]].forEach(function(c){m+='<ellipse cx="'+c[0]+'" cy="'+c[1]+'" rx="34" ry="26" fill="url(#gCell)" stroke="var(--tum)" stroke-width="3"/><circle cx="'+(c[0]+6)+'" cy="'+(c[1]+2)+'" r="9" fill="url(#sTu)" opacity=".85"/>'});
+ m+=T(10,292,'tecido do tumor · pH 6,5 a 6,8',{s:12,c:'var(--tum)',w:600,a:'start'})+'<g class="mv pa">'+pt()+'</g><g class="mv pb">'+pt()+'</g><g class="mv pc">'+pt()+'</g>';
+ var mac=$('#mac');mac.innerHTML=m;mac.querySelectorAll('.pa,.pb,.pc').forEach(function(g){g.style.transition='transform 1.4s cubic-bezier(.5,0,.2,1)'});
+ var c='<rect width="720" height="300" fill="var(--bg2)"/><ellipse class="cel" cx="400" cy="150" rx="250" ry="130"/>'+T(560,265,'célula tumoral',{s:12,c:'var(--tum)',w:600,a:'start'});
+ c+='<circle class="nuc" cx="472" cy="150" r="54"/>'+T(472,155,'núcleo',{s:12,c:'var(--ink)'});
+ c+='<g class="dmg" stroke="var(--tum)" stroke-width="3" fill="none" stroke-linecap="round"><path d="M440 128l14 10-8 12 16 8"/><path d="M498 126l-12 14 10 10-12 14"/></g>';
+ c+='<g class="mv pg"><circle class="eng" r="32" fill="var(--zn-s)" stroke="var(--tum)" stroke-width="3" opacity=".3"/><circle class="acid" r="32" fill="var(--tum-s)" stroke="var(--tum)" stroke-width="3"/><g class="shell"><circle r="15" fill="var(--zn-s)" stroke="var(--zn)" stroke-width="3"/></g></g>';
+ var rd=rng(5);for(var i=0;i<8;i++){var a=i/8*6.28,ox=Math.cos(a)*(22+rd()*6),oy=Math.sin(a)*(22+rd()*6),nx=Math.cos(a)*(18+rd()*22),ny=Math.sin(a)*(18+rd()*22);c+='<g class="dd" style="--ox:'+ox+'px;--oy:'+oy+'px;--nx:'+nx+'px;--ny:'+ny+'px"><circle r="5.5" fill="url(#sDr)"/></g>'}
+ c+='<text class="acid" x="285" y="205" font-size="11" fill="var(--tum)" text-anchor="middle" font-family="IBM Plex Mono, monospace">endossomo ácido</text>';
+ var mic=$('#mic');mic.innerHTML=c;
+ var rail=$('#jr'),st=1,timer=0,pl=document.createElement('button');
+ function go(n){st=n;rail.querySelectorAll('button[data-n]').forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.n===n?'true':'false')});var macro=n<=3;mac.hidden=!macro;mic.hidden=macro;(macro?mac:mic).dataset.s=n;$('#jt').textContent=n+'. '+J[n-1][0];$('#jp').textContent=J[n-1][1]}
+ J.forEach(function(j,i){var b=document.createElement('button');b.type='button';b.dataset.n=i+1;b.textContent=(i+1)+' '+j[0];b.addEventListener('click',function(){stop();go(i+1)});rail.appendChild(b)});
+ pl.type='button';pl.className='btn pri';pl.textContent='Reproduzir';pl.style.marginLeft='auto';rail.appendChild(pl);
+ function stop(){clearInterval(timer);timer=0;pl.textContent='Reproduzir'}
+ pl.addEventListener('click',function(){if(timer){stop();return}pl.textContent='Pausar';if(st>=6)go(1);timer=setInterval(function(){if(st>=6){stop();return}go(st+1)},3200)});
+ go(1)})();
+
+/* ===== zoom químico ===== */
+(function(){var s=$('#chem'),h='<rect width="400" height="260" fill="var(--bg2)"/>';
+ h+='<g class="znm"><circle cx="110" cy="130" r="38" fill="url(#sZn)" filter="url(#sh)"/>'+T(110,137,'Zn²⁺',{s:16,c:'#fff',w:700})+'</g>';
+ h+='<line class="bond" x1="148" y1="130" x2="238" y2="130" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>';
+ var p=[];for(var i=0;i<5;i++){var a=i/5*6.2832+3.1416;p.push([300+Math.cos(a)*44,130+Math.sin(a)*44])}
+ h+='<polygon points="'+p.map(function(q){return q[0]+','+q[1]}).join(' ')+'" fill="var(--ok-s)" stroke="var(--ok)" stroke-width="3" stroke-linejoin="round"/>';
+ h+='<circle cx="'+p[0][0]+'" cy="'+p[0][1]+'" r="11" fill="url(#sLg)"/>'+T(p[0][0],p[0][1]+4,'N',{s:11,c:'#04201C',w:700})+'<g class="lone"><circle cx="'+(p[0][0]-16)+'" cy="'+(p[0][1]-12)+'" r="3" fill="var(--drug)"/><circle cx="'+(p[0][0]-16)+'" cy="'+(p[0][1]+12)+'" r="3" fill="var(--drug)"/></g>';
+ h+='<circle cx="'+p[3][0]+'" cy="'+p[3][1]+'" r="9" fill="url(#sLg)"/>'+T(p[3][0],p[3][1]+4,'N',{s:10,c:'#04201C',w:700});
+ var hx=[[330,40],[360,200],[250,210]];hx.forEach(function(q,i){var tx=i===0?p[0][0]-6:p[0][0]-14,ty=i===0?p[0][1]-24:p[0][1]+18,dx=i===2?-10:0;h+='<g class="hp" style="--hx:'+q[0]+'px;--hy:'+q[1]+'px;--hx2:'+(i===0?p[0][0]-20:i===1?p[0][0]-4:p[0][0]-34)+'px;--hy2:'+(i===0?p[0][1]-26:i===1?p[0][1]+22:p[0][1]+20)+'px"><circle r="12" fill="url(#sTu)"/>'+T(0,4,'H⁺',{s:10,c:'#fff',w:700})+'</g>'});
+ h+=T(200,248,'esquema simplificado',{s:11});s.innerHTML=h;
+ $('#chb').addEventListener('click',function(){var on=s.dataset.on==='1'?'0':'1';s.dataset.on=on;this.textContent=on==='1'?'Voltar para o sangue (pH 7,4)':'Adicionar ácido (H⁺)';$('#cht').textContent=on==='1'?'Em pH ácido':'Em pH 7,4';$('#chp').textContent=on==='1'?'Prótons ocupam o par de elétrons do nitrogênio. Sem esse par, o nitrogênio não segura o zinco. A ligação se rompe, o zinco se solta e a rede se desmonta.':'O nitrogênio do imidazolato está ligado ao zinco. A ligação é firme e a rede se mantém.'})})();
+
+/* ===== LAB pH ===== */
+(function(){var la=$('#la'),lb=$('#lb'),ph=$('#ph'),tt=$('#tt'),R=rng(3),N=26,M=16,sh=[],dg=[],h='';
+ function aa(p){return 1/(1+Math.exp((p-6.3)*3))}
+ function rel(t,p){var a=aa(p);return(8+88*a)*(1-Math.exp(-t/(40-28*a)))}
+ h+='<rect width="360" height="260" fill="var(--ok-s)"/><rect id="lbg" width="360" height="260" fill="var(--tum-s)" opacity="0"/>';
+ for(var i=0;i<N;i++){var a=i/N*6.2832;sh.push({a:a,vx:Math.cos(a)*(.7+R()*.6)+(R()-.5)*.8,vy:Math.sin(a)*(.7+R()*.6)+(R()-.5)*.8,rot:(R()-.5)*180});h+='<rect class="sq" x="-9" y="-9" width="18" height="18" rx="3" fill="var(--zn-s)" stroke="var(--zn)" stroke-width="2.5"/>'}
+ for(var i=0;i<M;i++){var a2=R()*6.2832,r2=R()*38;dg.push({x:Math.cos(a2)*r2,y:Math.sin(a2)*r2,a:a2,s:70+R()*80});h+='<circle class="dg" r="6" fill="url(#sDr)"/>'}
+ la.innerHTML=h+'<text id="lab" x="180" y="248" font-size="12" font-weight="600" text-anchor="middle" fill="var(--mut)" font-family="IBM Plex Mono, monospace"></text>';
+ var sq=la.querySelectorAll('.sq'),dgs=la.querySelectorAll('.dg');
+ var cH='';[0,24,48,72].forEach(function(t){var X=50+t/72*290;cH+='<line x1="'+X+'" y1="20" x2="'+X+'" y2="200" stroke="var(--line)"/>'+T(X,220,t,{s:11})});[0,50,100].forEach(function(v){var Y=200-v/100*180;cH+='<line x1="50" y1="'+Y+'" x2="340" y2="'+Y+'" stroke="var(--line)"/>'+T(42,Y+4,v,{s:11,a:'end'})});
+ function path(p){var d='';for(var t=0;t<=72;t+=2)d+=(t?'L':'M')+(50+t/72*290)+' '+(200-rel(t,p)/100*180);return d}
+ cH+='<path d="'+path(7.4)+'" fill="none" stroke="var(--ok)" stroke-width="2" stroke-dasharray="4 4"/><path d="'+path(5.5)+'" fill="none" stroke="var(--tum)" stroke-width="2" stroke-dasharray="4 4"/>'+T(338,56,'pH 5,5',{s:11,c:'var(--tum)',a:'end',w:600})+T(338,184,'pH 7,4',{s:11,c:'var(--ok)',a:'end',w:600});
+ lb.innerHTML='<rect width="360" height="260" fill="var(--bg2)"/>'+cH+'<path id="cur" fill="none" stroke="var(--zn)" stroke-width="4" stroke-linecap="round"/><line id="cl" y1="20" y2="200" stroke="var(--zn)" stroke-width="2"/><circle id="cd" r="7" fill="var(--zn)" stroke="var(--bg2)" stroke-width="3"/>';
+ function upd(){var p=+ph.value,t=+tt.value,f=rel(t,p)/100;$('#phv').textContent=p.toFixed(1).replace('.',',');$('#ttv').textContent=t+' h';
+  sq.forEach(function(e,i){var s=sh[i],k=Math.min(1,f*1.15),bx=180+Math.cos(s.a)*68,by=120+Math.sin(s.a)*68;e.setAttribute('transform','translate('+(bx+s.vx*k*90)+' '+(by+s.vy*k*90)+') rotate('+(s.a*57.3+90+s.rot*k)+')');e.setAttribute('opacity',Math.max(.04,1-k*1.1))});
+  dgs.forEach(function(e,i){var d=dg[i],k=Math.max(0,(f-.12)/.88);e.setAttribute('transform','translate('+(180+d.x+Math.cos(d.a)*k*d.s*1.3)+' '+(120+d.y+Math.sin(d.a)*k*d.s*1.1)+')')});
+  $('#lbg').setAttribute('opacity',aa(p).toFixed(2));$('#lab').textContent='liberado: '+Math.round(f*100)+'%';
+  var d='';for(var u=0;u<=t;u+=2)d+=(u?'L':'M')+(50+u/72*290)+' '+(200-rel(u,p)/100*180);$('#cur').setAttribute('d',d||'M50 200');
+  var X=50+t/72*290,Y=200-f*180;$('#cl').setAttribute('x1',X);$('#cl').setAttribute('x2',X);$('#cd').setAttribute('cx',X);$('#cd').setAttribute('cy',Y);
+  $('#phs').textContent=p>=7?'Estrutura íntegra: o fármaco fica retido.':p>=6.2?'Degradação lenta: a liberação começa.':p>=5.4?'Degradação em curso: liberação acelerada.':'Colapso rápido: quase toda a carga sai.'}
+ ph.addEventListener('input',upd);tt.addEventListener('input',upd);
+ document.querySelectorAll('[data-ph]').forEach(function(b){b.addEventListener('click',function(){ph.value=b.dataset.ph;upd()})});
+ var pt=0;$('#play').addEventListener('click',function(){if(pt){clearInterval(pt);pt=0;return}tt.value=0;pt=setInterval(function(){tt.value=+tt.value+1;upd();if(+tt.value>=72){clearInterval(pt);pt=0}},90)});upd()})();
+
+/* ===== TERAPIAS ===== */
+(function(){
+ function base(extra,under,cls){return '<svg class="sc '+(cls||'')+'" data-on="0" viewBox="0 0 360 280" role="img" aria-label="Cena da terapia"><rect width="360" height="280" fill="var(--bg2)"/>'+(under||'')+'<ellipse class="cl" cx="228" cy="150" rx="116" ry="84"/><ellipse class="mito" cx="190" cy="196" rx="18" ry="9" transform="rotate(-20 190 196)"/><ellipse class="mito" cx="282" cy="192" rx="16" ry="8" transform="rotate(25 282 192)"/><circle cx="252" cy="150" r="30" fill="url(#gNuc)" stroke="var(--zn)" stroke-width="3"/>'+T(252,154,'núcleo',{s:10,c:'var(--ink)'})+'<g transform="translate(90 150)"><circle r="22" fill="var(--zn-s)" stroke="var(--zn)" stroke-width="3" filter="url(#sh)"/><circle r="5" fill="url(#sDr)"/><circle cx="9" cy="-8" r="3.8" fill="url(#sDr)"/><circle cx="-9" cy="7" r="3.8" fill="url(#sDr)"/></g>'+T(90,192,'ZIF-8',{s:11,c:'var(--zn)',w:600})+(extra||'')+'</svg>'}
+ var beam='<polygon class="on" points="20,0 70,0 100,134 80,134" fill="url(#gBeam)"/>';
+ var th=[
+ {k:'Quimioterapia',svg:function(){var s='';[[240,134],[264,148],[254,168],[240,158],[270,130]].forEach(function(p){s+='<g class="drg" style="--tx:'+p[0]+'px;--ty:'+p[1]+'px"><circle r="5.5" fill="url(#sDr)"/></g>'});return base(s+'<g class="on" stroke="var(--tum)" stroke-width="3" fill="none" stroke-linecap="round"><path d="M237 130l14 10-8 12 16 8"/><path d="M272 132l-12 14 10 10"/></g>'+T(180,270,'o fármaco chega ao núcleo e quebra o DNA',{s:11}),'')},btn:['Acidificar o meio','Voltar'],what:'Em meio ácido a ZIF-8 se desfaz e o quimioterápico (como a doxorrubicina ou o 5-fluorouracil) sai dentro da célula. O DNA é danificado e a célula morre.',why:['O fármaco chega com menos perda pelo caminho.','Menos exposição de tecidos saudáveis.','Pode ser montada já com o fármaco dentro.']},
+ {k:'Fototérmica',svg:function(){var w='<g class="pulse"><circle cx="90" cy="150" r="40" fill="none" stroke="var(--tum)" stroke-width="3"/></g><g class="pulse" style="animation-delay:.7s"><circle cx="90" cy="150" r="40" fill="none" stroke="var(--tum)" stroke-width="3"/></g>';return base(beam+w+T(180,270,'luz infravermelha vira calor na partícula',{s:11}),'')},btn:['Ligar o laser','Desligar'],what:'A partícula leva um material que converte luz infravermelha em calor, como nanoestrelas de ouro ou grafeno. O calor concentrado danifica a célula tumoral.',why:['A ZIF-8 pode envolver o material que gera calor.','Pode liberar quimioterápico ao mesmo tempo.','A luz infravermelha atravessa melhor os tecidos.']},
+ {k:'Fotodinâmica',svg:function(){var s='';[[190,100],[205,215],[160,200],[285,225],[300,100]].forEach(function(p){s+='<g class="on"><polygon points="'+p[0]+','+(p[1]-10)+' '+(p[0]+4)+','+(p[1]-3)+' '+(p[0]+11)+','+p[1]+' '+(p[0]+4)+','+(p[1]+3)+' '+p[0]+','+(p[1]+10)+' '+(p[0]-4)+','+(p[1]+3)+' '+(p[0]-11)+','+p[1]+' '+(p[0]-4)+','+(p[1]-3)+'" fill="var(--tum)"/></g><circle class="off" cx="'+p[0]+'" cy="'+p[1]+'" r="5" fill="url(#sZn)"/>'});return base(beam+s+T(180,270,'O₂ (azul) vira radical reativo (estrela)',{s:11}),'','hit')},btn:['Ligar a luz','Desligar'],what:'A luz ativa um fotossensibilizador que transforma o oxigênio em espécies reativas. Elas oxidam e matam a célula. Como o tumor tem pouco oxigênio, muitos sistemas levam catalase junto, uma enzima que gera oxigênio.',why:['Protege o fotossensibilizador até chegar na célula.','Pode carregar catalase para gerar oxigênio.','A luz só age onde é aplicada.']},
+ {k:'Sonodinâmica',svg:function(){var w='';[40,70,100].forEach(function(r,i){w+='<path class="wave" style="animation-delay:'+(i*.35)+'s;transform-origin:30px 40px" d="M'+(30+r*.2)+' '+(40+r)+'A'+r+' '+r+' 0 0 0 '+(30+r)+' '+(40+r*.2)+'" fill="none" stroke="var(--zn)" stroke-width="3"/>'});return base('<rect x="14" y="26" width="34" height="22" rx="6" fill="var(--zn)" transform="rotate(-45 30 40)"/>'+T(34,24,'ultrassom',{s:10,c:'var(--zn)',a:'start'}).replace('y="24"','y="18"')+w+'<g class="on"><circle cx="190" cy="206" r="6" fill="url(#sTu)"/><circle cx="288" cy="218" r="6" fill="url(#sTu)"/><circle cx="214" cy="110" r="6" fill="url(#sTu)"/></g>'+T(180,270,'ultrassom ativa o sonossensibilizador',{s:11}),'','hit')},btn:['Ligar o ultrassom','Desligar'],what:'Funciona como a fotodinâmica, mas com ultrassom no lugar da luz. O som atravessa tecidos mais fundos que a luz, e ativa uma molécula que gera espécies reativas de oxigênio.',why:['Alcança tumores profundos.','O cristal protege e leva o sonossensibilizador.','Combina com liberação de fármaco.']},
+ {k:'Quimiodinâmica',svg:function(){var s='';[[185,100],[200,215],[290,225],[300,100]].forEach(function(p){s+='<g class="off">'+T(p[0],p[1],'H₂O₂',{s:11,c:'var(--zn)',w:600})+'</g><g class="on">'+T(p[0],p[1],'•OH',{s:14,c:'var(--tum)',w:700})+'</g>'});return base(s+T(180,270,'metal + H₂O₂ do tumor geram radicais •OH',{s:11}),'','hit')},btn:['Ativar no meio ácido','Voltar'],what:'Metais como zinco, ferro e cobre convertem o peróxido de hidrogênio, que o tumor produz em excesso, em radicais hidroxila. Eles oxidam a célula sem precisar de luz.',why:['Aproveita uma característica do próprio tumor.','Funciona em meio ácido, onde a ZIF-8 se abre.','Pode ser somada à quimioterapia.']},
+ {k:'Íons de zinco',svg:function(){var s='';[[200,170],[240,190],[268,168],[226,208],[286,196]].forEach(function(p){s+='<g class="drg" style="--tx:'+p[0]+'px;--ty:'+p[1]+'px"><circle r="7" fill="url(#sZn)"/>'+T(0,3,'Zn',{s:7,c:'#fff',w:700})+'</g>'});return base(s+T(180,270,'excesso de Zn²⁺ desorganiza as mitocôndrias',{s:11}),'','hit')},btn:['Liberar o zinco','Voltar'],what:'Quando a ZIF-8 se desfaz, libera uma onda de íons de zinco. Em excesso, o zinco pode lesar as mitocôndrias, gerar estresse oxidativo e até reverter a resistência a outros fármacos, como mostrou um estudo com gefitinibe em câncer de pulmão.',why:['O próprio material vira terapia.','Sem custo extra de carga.','Cuidado: precisa de dose controlada para não afetar tecidos saudáveis.']},
+ {k:'Imunoterapia',svg:function(){var tc='<g class="tcell"><circle r="24" fill="var(--ok-s)" stroke="var(--ok)" stroke-width="3" filter="url(#sh)"/><circle r="9" fill="url(#sLg)"/></g>'+T(50,96,'célula T',{s:11,c:'var(--ok)',w:600});var pd='';[[130,110],[118,150],[130,190]].forEach(function(p){pd+='<g><line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+(p[0]+16)+'" y2="'+p[1]+'" stroke="var(--tum)" stroke-width="4"/><circle cx="'+p[0]+'" cy="'+p[1]+'" r="6" fill="url(#sTu)"/></g>'});return base(pd+tc+'<g class="on" stroke="var(--drug)" stroke-width="3" stroke-linecap="round"><line x1="108" y1="114" x2="116" y2="122"/><line x1="108" y1="114" x2="116" y2="106"/></g>'+T(180,270,'bloquear o freio PD-L1 libera a célula T',{s:11}),'')},btn:['Bloquear o PD-L1','Voltar'],what:'Alguns tumores usam proteínas como o PD-L1 para frear as células de defesa. A partícula leva moléculas que bloqueiam esse freio, e a célula T volta a atacar. Já se mostrou também que a própria ZIF-8 pode induzir a piroptose, uma morte celular que desperta o sistema imune.',why:['Pode levar vários agentes imunes ao mesmo tempo.','Libera dentro do tumor, e não no corpo todo.','Combina com terapias que expõem o tumor ao sistema imune.']},
+ {k:'Genes (siRNA)',svg:function(){var s='';[[240,184],[218,132],[272,186]].forEach(function(p){s+='<g class="drg" style="--tx:'+p[0]+'px;--ty:'+p[1]+'px"><path d="M-10 0q3 -7 6 0t6 0t6 0" fill="none" stroke="var(--drug)" stroke-width="3.5" stroke-linecap="round"/></g>'});return base(s+'<rect x="234" y="134" width="36" height="8" rx="4" fill="var(--zn)"/><g class="on"><line x1="230" y1="148" x2="274" y2="128" stroke="var(--tum)" stroke-width="4" stroke-linecap="round"/></g>'+T(180,270,'o siRNA desliga um gene do tumor',{s:11}),'')},btn:['Entregar o siRNA','Voltar'],what:'O siRNA é um pedaço de material genético que silencia um gene que o tumor usa para crescer. É frágil e não atravessa a célula sozinho. A ZIF-8 o protege até entrar na célula e abrir no endossomo.',why:['Protege o material genético da degradação.','Libera no ponto certo dentro da célula.','Abre caminho para alvos que fármacos comuns não alcançam.']}];
+ var ch=$('#tch'),box=$('#tbox');
+ function sel(i){ch.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-pressed',i===j?'true':'false')});var t=th[i];box.innerHTML='<div><div style="border-radius:18px;overflow:hidden;border:1px solid var(--line)">'+t.svg()+'</div><div class="row" style="margin-top:12px"><button class="btn pri" id="tgl" type="button">'+t.btn[0]+'</button></div></div><div><h3>'+t.k+'</h3><p style="color:var(--mut);margin-top:10px">'+t.what+'</p><h4 style="margin-top:12px">Por que usar a ZIF-8</h4><ul class="ul">'+t.why.map(function(w){return '<li>'+w+'</li>'}).join('')+'</ul></div>';
+  var sc=$('.sc',box),b=$('#tgl');b.addEventListener('click',function(){var on=sc.dataset.on==='1'?'0':'1';sc.dataset.on=on;b.textContent=t.btn[on==='1'?1:0]})}
+ th.forEach(function(t,i){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=t.k;b.addEventListener('click',function(){sel(i)});ch.appendChild(b)});sel(0)})();
+
+/* ===== CÂNCERES ===== */
+(function(){var C=[
+ ['Mama','Um dos tumores mais estudados com ZIF-8. Há subtipos difíceis, como o triplo-negativo, que não têm alvos hormonais.','Linhagens comuns: MCF-7, MDA-MB-231 (humanas) e 4T1 (de camundongo).','#FF6AA0','M14 30c0-9 7-15 14-15s14 6 14 15c0 7-5 11-14 11S14 37 14 30z'],
+ ['Pulmão','O pulmão de células não pequenas pode ganhar resistência a fármacos-alvo. Um estudo usou o zinco da ZIF-8 para reverter a resistência ao gefitinibe.','Linhagens comuns: A549, HCC827.','#7CC3FF','M28 12v24M28 24c-4-8-12-6-14 4s3 14 10 10M28 24c4-8 12-6 14 4s-3 14-10 10'],
+ ['Fígado','O carcinoma hepatocelular recebe muito nanomaterial, porque o fígado captura partículas. É uma vantagem para chegar lá e um risco para a toxicidade.','Linhagens comuns: HepG2.','#FFAA4D','M10 26c4-10 20-14 30-6 4 4 2 12-6 14-8 2-16 0-24-8z'],
+ ['Colorretal','Tumores do intestino grosso, tratados com 5-fluorouracil, um dos primeiros fármacos testados em ZIF-8.','Linhagens comuns: HCT116, CT26 (de camundongo).','#38D9C1','M14 14h24v8H20v8h20v8H14'],
+ ['Colo do útero e ovário','A linhagem HeLa é uma das mais usadas em laboratório. O ovário tem muito receptor de folato, e isso favorece o uso do ácido fólico como rumo.','Linhagens comuns: HeLa, SKOV3.','#B79BFF','M28 14a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM28 30v14M22 38h12'],
+ ['Pele (melanoma)','O melanoma de camundongo B16F10 é modelo comum para testar imunoterapia, inclusive os microrrobôs de bactéria cobertos com ZIF-8 de 2026.','Modelo comum: B16F10.','#FF8A6A','M28 12a16 16 0 1 0 0 32 16 16 0 0 0 0-32zM22 24a3 3 0 1 0 .1 0M34 30a3 3 0 1 0 .1 0M26 36a2 2 0 1 0 .1 0']];
+ $('#cg').innerHTML=C.map(function(c){return '<article class="cc"><div class="ic"><svg viewBox="0 0 56 56" width="40" height="40" aria-hidden="true"><path d="'+c[4]+'" fill="none" stroke="'+c[3]+'" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>'+c[0]+'</h3><p>'+c[1]+'</p><p style="font:400 12px var(--fm)">'+c[2]+'</p></article>'}).join('');
+ var P=[['Fabricar','Síntese e caracterização do material: forma, tamanho, carga, quanto fármaco entrou.','A ZIF-8 em oncologia está sobretudo nesta etapa e nas duas seguintes.'],['Células','Testes em células cultivadas (in vitro): a partícula entra? Libera em meio ácido? Mata as células tumorais mais que o fármaco livre?','Grande parte dos estudos para aqui, com resultados positivos.'],['Animais','Camundongos com tumor (in vivo): a partícula chega ao tumor? O tumor diminui? Os animais perdem peso ou adoecem?','Mais difícil e mais caro, e mostra se a ideia funciona num organismo inteiro.'],['Segurança','Toxicidade, destino do zinco, distribuição pelos órgãos, eliminação do corpo e efeitos em doses repetidas.','Passo obrigatório antes de qualquer teste em pessoas.'],['Pessoas','Ensaios clínicos em fases I, II e III, com vigilância regulatória.','Para a ZIF-8 em oncologia, ainda é um objetivo e não uma realidade.']];
+ var pp=$('#pp'),pi=$('#ppi');
+ function sel(i){pp.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-pressed',i===j?'true':'false')});pi.innerHTML='<h3>'+(i+1)+'. '+P[i][0]+'</h3><p>'+P[i][1]+'</p><p style="margin-top:10px;color:var(--ink)">'+P[i][2]+'</p>'}
+ P.forEach(function(p,i){var b=document.createElement('button');b.type='button';b.innerHTML='<b>'+(i+1)+'</b>'+p[0];b.addEventListener('click',function(){sel(i)});pp.appendChild(b)});sel(1)})();
+
+/* ===== HISTORIA ===== */
+var EV=[
+ {y:'2012',e:'p',t:'Zeolitic imidazolate framework-8 as efficient pH-sensitive drug delivery vehicle',d:'O primeiro estudo a mostrar que a ZIF-8 segura o 5-fluorouracil (cerca de 660 mg por grama) e o libera mais rápido em meio ácido. Abriu o campo.',doi:'10.1039/c2dt30357d',s:'Dalton Trans. 2012'},
+ {y:'2012',e:'p',t:'Cytotoxicity and slow release of the anti-cancer drug doxorubicin from ZIF-8',d:'Mostra que a ZIF-8 carrega doxorrubicina (cerca de 0,049 g por g) e a libera devagar, 66% em 30 dias, com efeito sobre células tumorais.',doi:'10.1039/c2ra21087h',s:'RSC Adv. 2012'},
+ {y:'2016',e:'c',t:'One-pot Synthesis of Metal-Organic Frameworks with Encapsulated Target Molecules and Their Applications for Controlled Drug Delivery',d:'Mostra que dá para formar a ZIF-8 já com fármacos e corantes grandes dentro, sem depender de os poros os deixarem entrar. A doxorrubicina carregada assim age em células tumorais.',doi:'10.1021/jacs.5b11720',s:'J. Am. Chem. Soc. 2016'},
+ {y:'2016',e:'c',t:'An O2 Self-Sufficient Biomimetic Nanoplatform for Highly Specific and Efficient Photodynamic Therapy',d:'Nanopartícula revestida com membrana de célula tumoral leva catalase e um fotossensibilizador. A catalase gera oxigênio para a terapia fotodinâmica funcionar onde o oxigênio é escasso.',doi:'10.1002/adfm.201603212',s:'Adv. Funct. Mater. 2016'},
+ {y:'2018',e:'c',t:'MOF Nanoparticles with Encapsulated Autophagy Inhibitor in Controlled Drug Delivery System for Antitumor',d:'A ZIF-8 libera o inibidor de autofagia 3-metiladenina em células HeLa. Sem esse mecanismo de defesa, a célula tumoral responde pior ao tratamento.',doi:'10.1021/acsami.7b16522',s:'ACS Appl. Mater. Interfaces 2018'},
+ {y:'2019',e:'c',t:'Yolk-Shell Structured Au Nanostar@Metal-Organic Framework for Synergistic Chemo-photothermal Therapy in the Second Near-Infrared Window',d:'Uma nanoestrela de ouro dentro de uma casca de ZIF-8 gera calor com luz infravermelha e libera doxorrubicina quando a casca degrada em meio ácido.',doi:'10.1021/acs.nanolett.9b01716',s:'Nano Lett. 2019'},
+ {y:'2023',e:'n',t:'ZIF-8 Nanoparticles Evoke Pyroptosis for High-Efficiency Cancer Immunotherapy',d:'As nanopartículas de ZIF-8 induzem piroptose, uma morte celular inflamatória que desperta o sistema imune contra o tumor.',doi:'10.1002/anie.202215307',s:'Angew. Chem. Int. Ed. 2023'},
+ {y:'2024',e:'n',t:'Nanoenabled intracellular zinc bursting for efficacious reversal of gefitinib resistance in lung cancer',d:'Uma partícula de ZIF-8 com gefitinibe e ácido hialurônico usa o estouro de íons de zinco, disparado pelo pH, para vencer a resistência ao fármaco em câncer de pulmão.',doi:'10.7150/ijbs.95929',s:'Int. J. Biol. Sci. 2024'},
+ {y:'2025',e:'n',t:'Efficient Delivery of Oncolytic Peptide LTX-315 by ZIF-8: pH-Responsive Release, Improved Stability, and Reduced Hemolysis',d:'A ZIF-8 protege o peptídeo oncolítico LTX-315 da degradação, reduz sua toxicidade para os glóbulos vermelhos e o libera em meio ácido. Eficiência de encapsulamento de 59,9%.',doi:'10.1021/acs.molpharmaceut.4c01144',s:'Mol. Pharm. 2025'},
+ {y:'2026',e:'n',t:'Engineered Bacteria-Driven Biohybrid Microrobots Potentiate IL-2 Immunotherapy by Evoking Pyroptosis',d:'Bactérias engenheiradas cobertas com ZIF-8, carregadas com fotossensibilizador e catalase, liberam interleucina-2 no tumor e, combinadas com bloqueio de PD-L1, levaram à regressão quase completa do tumor em camundongos.',doi:'10.1021/acsnano.5c21475',s:'ACS Nano 2026'}];
+(function(){var E={t:'Todas',p:'Pioneiros',c:'Consolidação',n:'Fronteira'},eh=$('#eh'),tl=$('#tl'),tg={p:'Pioneiros',c:'Consolidação',n:'Fronteira'},tc={p:'o',c:'v',n:'p'};
+ tl.innerHTML=EV.map(function(v){return '<article class="ev" data-e="'+v.e+'"><div class="y">'+v.y+'</div><div><span class="tag '+tc[v.e]+'">'+tg[v.e]+'</span><h3>'+v.t+'</h3><p>'+v.d+'</p><small>'+v.s+' · <a href="https://doi.org/'+v.doi+'" target="_blank" rel="noopener">doi.org/'+v.doi+'</a></small></div></article>'}).join('');
+ Object.keys(E).forEach(function(k,i){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=E[k];b.setAttribute('aria-pressed',i===0?'true':'false');b.addEventListener('click',function(){eh.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');tl.querySelectorAll('.ev').forEach(function(e){e.hidden=!(k==='t'||e.dataset.e===k)})});eh.appendChild(b)})})();
+
+/* ===== LEITURAS ===== */
+var BK=[
+ {t:'Zeolitic imidazolate frameworks (ZIF-8) for biomedical applications: A review',a:'Abdelhamid H.N.',j:'Current Medicinal Chemistry · 2021',doi:'10.2174/0929867328666210608143703',l:'Iniciante',th:'Revisões',w:'Visão geral do material, de como é feito e de onde é usado na biomedicina. Boa porta de entrada.'},
+ {t:'Potential of nanotheranostic zeolitic imidazolate frameworks in cancer management',a:'Jalil A.T. et al.',j:'Adv. Nat. Sci.: Nanosci. Nanotechnol. · 2023',doi:'10.1088/2043-6262/ad002a',l:'Iniciante',th:'Revisões',w:'Revisão curta sobre ZIFs que tratam e ajudam a ver o tumor ao mesmo tempo (teranóstica).'},
+ {t:'Synergistic engineering of pH-responsive MSN@ZIF-8 core–shell nanohybrids for targeted cancer therapy: from rational design to clinical potential',a:'Tarin M. et al.',j:'Nanotechnology · 2026',doi:'10.1088/1361-6528/ae6f1e',l:'Intermediário',th:'Revisões',w:'Revisão recente sobre núcleos de sílica cobertos de ZIF-8 e o caminho até a clínica.'},
+ {t:'Zeolitic imidazolate framework-8 as efficient pH-sensitive drug delivery vehicle',a:'Sun C.-Y. et al.',j:'Dalton Transactions · 2012',doi:'10.1039/c2dt30357d',l:'Iniciante',th:'Quimioterapia',w:'Um dos primeiros estudos do tema. Curto, com a ideia central: o fármaco sai mais rápido em meio ácido.'},
+ {t:'Cytotoxicity and slow release of the anti-cancer drug doxorubicin from ZIF-8',a:'Vasconcelos I.B. et al.',j:'RSC Advances · 2012',doi:'10.1039/c2ra21087h',l:'Iniciante',th:'Quimioterapia',w:'Mostra quanto fármaco cabe, como ele sai ao longo de semanas e como as células respondem.'},
+ {t:'One-pot Synthesis of Metal-Organic Frameworks with Encapsulated Target Molecules and Their Applications for Controlled Drug Delivery',a:'Zheng H. et al.',j:'J. Am. Chem. Soc. · 2016',doi:'10.1021/jacs.5b11720',l:'Intermediário',th:'Fundamentos',w:'Explica por que montar a ZIF-8 já com o fármaco dentro resolve o problema da janela estreita.'},
+ {t:'Efficient Delivery of Oncolytic Peptide LTX-315 by ZIF-8: pH-Responsive Release, Improved Stability, and Reduced Hemolysis',a:'Chen X.-Q. et al.',j:'Molecular Pharmaceutics · 2025',doi:'10.1021/acs.molpharmaceut.4c01144',l:'Intermediário',th:'Quimioterapia',w:'Bom exemplo recente de encapsulamento em uma etapa, com testes de estabilidade em soro e toxicidade para glóbulos vermelhos.'},
+ {t:'MOF Nanoparticles with Encapsulated Autophagy Inhibitor in Controlled Drug Delivery System for Antitumor',a:'Chen X. et al.',j:'ACS Appl. Mater. Interfaces · 2018',doi:'10.1021/acsami.7b16522',l:'Intermediário',th:'Morte celular e imunidade',w:'Mostra a carga como modulador do comportamento da célula, e não só como veneno.'},
+ {t:'Nanoenabled intracellular zinc bursting for efficacious reversal of gefitinib resistance in lung cancer',a:'Li J. et al.',j:'Int. J. Biol. Sci. · 2024',doi:'10.7150/ijbs.95929',l:'Intermediário',th:'Zinco',w:'O zinco da própria ZIF-8 vira parte da terapia e reverte a resistência a um fármaco em câncer de pulmão.'},
+ {t:'An O2 Self-Sufficient Biomimetic Nanoplatform for Highly Specific and Efficient Photodynamic Therapy',a:'Cheng H. et al.',j:'Advanced Functional Materials · 2016',doi:'10.1002/adfm.201603212',l:'Avançado',th:'Terapias com luz',w:'Combina membrana de célula tumoral, catalase e fotossensibilizador. Mostra engenharia em várias camadas.'},
+ {t:'Yolk-Shell Structured Au Nanostar@Metal-Organic Framework for Synergistic Chemo-photothermal Therapy in the Second Near-Infrared Window',a:'Deng X. et al.',j:'Nano Letters · 2019',doi:'10.1021/acs.nanolett.9b01716',l:'Avançado',th:'Terapias com luz',w:'Calor com luz infravermelha mais liberação de fármaco ao mesmo tempo.'},
+ {t:'ZIF-8 Nanoparticles Evoke Pyroptosis for High-Efficiency Cancer Immunotherapy',a:'Ding B. et al.',j:'Angewandte Chemie Int. Ed. · 2023',doi:'10.1002/anie.202215307',l:'Avançado',th:'Morte celular e imunidade',w:'Mostra que o material, e não só a carga, pode ter efeito biológico no tumor.'},
+ {t:'Engineered Bacteria-Driven Biohybrid Microrobots Potentiate IL-2 Immunotherapy by Evoking Pyroptosis',a:'Li P. et al.',j:'ACS Nano · 2026',doi:'10.1021/acsnano.5c21475',l:'Avançado',th:'Morte celular e imunidade',w:'Combina bactéria engenheirada, ZIF-8, luz e bloqueio de PD-L1. Mostra para onde o campo está indo.'}];
+(function(){var fl=$('#fl'),ft=$('#ft'),bk=$('#bk'),st={l:'Todos',t:'Todos'};
+ bk.innerHTML=BK.map(function(b){return '<article class="bk" data-l="'+b.l+'" data-t="'+b.th+'"><div><span class="tag '+(b.l==='Iniciante'?'':b.l==='Intermediário'?'o':'p')+'">'+b.l+'</span><span class="tag v">'+b.th+'</span></div><h3>'+b.t+'</h3><div class="j">'+b.a+' · '+b.j+'</div><p>'+b.w+'</p><a class="go" href="https://doi.org/'+b.doi+'" target="_blank" rel="noopener">Abrir artigo →</a></article>'}).join('');
+ function apply(){bk.querySelectorAll('.bk').forEach(function(e){e.hidden=!((st.l==='Todos'||e.dataset.l===st.l)&&(st.t==='Todos'||e.dataset.t===st.t))})}
+ function mk(box,key,list){list.forEach(function(v,i){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=v;b.setAttribute('aria-pressed',i===0?'true':'false');b.addEventListener('click',function(){box.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');st[key]=v;apply()});box.appendChild(b)})}
+ mk(fl,'l',['Todos','Iniciante','Intermediário','Avançado']);mk(ft,'t',['Todos','Revisões','Fundamentos','Quimioterapia','Terapias com luz','Zinco','Morte celular e imunidade']);
+ ['ZIF-8 drug delivery cancer','ZIF-8 doxorubicin','ZIF-8 photodynamic therapy','ZIF-8 nanoparticles review','ZIF-8 pH-responsive release','ZIF-8 tumor immunotherapy'].forEach(function(k){var a=document.createElement('a');a.className='chip';a.style.textDecoration='none';a.target='_blank';a.rel='noopener';a.href='https://scholar.google.com/scholar?q='+encodeURIComponent(k);a.textContent=k;$('#ks').appendChild(a)})})();
+
+/* ===== GLOSSARIO / QUIZ ===== */
+var G=[['ZIF','Zeolitic imidazolate framework: rede cristalina de metal e imidazol.'],['MOF','Metal-organic framework: família de materiais porosos de metal e molécula orgânica, à qual a ZIF pertence.'],['Nanopartícula','Partícula de bilionésimos de metro. As de ZIF-8 usadas em estudos costumam ter dezenas a poucas centenas de nanômetros.'],['pH','Medida de acidez. Abaixo de 7 é ácido.'],['Ångström (Å)','Um décimo de nanômetro. Os poros da ZIF-8 são medidos nessa escala.'],['In vitro / in vivo','Em células no laboratório / em animais vivos.'],['Linhagem celular','Células tumorais cultivadas, com nome próprio, usadas em testes.'],['IC50','Concentração que mata metade das células em um teste.'],['Endocitose','Quando a célula engole uma partícula.'],['Endossomo / lisossomo','Compartimentos ácidos da célula que recebem e digerem o que entra.'],['EPR','Efeito de permeabilidade e retenção: nanopartículas passam pelas frestas dos vasos do tumor e ficam retidas.'],['Fotossensibilizador','Molécula que, ao receber luz, gera espécies reativas de oxigênio.'],['Sonossensibilizador','Molécula que gera espécies reativas de oxigênio ao receber ultrassom.'],['Espécies reativas de oxigênio','Moléculas muito reativas que danificam a célula quando em excesso.'],['Hipóxia','Falta de oxigênio, comum no interior dos tumores.'],['Glutationa','Antioxidante que protege a célula tumoral. Vários sistemas tentam consumi-la.'],['Piroptose','Morte celular inflamatória que ativa o sistema imune.'],['Ferroptose','Morte celular dependente de ferro e de oxidação de lipídios.'],['Autofagia','Processo em que a célula recicla seus próprios componentes e que pode protegê-la do tratamento.'],['siRNA','Pedaço curto de RNA que silencia um gene específico.'],['Checkpoint imune','Freio do sistema imune, como o PD-1 e o PD-L1, que alguns tumores usam para escapar.'],['Teranóstica','Sistema que trata e permite ver o tumor ao mesmo tempo.'],['Eficiência de encapsulamento','Parte do fármaco usado que ficou de fato dentro da partícula.'],['Capacidade de carga','Quanto fármaco cabe por massa de material, por exemplo mg/g ou %.'],['Sodalita','Topologia de rede, em gaiolas de octaedro truncado, da ZIF-8.'],['Biomineralização','Formação de um cristal ao redor de uma molécula biológica, em condições suaves.']];
+(function(){var gl=$('#gl');function r(q){gl.innerHTML=G.filter(function(g){return(g[0]+' '+g[1]).toLowerCase().indexOf(q.toLowerCase())>-1}).map(function(g){return '<div><dt>'+g[0]+'</dt><dd>'+g[1]+'</dd></div>'}).join('')||'<p style="color:var(--mut)">Nada encontrado.</p>'}r('');$('#gs').addEventListener('input',function(e){r(e.target.value)})})();
+(function(){var Q=[['Por que a ZIF-8 é interessante para levar remédio ao tumor?',['Ela brilha no escuro','Ela se desfaz em meio ácido e libera a carga','Ela é um metal líquido'],1,'A rede é estável em pH 7,4 e se desfaz em pH ácido, como o do tumor e o das células.'],['Qual é o pH do sangue?',['Cerca de 7,4','Cerca de 4,5','Cerca de 10'],0,'O sangue é quase neutro. Os lisossomos, dentro das células, ficam perto de 4,5 a 5,5.'],['Por que muitos fármacos são colocados na mistura durante a síntese?',['Para economizar tempo','Porque a janela de 3,4 Å é pequena demais para eles entrarem depois','Porque assim ficam mais coloridos'],1,'Moléculas grandes, como a doxorrubicina, não passam pela janela. Por isso o cristal cresce ao redor delas.'],['O que acontece com a ligação Zn–N em meio ácido?',['Fica mais forte','Prótons ocupam o nitrogênio e a ligação se rompe','Nada'],1,'Os prótons (H⁺) ocupam o par de elétrons do nitrogênio, e o zinco se solta.'],['O que a terapia fotodinâmica precisa para funcionar?',['Luz, fotossensibilizador e oxigênio','Só calor','Só zinco'],0,'A luz ativa o fotossensibilizador, que transforma oxigênio em espécies reativas que matam a célula.'],['Se 10 mg de fármaco foram adicionados e 7,5 mg entraram, a eficiência de encapsulamento é:',['25%','75%','7,5%'],1,'7,5 ÷ 10 = 75%. Já a capacidade de carga depende da massa da partícula.'],['Para que serve o ácido hialurônico no revestimento?',['Reconhecer o CD44 de células tumorais','Gerar calor','Dissolver o zinco'],0,'O ácido hialurônico se liga ao CD44, abundante em muitas células tumorais.'],['O zinco liberado pela ZIF-8 é:',['Sempre inofensivo','Um possível aliado e também um ponto de atenção de segurança','Sempre tóxico em qualquer dose'],1,'O corpo usa zinco, mas o excesso é tóxico. Alguns estudos o usam como parte do ataque, outros medem sua segurança.']],i=0,sc=0,box=$('#quiz');
+ function render(){if(i>=Q.length){box.innerHTML='<div class="kick">Resultado</div><h3>'+sc+' de '+Q.length+' acertos</h3><p style="color:var(--mut);margin:10px 0 14px">'+(sc>=6?'Você já entende bem a ideia central da ZIF-8.':'Volte às abas O cristal, Fabricação e A viagem e tente de novo.')+'</p><button class="btn pri" id="rs" type="button">Refazer</button>';$('#rs').addEventListener('click',function(){i=0;sc=0;render()});return}
+  var q=Q[i];box.innerHTML='<div class="kick">Quiz · '+(i+1)+' de '+Q.length+'</div><h3>'+q[0]+'</h3><div class="opts">'+q[1].map(function(o,k){return '<button type="button" data-k="'+k+'">'+o+'</button>'}).join('')+'</div><div class="fb" id="fb2"></div><button class="btn" id="nx" type="button" hidden>Próxima</button>';
+  box.querySelectorAll('.opts button').forEach(function(b){b.addEventListener('click',function(){var k=+b.dataset.k;box.querySelectorAll('.opts button').forEach(function(x){x.disabled=true;if(+x.dataset.k===q[2])x.classList.add('ok')});if(k===q[2])sc++;else b.classList.add('no');$('#fb2').textContent=(k===q[2]?'Correto. ':'Não é essa. ')+q[3];var n=$('#nx');n.hidden=false;n.addEventListener('click',function(){i++;render()})})})}
+ render()})();
+
+show((location.hash||'').replace('#','')||'inicio',false);
+</script>
+</body></html>
