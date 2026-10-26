@@ -28,6 +28,8 @@ button{font-family:inherit;cursor:pointer}
 .tabs button:hover{color:var(--ink)}
 .tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
 .tg{border:1px solid var(--line);background:var(--surf);color:var(--ink);font:500 12px var(--fm);padding:6px 10px;border-radius:8px}
+.lg{border:1px solid var(--line);background:var(--surf);color:var(--ink);font:600 12px var(--fm);padding:6px 10px;border-radius:8px;min-width:44px}
+.lg[aria-pressed="true"]{background:var(--zn);border-color:var(--zn);color:var(--bg)}
 .pane{padding-block:44px 72px}
 .pane[hidden]{display:none}
 .kick{font:500 12px var(--fm);letter-spacing:.14em;text-transform:uppercase;color:var(--tum);margin-bottom:10px}
@@ -199,6 +201,38 @@ input[type=search]{max-width:360px}
 footer{border-top:1px solid var(--line);padding-block:26px 48px;color:var(--mut);font-size:13px}
 @media (max-width:820px){.hero,.g2,.tc{grid-template-columns:1fr}.ev{grid-template-columns:1fr;gap:2px}.logo{display:none}.pane{padding-block:28px 52px}.pipe{grid-template-columns:1fr 1fr}.calc{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* v6 atlas (cancer tab) */
+.atlas{display:grid;grid-template-columns:minmax(260px,330px) 1fr;gap:22px;align-items:start;margin-bottom:8px}
+.a6bw{padding:14px 14px 10px;text-align:center;position:sticky;top:78px}
+.a6bw svg{max-width:300px;margin:0 auto}
+.a6hint{display:block;font:500 12px var(--fm);color:var(--mut);margin-top:6px}
+.a6s{fill:var(--surf);stroke:var(--line);stroke-width:2.5}
+.a6h{cursor:pointer;outline:none}
+.a6h .rg{fill:none;stroke-width:2.5;opacity:.55;transform-box:fill-box;transform-origin:center;animation:a6p 2.2s ease-out infinite}
+.a6h .dt{stroke:var(--bg);stroke-width:2}
+.a6h[aria-pressed="true"] .rg{opacity:1;animation:none;stroke-width:3.5;transform:scale(1.35)}
+.a6h:focus-visible .rg{opacity:1;stroke-width:4}
+@keyframes a6p{0%{transform:scale(.8);opacity:.8}100%{transform:scale(1.8);opacity:0}}
+.a6i{background:var(--surf);border:1px solid var(--line);border-radius:24px;padding:24px;min-width:0}
+.a6hd{display:flex;gap:16px;align-items:center;margin-bottom:12px}
+.a6hd .ic{flex:none;width:68px;height:68px;border-radius:20px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 18%,transparent);border:1px solid color-mix(in srgb,var(--c) 45%,transparent)}
+.a6hd h3{font-size:24px}
+.a6fn{background:linear-gradient(120deg,color-mix(in srgb,var(--c) 14%,transparent),transparent);border-left:4px solid var(--c);border-radius:0 14px 14px 0;padding:10px 14px;margin:14px 0;font-size:14.5px}
+.a6fn b{font-family:var(--fd)}
+.a6c{display:grid;gap:12px;margin-top:14px}
+.a6k{border:1px solid var(--line);background:var(--bg);border-radius:16px;padding:14px 16px;min-width:0}
+.a6k .tg2{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.a6k .t2{font:600 11px var(--fm);border-radius:99px;padding:3px 9px;background:var(--zn-s);color:var(--zn)}
+.a6k .t2.m{background:var(--drug-s);color:var(--drug)}
+.a6k p{margin:0;font-size:14.5px;color:var(--ink)}
+.a6k small{display:block;margin-top:8px;font:400 12px var(--fm);color:var(--mut)}
+.a6k small a{margin-left:4px}
+.a6n{margin-top:14px;font-size:14px;color:var(--mut)}
+.a6d{font-size:13.5px;color:var(--mut);border:1px dashed var(--line);border-radius:14px;padding:10px 14px;margin:6px 0 4px}
+.fam{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.fam article{background:var(--surf);border:1px solid var(--line);border-radius:20px;padding:18px;border-top:5px solid var(--c);min-width:0}
+.fam h3{font-size:18px}.fam p{color:var(--mut);font-size:14.5px;margin:6px 0 0}
+@media (max-width:820px){.atlas{grid-template-columns:1fr}.a6bw{position:static}}
 </style></head><body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
@@ -215,209 +249,219 @@ footer{border-top:1px solid var(--line);padding-block:26px 48px;color:var(--mut)
 </defs></svg>
 
 <header class="top"><div class="w"><span class="logo">ZIF-8 <b>e o câncer</b></span>
-<div class="tabs" role="tablist" id="tabs"></div><button class="tg" id="tg" type="button">Tema</button></div></header>
+<div class="tabs" role="tablist" id="tabs"></div><button class="tg" id="tg" type="button">Tema</button><button class="lg" id="lang" type="button" aria-label="Mudar idioma / Switch language">PT</button></div></header>
 
 <main class="w">
 
 <section class="pane" data-tab="inicio">
  <div class="hero">
   <div>
-   <div class="kick">Nanomedicina, sem jargão</div>
-   <h1>Um cristal de <span>zinco</span> que só abre no <em>tumor</em>.</h1>
-   <p class="big">A ZIF-8 é um material feito de zinco e uma molécula orgânica, com milhões de poros microscópicos. Os pesquisadores colocam remédio dentro dele. Em meio ácido, como o de um tumor, o cristal se desfaz e solta a carga.</p>
-   <div class="row" style="margin-top:22px"><button class="btn pri" data-go="cristal" type="button">Ver o cristal por dentro</button><button class="btn" data-go="viagem" type="button">Seguir a viagem</button></div>
+   <div class="kick" data-i18n="hero.kick">Nanomedicina, sem jargão</div>
+   <h1><span data-i18n="hero.h1a">Um cristal de zinco</span> <span data-i18n="hero.h1b">que só abre no</span> <em data-i18n="hero.h1c">tumor</em>.</h1>
+   <p class="big" data-i18n="hero.p">A ZIF-8 é um material feito de zinco e uma molécula orgânica, com milhões de poros microscópicos. Os pesquisadores colocam remédio dentro dele. Em meio ácido, como o de um tumor, o cristal se desfaz e solta a carga.</p>
+   <div class="row" style="margin-top:22px"><button class="btn pri" data-go="cristal" type="button" data-i18n="hero.b1">Ver o cristal por dentro</button><button class="btn" data-go="viagem" type="button" data-i18n="hero.b2">Seguir a viagem</button></div>
   </div>
   <div class="stage">
-   <span class="hint">arraste para girar</span>
+   <span class="hint" data-i18n="hero.hint">arraste para girar</span>
    <canvas id="hc" class="cv" aria-label="Cristal de ZIF-8 em 3D que se desfaz quando o pH cai"></canvas>
-   <div class="ctl"><label for="hph"><span>Acidez do meio (pH)</span><span id="hphv"></span></label><input id="hph" type="range" min="4.5" max="7.4" step="0.05" value="7.4">
-    <div class="row"><button class="chip" data-hp="7.4" type="button">Sangue 7,4</button><button class="chip" data-hp="6.5" type="button">Tumor 6,5</button><button class="chip" data-hp="5.0" type="button">Lisossomo 5,0</button></div></div>
+   <div class="ctl"><label for="hph"><span data-i18n="hero.ph">Acidez do meio (pH)</span><span id="hphv"></span></label><input id="hph" type="range" min="4.5" max="7.4" step="0.05" value="7.4">
+    <div class="row"><button class="chip" data-hp="7.4" type="button" data-i18n="hero.chip1">Sangue 7,4</button><button class="chip" data-hp="6.5" type="button" data-i18n="hero.chip2">Tumor 6,5</button><button class="chip" data-hp="5.0" type="button" data-i18n="hero.chip3">Lisossomo 5,0</button></div></div>
   </div>
  </div>
  <div class="facts">
-  <div class="fact"><b>≈ 11,6 Å</b><span>diâmetro da cavidade onde a carga fica</span></div>
-  <div class="fact"><b>≈ 3,4 Å</b><span>abertura da janela entre cavidades</span></div>
-  <div class="fact"><b>1.300–1.800 m²/g</b><span>área superficial típica, a de um campo de futebol em poucos gramas</span><small>valores típicos da literatura</small></div>
-  <div class="fact"><b>pH 7,4 → 5</b><span>de estável a em colapso</span></div>
+  <div class="fact"><b>≈ 11,6 Å</b><span data-i18n="fact1">diâmetro da cavidade onde a carga fica</span></div>
+  <div class="fact"><b>≈ 3,4 Å</b><span data-i18n="fact2">abertura da janela entre cavidades</span></div>
+  <div class="fact"><b>1.300–1.800 m²/g</b><span data-i18n="fact3">área superficial típica, a de um campo de futebol em poucos gramas</span><small data-i18n="fact3b">valores típicos da literatura</small></div>
+  <div class="fact"><b>pH 7,4 → 5</b><span data-i18n="fact4">de estável a em colapso</span></div>
  </div>
- <h2 class="sub">O problema que a ZIF-8 tenta resolver</h2>
+ <h2 class="sub" data-i18n="prob.h">O problema que a ZIF-8 tenta resolver</h2>
  <div class="prob">
-  <div class="card"><div class="badge" style="background:var(--tum)">1</div><h3>Remédio que atinge tudo</h3><p>Quimioterápicos clássicos circulam pelo corpo todo e agridem células saudáveis. Daí vêm náusea, queda de cabelo e dano ao coração e aos rins.</p></div>
-  <div class="card"><div class="badge" style="background:var(--drug)">2</div><h3>Remédio que não dissolve</h3><p>Muitos compostos promissores, como a curcumina, dissolvem mal em água e se degradam antes de chegar ao tumor.</p></div>
-  <div class="card"><div class="badge" style="background:var(--zn)">3</div><h3>Tumor que resiste</h3><p>Células tumorais aprendem a expulsar o fármaco ou a se proteger. Levar a carga para dentro da célula, de uma vez, ajuda a vencer essa barreira.</p></div>
+  <div class="card"><div class="badge" style="background:var(--tum)">1</div><h3 data-i18n="prob.1t">Remédio que atinge tudo</h3><p data-i18n="prob.1p">Quimioterápicos clássicos circulam pelo corpo todo e agridem células saudáveis. Daí vêm náusea, queda de cabelo e dano ao coração e aos rins.</p></div>
+  <div class="card"><div class="badge" style="background:var(--drug)">2</div><h3 data-i18n="prob.2t">Remédio que não dissolve</h3><p data-i18n="prob.2p">Muitos compostos promissores, como a curcumina, dissolvem mal em água e se degradam antes de chegar ao tumor.</p></div>
+  <div class="card"><div class="badge" style="background:var(--zn)">3</div><h3 data-i18n="prob.3t">Tumor que resiste</h3><p data-i18n="prob.3p">Células tumorais aprendem a expulsar o fármaco ou a se proteger. Levar a carga para dentro da célula, de uma vez, ajuda a vencer essa barreira.</p></div>
  </div>
- <div class="card" style="margin-top:16px"><h3>A ideia</h3><p style="font-size:17px;color:var(--ink)">Empacotar o remédio numa partícula milhares de vezes menor que um fio de cabelo, que fica fechada no sangue e abre onde o ambiente é ácido. O tumor e o interior das células têm essa acidez. O resto do corpo, não.</p></div>
+ <div class="card" style="margin-top:16px"><h3 data-i18n="prob.idea">A ideia</h3><p style="font-size:17px;color:var(--ink)" data-i18n="prob.ideap">Empacotar o remédio numa partícula milhares de vezes menor que um fio de cabelo, que fica fechada no sangue e abre onde o ambiente é ácido. O tumor e o interior das células têm essa acidez. O resto do corpo, não.</p></div>
 </section>
 
 <section class="pane" data-tab="cristal" hidden>
- <div class="kick">Estrutura</div>
- <h2>Por dentro da ZIF-8</h2>
- <p class="lead">A fórmula é simples: um zinco e dois imidazolatos, Zn(2-metilimidazolato)₂. O encaixe das peças cria gaiolas vazias, e é nelas que a carga fica guardada.</p>
+ <div class="kick" data-i18n="cristal.kick">Estrutura</div>
+ <h2 data-i18n="cristal.h">Por dentro da ZIF-8</h2>
+ <p class="lead" data-i18n="cristal.lead">A fórmula é simples: um zinco e dois imidazolatos, Zn(2-metilimidazolato)₂. O encaixe das peças cria gaiolas vazias, e é nelas que a carga fica guardada.</p>
  <div class="g2">
-  <div class="panel"><div class="stage" style="border:0;border-radius:0"><span class="hint">arraste para girar</span><canvas id="cc" class="cv" aria-label="Gaiola sodalita da ZIF-8 em 3D"></canvas></div>
+  <div class="panel"><div class="stage" style="border:0;border-radius:0"><span class="hint" data-i18n="hero.hint">arraste para girar</span><canvas id="cc" class="cv" aria-label="Gaiola sodalita da ZIF-8 em 3D"></canvas></div>
    <div class="rail" id="cc-b"></div>
-   <div class="sl"><label for="cph"><span>Acidez (pH)</span><span id="cphv"></span></label><input id="cph" type="range" min="4.5" max="7.4" step="0.05" value="7.4"></div></div>
+   <div class="sl"><label for="cph"><span data-i18n="cristal.ph">Acidez (pH)</span><span id="cphv"></span></label><input id="cph" type="range" min="4.5" max="7.4" step="0.05" value="7.4"></div></div>
   <div style="display:grid;gap:14px">
-   <div class="panel info"><h3>A gaiola sodalita</h3><p>Cada gaiola tem 24 zincos nos vértices e 36 pontes de imidazolato nas arestas, como um octaedro de pontas cortadas. As seis faces quadradas e as oito hexagonais formam a parede. Nas faces hexagonais ficam as janelas de entrada.</p></div>
-   <div class="panel info"><h3>Por que parece zeólita?</h3><p>O ângulo Zn–imidazolato–Zn é parecido com o Si–O–Si das zeólitas, minerais porosos usados na indústria. Por isso o nome: zeolítico. A topologia da ZIF-8 chama-se sodalita.</p></div>
-   <div class="panel info"><h3>O cristal inteiro</h3><p>Milhões dessas gaiolas, empilhadas, formam uma partícula em forma de dodecaedro rômbico, com 12 faces em losango. É a figura da página inicial.</p></div>
+   <div class="panel info"><h3 data-i18n="cristal.c1t">A gaiola sodalita</h3><p data-i18n="cristal.c1p">Cada gaiola tem 24 zincos nos vértices e 36 pontes de imidazolato nas arestas, como um octaedro de pontas cortadas. As seis faces quadradas e as oito hexagonais formam a parede. Nas faces hexagonais ficam as janelas de entrada.</p></div>
+   <div class="panel info"><h3 data-i18n="cristal.c2t">Por que parece zeólita?</h3><p data-i18n="cristal.c2p">O ângulo Zn–imidazolato–Zn é parecido com o Si–O–Si das zeólitas, minerais porosos usados na indústria. Por isso o nome: zeolítico. A topologia da ZIF-8 chama-se sodalita.</p></div>
+   <div class="panel info"><h3 data-i18n="cristal.c3t">O cristal inteiro</h3><p data-i18n="cristal.c3p">Milhões dessas gaiolas, empilhadas, formam uma partícula em forma de dodecaedro rômbico, com 12 faces em losango. É a figura da página inicial.</p></div>
   </div>
  </div>
- <h2 class="sub">A unidade básica</h2>
- <p class="lead">Um zinco no centro e quatro imidazolatos ao redor. Cada anel liga dois zincos, como uma ponte. Clique nas peças.</p>
+ <h2 class="sub" data-i18n="cristal.unit">A unidade básica</h2>
+ <p class="lead" data-i18n="cristal.unitp">Um zinco no centro e quatro imidazolatos ao redor. Cada anel liga dois zincos, como uma ponte. Clique nas peças.</p>
  <div class="g2">
-  <div class="panel"><svg id="fa" viewBox="0 0 520 420" role="img" aria-label="Unidade básica da ZIF-8: um zinco ligado a quatro imidazolatos"></svg><div class="cap">Esquema simplificado, fora de escala.</div></div>
+  <div class="panel"><svg id="fa" viewBox="0 0 520 420" role="img" aria-label="Unidade básica da ZIF-8: um zinco ligado a quatro imidazolatos"></svg><div class="cap" data-i18n="cristal.cap">Esquema simplificado, fora de escala.</div></div>
   <div class="panel info" id="fa-info" aria-live="polite"></div>
  </div>
- <h2 class="sub">A janela de entrada</h2>
- <p class="lead">A cavidade tem cerca de 11,6 Å, mas a janela tem só cerca de 3,4 Å. Tente passar moléculas diferentes.</p>
+ <h2 class="sub" data-i18n="cristal.win">A janela de entrada</h2>
+ <p class="lead" data-i18n="cristal.winp">A cavidade tem cerca de 11,6 Å, mas a janela tem só cerca de 3,4 Å. Tente passar moléculas diferentes.</p>
  <div class="g2">
   <div class="panel"><svg id="fb" viewBox="0 0 520 360" role="img" aria-label="Gaiola da ZIF-8 com cavidade e janela"></svg><div class="rail" id="fb-b"></div></div>
-  <div class="panel info" id="fb-info" aria-live="polite"><h3>Escolha uma molécula</h3><p>Moléculas pequenas, como água e CO₂, atravessam. Fármacos grandes, como a doxorrubicina, não passam pela janela. Então como elas entram? A aba Fabricação mostra.</p></div>
+  <div class="panel info" id="fb-info" aria-live="polite"><h3 data-i18n="cristal.wint">Escolha uma molécula</h3><p data-i18n="cristal.winp2">Moléculas pequenas, como água e CO₂, atravessam. Fármacos grandes, como a doxorrubicina, não passam pela janela. Então como elas entram? A aba Fabricação mostra.</p></div>
  </div>
- <h2 class="sub">Outras ZIFs</h2>
+ <h2 class="sub" data-i18n="cristal.others">Outras ZIFs</h2>
  <div class="g3">
-  <div class="card"><h4>ZIF-8</h4><p>Zinco + 2-metilimidazol. A mais estudada em medicina por ser simples de fazer em água e abrir em meio ácido.</p></div>
-  <div class="card"><h4>ZIF-67</h4><p>Cobalto no lugar do zinco, mesma topologia. O cobalto é ativo em reações químicas, e por isso aparece em terapias catalíticas.</p></div>
-  <div class="card"><h4>ZIF-90</h4><p>Usa imidazol-2-carboxaldeído, que tem um grupo aldeído reativo. Permite prender moléculas à própria estrutura.</p></div>
+  <div class="card"><h4>ZIF-8</h4><p data-i18n="cristal.z8">Zinco + 2-metilimidazol. A mais estudada em medicina por ser simples de fazer em água e abrir em meio ácido.</p></div>
+  <div class="card"><h4>ZIF-67</h4><p data-i18n="cristal.z67">Cobalto no lugar do zinco, mesma topologia. O cobalto é ativo em reações químicas, e por isso aparece em terapias catalíticas.</p></div>
+  <div class="card"><h4>ZIF-90</h4><p data-i18n="cristal.z90">Usa imidazol-2-carboxaldeído, que tem um grupo aldeído reativo. Permite prender moléculas à própria estrutura.</p></div>
  </div>
 </section>
 
 <section class="pane" data-tab="fabricacao" hidden>
- <div class="kick">Engenharia</div>
- <h2>Como fabricar e carregar</h2>
- <p class="lead">A ZIF-8 se forma em água, à temperatura ambiente, em minutos. É isso que torna possível montá-la já com o remédio dentro.</p>
+ <div class="kick" data-i18n="fab.kick">Engenharia</div>
+ <h2 data-i18n="fab.h">Como fabricar e carregar</h2>
+ <p class="lead" data-i18n="fab.lead">A ZIF-8 se forma em água, à temperatura ambiente, em minutos. É isso que torna possível montá-la já com o remédio dentro.</p>
  <div class="panel"><svg id="fc" viewBox="0 0 720 300" role="img" aria-label="Zinco e imidazol formam cristal ao redor do fármaco"></svg>
   <div class="rail" id="fc-b"></div><div class="jt"><h3 id="fc-t"></h3><p id="fc-p"></p></div></div>
  <div class="g3" style="margin-top:16px">
-  <div class="card"><h4>Receita básica</h4><p>Um sal de zinco (nitrato ou acetato) e 2-metilimidazol, em água ou metanol. Mistura e agitação por alguns minutos.</p></div>
-  <div class="card"><h4>Controle do tamanho</h4><p>A proporção entre ligante e zinco, o solvente, a temperatura e aditivos mudam o tamanho, de dezenas de nanômetros a micrômetros. Para uso em sangue, o alvo costuma ser abaixo de poucas centenas de nanômetros.</p></div>
-  <div class="card"><h4>Verde e simples</h4><p>Sem calor nem solvente agressivo, o que protege moléculas frágeis como proteínas, enzimas e RNA.</p></div>
+  <div class="card"><h4 data-i18n="fab.r1t">Receita básica</h4><p data-i18n="fab.r1p">Um sal de zinco (nitrato ou acetato) e 2-metilimidazol, em água ou metanol. Mistura e agitação por alguns minutos.</p></div>
+  <div class="card"><h4 data-i18n="fab.r2t">Controle do tamanho</h4><p data-i18n="fab.r2p">A proporção entre ligante e zinco, o solvente, a temperatura e aditivos mudam o tamanho, de dezenas de nanômetros a micrômetros. Para uso em sangue, o alvo costuma ser abaixo de poucas centenas de nanômetros.</p></div>
+  <div class="card"><h4 data-i18n="fab.r3t">Verde e simples</h4><p data-i18n="fab.r3p">Sem calor nem solvente agressivo, o que protege moléculas frágeis como proteínas, enzimas e RNA.</p></div>
  </div>
- <h2 class="sub">Três jeitos de colocar a carga</h2>
+ <h2 class="sub" data-i18n="fab.ways">Três jeitos de colocar a carga</h2>
  <div class="chips" id="lch" style="margin-bottom:16px"></div>
  <div class="g2"><div class="panel"><svg id="lsv" viewBox="0 0 360 240" role="img" aria-label="Estratégia de carga"></svg></div><div class="panel info" id="lin"></div></div>
- <h2 class="sub">Uma superfície inteligente</h2>
- <p class="lead">A ZIF-8 pura tem carga positiva e é reconhecida pelo corpo. Revestimentos dão discrição, rumo e identidade. Escolha uma camada.</p>
+ <h2 class="sub" data-i18n="fab.surf">Uma superfície inteligente</h2>
+ <p class="lead" data-i18n="fab.surfp">A ZIF-8 pura tem carga positiva e é reconhecida pelo corpo. Revestimentos dão discrição, rumo e identidade. Escolha uma camada.</p>
  <div class="chips" id="sch" style="margin-bottom:16px"></div>
  <div class="g2"><div class="panel"><svg id="ssv" viewBox="0 0 400 320" role="img" aria-label="Partícula com revestimento"></svg></div><div class="panel info" id="sin"></div></div>
- <h2 class="sub">Como saber se deu certo</h2>
+ <h2 class="sub" data-i18n="fab.check">Como saber se deu certo</h2>
  <div class="g2"><div>
-  <details open><summary>DRX: é mesmo ZIF-8?</summary><p>A difração de raios X dá um padrão de picos característico da estrutura sodalita. Se os picos batem com a ZIF-8, o cristal se formou.</p></details>
-  <details><summary>MEV e MET: forma e tamanho</summary><p>Microscopia eletrônica mostra o formato de dodecaedro rômbico e o tamanho de cada partícula, além de camadas de revestimento.</p></details>
-  <details><summary>DLS: tamanho em água</summary><p>Espalhamento de luz mede o tamanho da partícula inchada em líquido, que é maior que o visto no microscópio.</p></details></div><div>
-  <details><summary>Potencial zeta: carga da superfície</summary><p>Mostra se a superfície é positiva ou negativa. A ZIF-8 pura costuma ser positiva, e os revestimentos mudam esse valor.</p></details>
-  <details><summary>BET: área e poros</summary><p>Adsorção de nitrogênio mede a área superficial e o volume dos poros. Cai quando o fármaco ocupa o espaço, o que ajuda a provar que ele entrou.</p></details>
-  <details><summary>UV-vis e HPLC: quanto fármaco entrou</summary><p>Medem a quantidade de fármaco que sobrou na solução. Por diferença, calcula-se quanto foi carregado.</p></details></div></div>
- <h2 class="sub">Calculadora de carga</h2>
- <p class="lead">Dois números definem a qualidade do carregamento. Troque os valores (são um exemplo) e veja o resultado.</p>
+  <details open><summary data-i18n="fab.d1t">DRX: é mesmo ZIF-8?</summary><p data-i18n="fab.d1p">A difração de raios X dá um padrão de picos característico da estrutura sodalita. Se os picos batem com a ZIF-8, o cristal se formou.</p></details>
+  <details><summary data-i18n="fab.d2t">MEV e MET: forma e tamanho</summary><p data-i18n="fab.d2p">Microscopia eletrônica mostra o formato de dodecaedro rômbico e o tamanho de cada partícula, além de camadas de revestimento.</p></details>
+  <details><summary data-i18n="fab.d3t">DLS: tamanho em água</summary><p data-i18n="fab.d3p">Espalhamento de luz mede o tamanho da partícula inchada em líquido, que é maior que o visto no microscópio.</p></details></div><div>
+  <details><summary data-i18n="fab.d4t">Potencial zeta: carga da superfície</summary><p data-i18n="fab.d4p">Mostra se a superfície é positiva ou negativa. A ZIF-8 pura costuma ser positiva, e os revestimentos mudam esse valor.</p></details>
+  <details><summary data-i18n="fab.d5t">BET: área e poros</summary><p data-i18n="fab.d5p">Adsorção de nitrogênio mede a área superficial e o volume dos poros. Cai quando o fármaco ocupa o espaço, o que ajuda a provar que ele entrou.</p></details>
+  <details><summary data-i18n="fab.d6t">UV-vis e HPLC: quanto fármaco entrou</summary><p data-i18n="fab.d6p">Medem a quantidade de fármaco que sobrou na solução. Por diferença, calcula-se quanto foi carregado.</p></details></div></div>
+ <h2 class="sub" data-i18n="fab.calc">Calculadora de carga</h2>
+ <p class="lead" data-i18n="fab.calcp">Dois números definem a qualidade do carregamento. Troque os valores (são um exemplo) e veja o resultado.</p>
  <div class="card"><div class="calc">
-  <label>Fármaco adicionado (mg)<input id="c1" type="number" min="0.1" step="0.1" value="10"></label>
-  <label>Fármaco dentro da partícula (mg)<input id="c2" type="number" min="0" step="0.1" value="7.5"></label>
-  <label>Massa total da partícula (mg)<input id="c3" type="number" min="0.1" step="0.1" value="25"></label></div>
-  <div class="res"><div><b id="r1">75%</b><span>Eficiência de encapsulamento: fármaco dentro ÷ fármaco adicionado</span></div><div><b id="r2">30%</b><span>Capacidade de carga: fármaco dentro ÷ massa da partícula</span></div></div>
-  <p id="rn" style="margin-top:12px">Capacidade de carga alta significa menos material para a mesma dose.</p></div>
+  <label><span data-i18n="fab.calc1">Fármaco adicionado (mg)</span><input id="c1" type="number" min="0.1" step="0.1" value="10"></label>
+  <label><span data-i18n="fab.calc2">Fármaco dentro da partícula (mg)</span><input id="c2" type="number" min="0" step="0.1" value="7.5"></label>
+  <label><span data-i18n="fab.calc3">Massa total da partícula (mg)</span><input id="c3" type="number" min="0.1" step="0.1" value="25"></label></div>
+  <div class="res"><div><b id="r1">75%</b><span data-i18n="fab.res1">Eficiência de encapsulamento: fármaco dentro ÷ fármaco adicionado</span></div><div><b id="r2">30%</b><span data-i18n="fab.res2">Capacidade de carga: fármaco dentro ÷ massa da partícula</span></div></div>
+  <p id="rn" style="margin-top:12px" data-i18n="fab.note">Capacidade de carga alta significa menos material para a mesma dose.</p></div>
 </section>
 
 <section class="pane" data-tab="viagem" hidden>
- <div class="kick">Do sangue ao tumor</div>
- <h2>A viagem da nanopartícula</h2>
- <p class="lead">Seis etapas, da circulação até o efeito dentro da célula. Use os botões ou toque em Reproduzir.</p>
+ <div class="kick" data-i18n="via.kick">Do sangue ao tumor</div>
+ <h2 data-i18n="via.h">A viagem da nanopartícula</h2>
+ <p class="lead" data-i18n="via.lead">Seis etapas, da circulação até o efeito dentro da célula. Use os botões ou toque em Reproduzir.</p>
  <div class="panel">
   <svg id="mac" class="mac" viewBox="0 0 720 300" data-s="1" role="img" aria-label="Nanopartículas no sangue atravessam a parede do vaso e chegam ao tumor"></svg>
   <svg id="mic" class="mic" viewBox="0 0 720 300" data-s="4" hidden role="img" aria-label="Célula tumoral engole a nanopartícula, que abre e libera o fármaco"></svg>
   <div class="rail" id="jr"></div>
   <div class="jt"><h3 id="jt"></h3><p id="jp"></p></div>
  </div>
- <h2 class="sub">Zoom químico: por que o ácido abre o cristal</h2>
+ <h2 class="sub" data-i18n="via.zoom">Zoom químico: por que o ácido abre o cristal</h2>
  <div class="g2">
-  <div class="panel"><svg id="chem" class="chem" data-on="0" viewBox="0 0 400 260" role="img" aria-label="Prótons atacam o nitrogênio e soltam o zinco"></svg><div class="rail"><button class="btn pri" id="chb" type="button">Adicionar ácido (H⁺)</button></div></div>
-  <div class="panel info"><h3 id="cht">Em pH 7,4</h3><p id="chp">O nitrogênio do imidazolato está ligado ao zinco. A ligação é firme e a rede se mantém.</p></div>
+  <div class="panel"><svg id="chem" class="chem" data-on="0" viewBox="0 0 400 260" role="img" aria-label="Prótons atacam o nitrogênio e soltam o zinco"></svg><div class="rail"><button class="btn pri" id="chb" type="button" data-i18n="via.addacid">Adicionar ácido (H⁺)</button></div></div>
+  <div class="panel info"><h3 id="cht"></h3><p id="chp"></p></div>
  </div>
- <h2 class="sub">Laboratório de pH</h2>
- <p class="lead">Mude a acidez e o tempo e veja o cristal se desfazer. É um modelo ilustrativo: as curvas mostram a ideia, não medidas de um estudo.</p>
+ <h2 class="sub" data-i18n="via.lab">Laboratório de pH</h2>
+ <p class="lead" data-i18n="via.labp">Mude a acidez e o tempo e veja o cristal se desfazer. É um modelo ilustrativo: as curvas mostram a ideia, não medidas de um estudo.</p>
  <div class="g2">
   <div class="panel"><svg id="la" viewBox="0 0 360 260" role="img" aria-label="Partícula se desfazendo conforme o pH e o tempo"></svg>
-   <div class="sl"><label for="ph"><span>pH do meio</span><span id="phv"></span></label><input id="ph" type="range" min="4.5" max="7.4" step="0.1" value="5.5">
-   <label for="tt"><span>Tempo</span><span id="ttv"></span></label><input id="tt" type="range" min="0" max="72" step="1" value="36">
-   <div class="row"><button class="btn pri" id="play" type="button">Reproduzir 72 h</button><button class="btn" data-ph="7.4" type="button">Sangue 7,4</button><button class="btn" data-ph="6.5" type="button">Tumor 6,5</button><button class="btn" data-ph="5.0" type="button">Lisossomo 5,0</button></div>
+   <div class="sl"><label for="ph"><span data-i18n="via.phlab">pH do meio</span><span id="phv"></span></label><input id="ph" type="range" min="4.5" max="7.4" step="0.1" value="5.5">
+   <label for="tt"><span data-i18n="via.time">Tempo</span><span id="ttv"></span></label><input id="tt" type="range" min="0" max="72" step="1" value="36">
+   <div class="row"><button class="btn pri" id="play" type="button" data-i18n="via.play">Reproduzir 72 h</button><button class="btn" data-ph="7.4" type="button" data-i18n="hero.chip1">Sangue 7,4</button><button class="btn" data-ph="6.5" type="button" data-i18n="hero.chip2">Tumor 6,5</button><button class="btn" data-ph="5.0" type="button" data-i18n="hero.chip3">Lisossomo 5,0</button></div>
    <div class="ph-state" id="phs"></div></div></div>
-  <div class="panel"><svg id="lb" viewBox="0 0 360 260" role="img" aria-label="Curvas de liberação do fármaco em função do tempo"></svg><div class="cap">Eixo x: horas. Eixo y: fármaco liberado (%). Pontilhado: pH 7,4 e pH 5,5 como referência.</div></div>
+  <div class="panel"><svg id="lb" viewBox="0 0 360 260" role="img" aria-label="Curvas de liberação do fármaco em função do tempo"></svg><div class="cap" data-i18n="via.lbcap">Eixo x: horas. Eixo y: fármaco liberado (%). Pontilhado: pH 7,4 e pH 5,5 como referência.</div></div>
  </div>
 </section>
 
 <section class="pane" data-tab="terapias" hidden>
- <div class="kick">O que a carga faz</div>
- <h2>Oito formas de atacar</h2>
- <p class="lead">A ZIF-8 leva a arma até o tumor. Escolha uma estratégia e ative a cena.</p>
+ <div class="kick" data-i18n="ter.kick">O que a carga faz</div>
+ <h2 data-i18n="ter.h">Oito formas de atacar</h2>
+ <p class="lead" data-i18n="ter.lead">A ZIF-8 leva a arma até o tumor. Escolha uma estratégia e ative a cena.</p>
  <div class="chips" id="tch" style="margin-bottom:20px"></div>
  <div class="panel tc pad" id="tbox"></div>
- <h2 class="sub">Combinar é a regra</h2>
- <p class="lead">Os estudos recentes juntam vários mecanismos numa só partícula. Um exemplo de 2026 usa bactérias engenheiradas cobertas com ZIF-8, carregadas com fotossensibilizador e catalase, que liberam interleucina-2 e ainda ativam a piroptose, combinadas com bloqueio de PD-L1.</p>
+ <h2 class="sub" data-i18n="ter.combo">Combinar é a regra</h2>
+ <p class="lead" data-i18n="ter.combop">Os estudos recentes juntam vários mecanismos numa só partícula. Um exemplo de 2026 usa bactérias engenheiradas cobertas com ZIF-8, carregadas com fotossensibilizador e catalase, que liberam interleucina-2 e ainda ativam a piroptose, combinadas com bloqueio de PD-L1.</p>
  <div class="g3">
-  <div class="card"><h4>Quimio + luz</h4><p>O fármaco ataca o DNA enquanto o calor ou os radicais fragilizam a célula. Uma nanoestrela de ouro em casca de ZIF-8 é um exemplo clássico.</p></div>
-  <div class="card"><h4>Zinco + fármaco</h4><p>O zinco liberado pode reverter a resistência a fármacos, como mostrou um estudo com gefitinibe em câncer de pulmão.</p></div>
-  <div class="card"><h4>Luz + imunidade</h4><p>Matar células de forma que alerte o sistema imune pode transformar um tumor “frio” em um tumor que o corpo reconhece.</p></div>
+  <div class="card"><h4 data-i18n="ter.c1t">Quimio + luz</h4><p data-i18n="ter.c1p">O fármaco ataca o DNA enquanto o calor ou os radicais fragilizam a célula. Uma nanoestrela de ouro em casca de ZIF-8 é um exemplo clássico.</p></div>
+  <div class="card"><h4 data-i18n="ter.c2t">Zinco + fármaco</h4><p data-i18n="ter.c2p">O zinco liberado pode reverter a resistência a fármacos, como mostrou um estudo com gefitinibe em câncer de pulmão.</p></div>
+  <div class="card"><h4 data-i18n="ter.c3t">Luz + imunidade</h4><p data-i18n="ter.c3p">Matar células de forma que alerte o sistema imune pode transformar um tumor “frio” em um tumor que o corpo reconhece.</p></div>
  </div>
 </section>
 
+<!-- ===== CANCER TAB (v6 atlas from MOFs e o Câncer) ===== -->
 <section class="pane" data-tab="cancer" hidden>
- <div class="kick">Alvos e testes</div>
- <h2>Contra quais cânceres</h2>
- <p class="lead">Os laboratórios testam a ZIF-8 em células tumorais cultivadas, chamadas linhagens, e depois em camundongos. Cada tipo de câncer traz um desafio diferente.</p>
- <div class="cg" id="cg"></div>
- <h2 class="sub">Do laboratório ao paciente</h2>
- <p class="lead">Toque em uma etapa para ver o que se faz nela.</p>
+ <div class="kick" data-i18n="can.kick">Alvos e testes</div>
+ <h2 data-i18n="can.h">Atlas dos cânceres</h2>
+ <p class="lead" data-i18n="can.lead">Toque num ponto do corpo e veja o que os pesquisadores fizeram contra aquele tipo de câncer: a partícula usada, o alvo e o resultado. Cada caso traz o artigo original.</p>
+ <div class="atlas">
+  <div class="a6bw panel"><svg id="a6b" viewBox="0 0 240 470" role="group" aria-label="Mapa do corpo com os tipos de câncer"></svg><small class="a6hint" data-i18n="can.hint">Toque num ponto do corpo</small></div>
+  <div class="a6i" id="a6i" aria-live="polite"></div>
+ </div>
+ <div class="chips" id="a6l" style="margin:16px 0 8px"></div>
+ <p class="a6d" data-i18n="can.disclaimer">Todos os casos são estudos de laboratório, em células ou em animais. Nenhum deles é, por si só, um tratamento disponível para pacientes.</p>
+ <h2 class="sub" data-i18n="can.famh">Não é só a ZIF-8: a família</h2>
+ <p class="lead" data-i18n="can.famp">Variações do mesmo princípio aparecem nos estudos. O que muda é o metal, a molécula orgânica ou o que se junta ao cristal.</p>
+ <div class="fam" id="fam"></div>
+
+ <h2 class="sub" data-i18n="can.pipeh">Do laboratório ao paciente</h2>
+ <p class="lead" data-i18n="can.pipep">Toque em uma etapa para ver o que se faz nela.</p>
  <div class="pipe" id="pp"></div>
  <div class="panel info" id="ppi" aria-live="polite"></div>
 </section>
 
 <section class="pane" data-tab="historia" hidden>
- <div class="kick">Como chegamos aqui</div>
- <h2>Uma linha do tempo</h2>
- <p class="lead">Estudos que marcaram o caminho, dos primeiros fármacos às estratégias mais recentes. Filtre por fase.</p>
+ <div class="kick" data-i18n="his.kick">Como chegamos aqui</div>
+ <h2 data-i18n="his.h">Uma linha do tempo</h2>
+ <p class="lead" data-i18n="his.lead">Estudos que marcaram o caminho, dos primeiros fármacos às estratégias mais recentes. Filtre por fase.</p>
  <div class="chips" id="eh" style="margin-bottom:20px"></div>
  <div class="tl" id="tl"></div>
 </section>
 
 <section class="pane" data-tab="leituras" hidden>
- <div class="kick">Para ir além</div>
- <h2>Indicação de leitura</h2>
- <p class="lead">Artigos para quem quer ler a fonte. Comece por uma revisão, depois vá para os estudos originais. Os títulos são os originais, em inglês.</p>
+ <div class="kick" data-i18n="lei.kick">Para ir além</div>
+ <h2 data-i18n="lei.h">Indicação de leitura</h2>
+ <p class="lead" data-i18n="lei.lead">Artigos para quem quer ler a fonte. Comece por uma revisão, depois vá para os estudos originais. Os títulos são os originais, em inglês.</p>
  <div class="road">
-  <div><b>Comece pela revisão</b><span>Ela explica o material, as aplicações e os termos em um só lugar.</span></div>
-  <div><b>Leia os pioneiros</b><span>Os dois estudos de 2012 mostram a ideia central: liberação em meio ácido.</span></div>
-  <div><b>Escolha uma estratégia</b><span>Quimioterapia, luz, zinco, imunidade. Leia o estudo da área que mais te interessa.</span></div>
+  <div><b data-i18n="lei.r1t">Comece pela revisão</b><span data-i18n="lei.r1p">Ela explica o material, as aplicações e os termos em um só lugar.</span></div>
+  <div><b data-i18n="lei.r2t">Leia os pioneiros</b><span data-i18n="lei.r2p">Os dois estudos de 2012 mostram a ideia central: liberação em meio ácido.</span></div>
+  <div><b data-i18n="lei.r3t">Escolha uma estratégia</b><span data-i18n="lei.r3p">Quimioterapia, luz, zinco, imunidade. Leia o estudo da área que mais te interessa.</span></div>
  </div>
- <div class="flt"><div><small>Nível</small><div class="chips" id="fl"></div></div><div><small>Tema</small><div class="chips" id="ft"></div></div></div>
+ <div class="flt"><div><small data-i18n="lei.level">Nível</small><div class="chips" id="fl"></div></div><div><small data-i18n="lei.theme">Tema</small><div class="chips" id="ft"></div></div></div>
  <div class="books" id="bk"></div>
- <h2 class="sub">Como ler um artigo científico</h2>
- <details open><summary>Leia nesta ordem</summary><ul><li>Título e resumo (abstract).</li><li>Figuras e legendas.</li><li>Conclusão.</li><li>Só depois, métodos e resultados.</li></ul></details>
- <details><summary>O que procurar nos resultados de ZIF-8</summary><ul><li>Quanto fármaco foi carregado (capacidade de carga) e quanto ficou preso (eficiência).</li><li>Liberação em pH 7,4 e em pH ácido.</li><li>Teste em células e, se houver, em animais.</li><li>Tamanho da partícula e toxicidade do material vazio.</li><li>Se há grupo controle com o fármaco livre.</li></ul></details>
- <details><summary>Termos para buscar</summary><div class="chips" style="padding:0 18px 16px" id="ks"></div></details>
+ <h2 class="sub" data-i18n="lei.readh">Como ler um artigo científico</h2>
+ <details open><summary data-i18n="lei.read1t">Leia nesta ordem</summary><ul><li data-i18n="lei.read1a">Título e resumo (abstract).</li><li data-i18n="lei.read1b">Figuras e legendas.</li><li data-i18n="lei.read1c">Conclusão.</li><li data-i18n="lei.read1d">Só depois, métodos e resultados.</li></ul></details>
+ <details><summary data-i18n="lei.read2t">O que procurar nos resultados de ZIF-8</summary><ul><li data-i18n="lei.read2a">Quanto fármaco foi carregado (capacidade de carga) e quanto ficou preso (eficiência).</li><li data-i18n="lei.read2b">Liberação em pH 7,4 e em pH ácido.</li><li data-i18n="lei.read2c">Teste em células e, se houver, em animais.</li><li data-i18n="lei.read2d">Tamanho da partícula e toxicidade do material vazio.</li><li data-i18n="lei.read2e">Se há grupo controle com o fármaco livre.</li></ul></details>
+ <details><summary data-i18n="lei.read3t">Termos para buscar</summary><div class="chips" style="padding:0 18px 16px" id="ks"></div></details>
 </section>
 
 <section class="pane" data-tab="duvidas" hidden>
- <div class="kick">Tire suas dúvidas</div>
- <h2>Perguntas e quiz</h2>
+ <div class="kick" data-i18n="duv.kick">Tire suas dúvidas</div>
+ <h2 data-i18n="duv.h">Perguntas e quiz</h2>
  <div class="g2" style="margin-top:20px">
   <div>
-   <details open><summary>A ZIF-8 já é usada em pacientes?</summary><p>Os estudos são de laboratório e de animais. Ela ainda está em pesquisa pré-clínica e não é um medicamento aprovado.</p></details>
-   <details><summary>O zinco faz mal?</summary><p>O corpo precisa de zinco, mas o excesso pode ser tóxico. Alguns estudos usam o zinco liberado como parte do ataque, outros medem a segurança em órgãos e no sangue. A dose e o destino do zinco são pontos de atenção.</p></details>
-   <details><summary>Por que o cristal abre no ácido?</summary><p>Prótons competem com o zinco pelo nitrogênio do imidazol e a ligação se rompe. A rede se desfaz sozinha, sem precisar de sensor.</p></details>
-   <details><summary>Qual a diferença para a lipossoma?</summary><p>Lipossomas são bolhas de gordura, usadas em medicamentos aprovados. A ZIF-8 é um cristal rígido, com capacidade de carga alta e liberação sensível ao pH, mas com menos histórico de segurança.</p></details>
-   <details><summary>Por que o sangue não abre o cristal?</summary><p>Em pH 7,4 a rede é estável. Mas o fosfato do sangue pode degradar a ZIF-8 aos poucos, e por isso revestimentos são usados para ganhar tempo.</p></details>
-   <details><summary>Dá para dizer que cura o câncer?</summary><p>Não. Os resultados mostram potencial em modelos de laboratório. A passagem para pessoas exige estudos de segurança, produção em escala e ensaios clínicos.</p></details>
-   <details><summary>O que ainda é desafio?</summary><ul><li>Estabilidade no sangue.</li><li>Toxicidade a longo prazo e destino do zinco.</li><li>Produzir sempre as mesmas partículas, em grande escala.</li><li>Comparar estudos feitos com métodos diferentes.</li><li>Provar eficácia e segurança em humanos.</li></ul></details>
+   <details open><summary data-i18n="duv.q1t">A ZIF-8 já é usada em pacientes?</summary><p data-i18n="duv.q1p">Os estudos são de laboratório e de animais. Ela ainda está em pesquisa pré-clínica e não é um medicamento aprovado.</p></details>
+   <details><summary data-i18n="duv.q2t">O zinco faz mal?</summary><p data-i18n="duv.q2p">O corpo precisa de zinco, mas o excesso pode ser tóxico. Alguns estudos usam o zinco liberado como parte do ataque, outros medem a segurança em órgãos e no sangue. A dose e o destino do zinco são pontos de atenção.</p></details>
+   <details><summary data-i18n="duv.q3t">Por que o cristal abre no ácido?</summary><p data-i18n="duv.q3p">Prótons competem com o zinco pelo nitrogênio do imidazol e a ligação se rompe. A rede se desfaz sozinha, sem precisar de sensor.</p></details>
+   <details><summary data-i18n="duv.q4t">Qual a diferença para a lipossoma?</summary><p data-i18n="duv.q4p">Lipossomas são bolhas de gordura, usadas em medicamentos aprovados. A ZIF-8 é um cristal rígido, com capacidade de carga alta e liberação sensível ao pH, mas com menos histórico de segurança.</p></details>
+   <details><summary data-i18n="duv.q5t">Por que o sangue não abre o cristal?</summary><p data-i18n="duv.q5p">Em pH 7,4 a rede é estável. Mas o fosfato do sangue pode degradar a ZIF-8 aos poucos, e por isso revestimentos são usados para ganhar tempo.</p></details>
+   <details><summary data-i18n="duv.q6t">Dá para dizer que cura o câncer?</summary><p data-i18n="duv.q6p">Não. Os resultados mostram potencial em modelos de laboratório. A passagem para pessoas exige estudos de segurança, produção em escala e ensaios clínicos.</p></details>
+   <details><summary data-i18n="duv.q7t">O que ainda é desafio?</summary><ul><li data-i18n="duv.q7a">Estabilidade no sangue.</li><li data-i18n="duv.q7b">Toxicidade a longo prazo e destino do zinco.</li><li data-i18n="duv.q7c">Produzir sempre as mesmas partículas, em grande escala.</li><li data-i18n="duv.q7d">Comparar estudos feitos com métodos diferentes.</li><li data-i18n="duv.q7e">Provar eficácia e segurança em humanos.</li></ul></details>
   </div>
   <div class="q" id="quiz"></div>
  </div>
- <h2 class="sub">Glossário</h2>
+ <h2 class="sub" data-i18n="duv.glossh">Glossário</h2>
  <input id="gs" type="search" placeholder="Buscar termo" aria-label="Buscar termo no glossário">
  <dl class="gl" id="gl"></dl>
 </section>
 </main>
-<div class="w"><footer>Conteúdo educativo, não é orientação médica. A ZIF-8 em oncologia está em pesquisa; os esquemas são simplificados e fora de escala. Confira os detalhes nos artigos originais.</footer></div>
+<div class="w"><footer data-i18n="footer">Conteúdo educativo, não é orientação médica. A ZIF-8 em oncologia está em pesquisa; os esquemas são simplificados e fora de escala. Confira os detalhes nos artigos originais.</footer></div>
 
 <script>
 var $=function(s,r){return(r||document).querySelector(s)};
@@ -494,6 +538,118 @@ TABS.forEach(function(t){var b=document.createElement('button');b.type='button';
 function show(id,push){if(!TABS.some(function(t){return t[0]===id}))id='inicio';document.querySelectorAll('[data-tab]').forEach(function(s){s.hidden=s.dataset.tab!==id});[].forEach.call(tb.children,function(b){b.setAttribute('aria-selected',b.dataset.t===id?'true':'false')});if(push){try{history.replaceState(null,'','#'+id)}catch(e){}}window.scrollTo(0,0);CR.hero.go(id==='inicio');CR.cage.go(id==='cristal');var cur=[].find.call(tb.children,function(b){return b.dataset.t===id});if(cur)cur.scrollIntoView({block:'nearest',inline:'center'})}
 document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.go,true)})});
 $('#tg').addEventListener('click',function(){var r=document.documentElement,a=r.getAttribute('data-theme'),d=a?a==='dark':!matchMedia('(prefers-color-scheme:light)').matches;r.setAttribute('data-theme',d?'light':'dark')});
+
+/* ===== i18n ===== */
+var LANG='pt';
+var I18N={
+ en:{
+  'hero.kick':'Nanomedicine, without jargon',
+  'hero.h1a':'A zinc crystal','hero.h1b':'that only opens in the','hero.h1c':'tumor',
+  'hero.p':'ZIF-8 is a material made of zinc and an organic molecule, with millions of microscopic pores. Researchers load medicine inside it. In an acidic environment, like a tumor, the crystal breaks down and releases its cargo.',
+  'hero.b1':'See the crystal inside','hero.b2':'Follow the journey','hero.hint':'drag to rotate',
+  'hero.ph':'Acidity (pH)','hero.chip1':'Blood 7.4','hero.chip2':'Tumor 6.5','hero.chip3':'Lysosome 5.0',
+  'fact1':'diameter of the cavity where the cargo sits','fact2':'opening of the window between cavities',
+  'fact3':'typical surface area, a soccer field in a few grams','fact3b':'typical literature values',
+  'fact4':'from stable to collapsed',
+  'prob.h':'The problem ZIF-8 tries to solve',
+  'prob.1t':'Drug hits everything','prob.1p':'Classic chemotherapy drugs travel throughout the body and damage healthy cells. This causes nausea, hair loss, and damage to the heart and kidneys.',
+  'prob.2t':'Drug that does not dissolve','prob.2p':'Many promising compounds, like curcumin, dissolve poorly in water and degrade before reaching the tumor.',
+  'prob.3t':'Tumor that resists','prob.3p':'Tumor cells learn to pump out the drug or protect themselves. Delivering the cargo into the cell all at once helps overcome this barrier.',
+  'prob.idea':'The idea','prob.ideap':'Pack the medicine into a particle thousands of times thinner than a hair, which stays closed in the blood and opens where the environment is acidic. The tumor and the inside of cells have this acidity. The rest of the body does not.',
+  'cristal.kick':'Structure','cristal.h':'Inside ZIF-8',
+  'cristal.lead':'The formula is simple: one zinc and two imidazolates, Zn(2-methylimidazolate)₂. The way the pieces fit creates empty cages where the cargo is kept.',
+  'cristal.ph':'Acidity (pH)',
+  'cristal.c1t':'The sodalite cage','cristal.c1p':'Each cage has 24 zincs at the vertices and 36 imidazolate bridges on the edges, like a truncated octahedron. Six square and eight hexagonal faces form the wall. The entrance windows are on the hexagonal faces.',
+  'cristal.c2t':'Why does it look like a zeolite?','cristal.c2p':'The Zn–imidazolate–Zn angle is similar to the Si–O–Si of zeolites, porous minerals used in industry. Hence the name: zeolitic. ZIF-8’s topology is called sodalite.',
+  'cristal.c3t':'The whole crystal','cristal.c3p':'Millions of these cages, stacked, form a rhombic dodecahedron particle with 12 rhombus faces. That is the figure on the home page.',
+  'cristal.unit':'The basic unit','cristal.unitp':'One zinc in the center and four imidazolates around it. Each ring connects two zincs like a bridge. Click on the pieces.',
+  'cristal.cap':'Simplified diagram, not to scale.',
+  'cristal.win':'The entrance window','cristal.winp':'The cavity is about 11.6 Å, but the window is only about 3.4 Å. Try passing different molecules.',
+  'cristal.wint':'Choose a molecule','cristal.winp2':'Small molecules like water and CO₂ pass through. Large drugs like doxorubicin do not fit through the window. So how do they get in? The Manufacturing tab shows it.',
+  'cristal.others':'Other ZIFs','cristal.z8':'Zinc + 2-methylimidazole. The most studied in medicine for being easy to make in water and opening in acid.',
+  'cristal.z67':'Cobalt instead of zinc, same topology. Cobalt is active in chemical reactions, which is why it appears in catalytic therapies.',
+  'cristal.z90':'Uses imidazole-2-carboxaldehyde, which has a reactive aldehyde group. It allows molecules to be attached to the structure itself.',
+  'fab.kick':'Engineering','fab.h':'How to make and load',
+  'fab.lead':'ZIF-8 forms in water, at room temperature, in minutes. That is what makes it possible to build it already with the medicine inside.',
+  'fab.r1t':'Basic recipe','fab.r1p':'A zinc salt (nitrate or acetate) and 2-methylimidazole, in water or methanol. Mix and stir for a few minutes.',
+  'fab.r2t':'Size control','fab.r2p':'The ligand-to-zinc ratio, solvent, temperature, and additives change the size, from tens of nanometers to micrometers. For blood use, the target is usually below a few hundred nanometers.',
+  'fab.r3t':'Green and simple','fab.r3p':'No heat or harsh solvents, which protects fragile molecules like proteins, enzymes, and RNA.',
+  'fab.ways':'Three ways to load the cargo',
+  'fab.surf':'A smart surface','fab.surfp':'Pure ZIF-8 has a positive charge and is recognized by the body. Coatings provide stealth, targeting, and identity. Choose a layer.',
+  'fab.check':'How to know it worked',
+  'fab.d1t':'XRD: is it really ZIF-8?','fab.d1p':'X-ray diffraction gives a peak pattern characteristic of the sodalite structure. If the peaks match ZIF-8, the crystal formed.',
+  'fab.d2t':'SEM and TEM: shape and size','fab.d2p':'Electron microscopy shows the rhombic dodecahedron shape and the size of each particle, as well as coating layers.',
+  'fab.d3t':'DLS: size in water','fab.d3p':'Light scattering measures the size of the swollen particle in liquid, which is larger than what is seen under the microscope.',
+  'fab.d4t':'Zeta potential: surface charge','fab.d4p':'Shows whether the surface is positive or negative. Pure ZIF-8 is usually positive, and coatings change that value.',
+  'fab.d5t':'BET: area and pores','fab.d5p':'Nitrogen adsorption measures surface area and pore volume. It drops when the drug occupies the space, which helps prove it entered.',
+  'fab.d6t':'UV-vis and HPLC: how much drug entered','fab.d6p':'They measure the amount of drug left in solution. By difference, you calculate how much was loaded.',
+  'fab.calc':'Loading calculator','fab.calcp':'Two numbers define loading quality. Change the values (they are an example) and see the result.',
+  'fab.calc1':'Drug added (mg)','fab.calc2':'Drug inside the particle (mg)','fab.calc3':'Total particle mass (mg)',
+  'fab.res1':'Encapsulation efficiency: drug inside ÷ drug added','fab.res2':'Loading capacity: drug inside ÷ particle mass',
+  'fab.note':'High loading capacity means less material for the same dose.',
+  'via.kick':'From blood to tumor','via.h':'The nanoparticle journey',
+  'via.lead':'Six steps, from circulation to the effect inside the cell. Use the buttons or tap Play.',
+  'via.zoom':'Chemical zoom: why acid opens the crystal','via.addacid':'Add acid (H⁺)',
+  'via.lab':'pH lab','via.labp':'Change the acidity and time and watch the crystal fall apart. It is an illustrative model: the curves show the idea, not measurements from a study.',
+  'via.phlab':'pH of the medium','via.time':'Time','via.play':'Play 72 h',
+  'via.lbcap':'X axis: hours. Y axis: drug released (%). Dotted: pH 7.4 and pH 5.5 as reference.',
+  'ter.kick':'What the cargo does','ter.h':'Eight ways to attack','ter.lead':'ZIF-8 carries the weapon to the tumor. Choose a strategy and activate the scene.',
+  'ter.combo':'Combining is the rule','ter.combop':'Recent studies combine several mechanisms in a single particle. A 2026 example uses engineered bacteria coated with ZIF-8, loaded with a photosensitizer and catalase, which release interleukin-2 and also trigger pyroptosis, combined with PD-L1 blockade.',
+  'ter.c1t':'Chemo + light','ter.c1p':'The drug attacks DNA while heat or radicals weaken the cell. A gold nanostar in a ZIF-8 shell is a classic example.',
+  'ter.c2t':'Zinc + drug','ter.c2p':'Released zinc can reverse drug resistance, as shown in a study with gefitinib in lung cancer.',
+  'ter.c3t':'Light + immunity','ter.c3p':'Killing cells in a way that alerts the immune system can turn a “cold” tumor into one the body recognizes.',
+  'can.kick':'Targets and tests','can.h':'Cancer atlas',
+  'can.lead':'Tap a point on the body to see what researchers did against that cancer type: the particle used, the target, and the result. Each case includes the original article.',
+  'can.hint':'Tap a point on the body',
+  'can.disclaimer':'All cases are laboratory studies, in cells or animals. None is, by itself, a treatment available to patients.',
+  'can.famh':'Not just ZIF-8: the family','can.famp':'Variations of the same principle appear in studies. What changes is the metal, the organic molecule, or what is added to the crystal.',
+  'can.pipeh':'From lab to patient','can.pipep':'Tap a step to see what is done in it.',
+  'his.kick':'How we got here','his.h':'A timeline','his.lead':'Studies that marked the path, from the first drugs to the latest strategies. Filter by phase.',
+  'lei.kick':'Go further','lei.h':'Reading list','lei.lead':'Articles for those who want to read the source. Start with a review, then go to the original studies. Titles are in English.',
+  'lei.r1t':'Start with the review','lei.r1p':'It explains the material, the applications, and the terms in one place.',
+  'lei.r2t':'Read the pioneers','lei.r2p':'The two 2012 studies show the central idea: release in an acidic environment.',
+  'lei.r3t':'Choose a strategy','lei.r3p':'Chemotherapy, light, zinc, immunity. Read the study in the area that interests you most.',
+  'lei.level':'Level','lei.theme':'Topic',
+  'lei.readh':'How to read a scientific article',
+  'lei.read1t':'Read in this order','lei.read1a':'Title and abstract.','lei.read1b':'Figures and legends.','lei.read1c':'Conclusion.','lei.read1d':'Only then, methods and results.',
+  'lei.read2t':'What to look for in ZIF-8 results','lei.read2a':'How much drug was loaded (loading capacity) and how much stayed trapped (efficiency).',
+  'lei.read2b':'Release at pH 7.4 and at acidic pH.','lei.read2c':'Testing in cells and, if any, in animals.',
+  'lei.read2d':'Particle size and toxicity of the empty material.','lei.read2e':'Whether there is a control group with free drug.',
+  'lei.read3t':'Terms to search',
+  'duv.kick':'Get your questions answered','duv.h':'Questions and quiz',
+  'duv.q1t':'Is ZIF-8 already used in patients?','duv.q1p':'Studies are laboratory and animal studies. It is still in preclinical research and is not an approved medicine.',
+  'duv.q2t':'Is zinc harmful?','duv.q2p':'The body needs zinc, but too much can be toxic. Some studies use the released zinc as part of the attack, others measure safety in organs and blood. Dose and zinc fate are points of attention.',
+  'duv.q3t':'Why does the crystal open in acid?','duv.q3p':'Protons compete with zinc for the imidazole nitrogen and the bond breaks. The network falls apart on its own, no sensor needed.',
+  'duv.q4t':'What is the difference from a liposome?','duv.q4p':'Liposomes are fat bubbles, used in approved medicines. ZIF-8 is a rigid crystal with high loading capacity and pH-sensitive release, but with less safety history.',
+  'duv.q5t':'Why doesn’t blood open the crystal?','duv.q5p':'At pH 7.4 the network is stable. But blood phosphate can slowly degrade ZIF-8, which is why coatings are used to buy time.',
+  'duv.q6t':'Can we say it cures cancer?','duv.q6p':'No. Results show potential in laboratory models. Moving to people requires safety studies, scalable production, and clinical trials.',
+  'duv.q7t':'What is still a challenge?','duv.q7a':'Stability in blood.','duv.q7b':'Long-term toxicity and zinc fate.','duv.q7c':'Producing the same particles consistently at large scale.','duv.q7d':'Comparing studies done with different methods.','duv.q7e':'Proving efficacy and safety in humans.',
+  'duv.glossh':'Glossary',
+  'footer':'Educational content, not medical advice. ZIF-8 in oncology is under research; diagrams are simplified and not to scale. Check details in the original articles.'
+ }
+};
+function applyLang(l){
+ LANG=l;
+ var b=$('#lang');b.textContent=l==='pt'?'PT':'EN';b.setAttribute('aria-pressed',l==='en'?'true':'false');
+ document.documentElement.lang=l==='pt'?'pt-BR':'en';
+ document.querySelectorAll('[data-i18n]').forEach(function(el){
+  var k=el.getAttribute('data-i18n');
+  if(l==='en'&&I18N.en[k])el.textContent=I18N.en[k];
+  else if(l==='pt'){
+   // restore Portuguese by using a stored dataset original
+   if(!el.dataset.pt)el.dataset.pt=el.textContent;
+   el.textContent=el.dataset.pt;
+  }
+  if(l==='en')el.dataset.pt=el.dataset.pt||el.textContent;
+ });
+ // tabs
+ tb.querySelectorAll('button').forEach(function(btn){var t=btn.dataset.t;var lab=t;
+  if(l==='en'){var en={inicio:'Home',cristal:'Crystal',fabricacao:'Manufacturing',viagem:'Journey',terapias:'Therapies',cancer:'Cancers',historia:'History',leituras:'Reading',duvidas:'FAQ'};lab=en[t]||t}
+  else{var pt={inicio:'Início',cristal:'O cristal',fabricacao:'Fabricação',viagem:'A viagem',terapias:'Terapias',cancer:'Cânceres',historia:'História',leituras:'Leituras',duvidas:'Dúvidas'};lab=pt[t]||t}
+  btn.textContent=lab});
+ var tg=$('#tg');if(l==='en'){if(!tg.dataset.pt)tg.dataset.pt=tg.textContent;tg.textContent='Theme'}else if(tg.dataset.pt)tg.textContent=tg.dataset.pt;
+}
+$('#lang').addEventListener('click',function(){applyLang(LANG==='pt'?'en':'pt')});
 
 /* ===== FIG A: unidade ===== */
 (function(){var cx=210,cy=210,h='',angs=[-45,45,135,225];
@@ -654,19 +810,43 @@ $('#tg').addEventListener('click',function(){var r=document.documentElement,a=r.
   var sc=$('.sc',box),b=$('#tgl');b.addEventListener('click',function(){var on=sc.dataset.on==='1'?'0':'1';sc.dataset.on=on;b.textContent=t.btn[on==='1'?1:0]})}
  th.forEach(function(t,i){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=t.k;b.addEventListener('click',function(){sel(i)});ch.appendChild(b)});sel(0)})();
 
-/* ===== CÂNCERES ===== */
-(function(){var C=[
- ['Mama','Um dos tumores mais estudados com ZIF-8. Há subtipos difíceis, como o triplo-negativo, que não têm alvos hormonais.','Linhagens comuns: MCF-7, MDA-MB-231 (humanas) e 4T1 (de camundongo).','#FF6AA0','M14 30c0-9 7-15 14-15s14 6 14 15c0 7-5 11-14 11S14 37 14 30z'],
- ['Pulmão','O pulmão de células não pequenas pode ganhar resistência a fármacos-alvo. Um estudo usou o zinco da ZIF-8 para reverter a resistência ao gefitinibe.','Linhagens comuns: A549, HCC827.','#7CC3FF','M28 12v24M28 24c-4-8-12-6-14 4s3 14 10 10M28 24c4-8 12-6 14 4s-3 14-10 10'],
- ['Fígado','O carcinoma hepatocelular recebe muito nanomaterial, porque o fígado captura partículas. É uma vantagem para chegar lá e um risco para a toxicidade.','Linhagens comuns: HepG2.','#FFAA4D','M10 26c4-10 20-14 30-6 4 4 2 12-6 14-8 2-16 0-24-8z'],
- ['Colorretal','Tumores do intestino grosso, tratados com 5-fluorouracil, um dos primeiros fármacos testados em ZIF-8.','Linhagens comuns: HCT116, CT26 (de camundongo).','#38D9C1','M14 14h24v8H20v8h20v8H14'],
- ['Colo do útero e ovário','A linhagem HeLa é uma das mais usadas em laboratório. O ovário tem muito receptor de folato, e isso favorece o uso do ácido fólico como rumo.','Linhagens comuns: HeLa, SKOV3.','#B79BFF','M28 14a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM28 30v14M22 38h12'],
- ['Pele (melanoma)','O melanoma de camundongo B16F10 é modelo comum para testar imunoterapia, inclusive os microrrobôs de bactéria cobertos com ZIF-8 de 2026.','Modelo comum: B16F10.','#FF8A6A','M28 12a16 16 0 1 0 0 32 16 16 0 0 0 0-32zM22 24a3 3 0 1 0 .1 0M34 30a3 3 0 1 0 .1 0M26 36a2 2 0 1 0 .1 0']];
- $('#cg').innerHTML=C.map(function(c){return '<article class="cc"><div class="ic"><svg viewBox="0 0 56 56" width="40" height="40" aria-hidden="true"><path d="'+c[4]+'" fill="none" stroke="'+c[3]+'" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>'+c[0]+'</h3><p>'+c[1]+'</p><p style="font:400 12px var(--fm)">'+c[2]+'</p></article>'}).join('');
+/* ===== CÂNCERES: atlas e família (versão MOFs e o Câncer) ===== */
+(function(){
+ var CA=[{"id":"figado","n":"Fígado","col":"#FFAA4D","bx":120,"by":166,"g":"M10 26c4-10 20-14 30-6 4 4 2 12-6 14-8 2-16 0-24-8z","in":"O fígado captura partículas do sangue. Isso ajuda a chegar lá, mas pede cuidado com a toxicidade. O carcinoma hepatocelular é o tumor primário mais comum do órgão.","fn":"Fechadura e chave: células do fígado têm o receptor ASGPR, que reconhece o açúcar GalNAc. Pôr esse açúcar na partícula é como cortar a chave certa.","cs":[{"t":["Quimio","Fome do tumor"],"m":"ZIF-8","x":"Sorafenibe e glicose oxidase em ZIF-8 coberta com GalNAc, que mira o receptor ASGPR. Une quimioterapia e “fome” do tumor (a enzima consome a glicose). Inibiu o crescimento e a metástase pulmonar de células-tronco de câncer de fígado.","c":"Hu et al. · Acta Biomaterialia · 2022","doi":"10.1016/j.actbio.2022.08.027"},{"t":["Calor"],"m":"ZIF-8","x":"Lipossomas com ZIF-8, sorafenibe e MXene (material que converte luz infravermelha em calor) contra o carcinoma hepatocelular. Partículas de cerca de 75 nm, avaliadas em células, em animais e por simulação computacional.","c":"Elbeltagi et al. · Archives of Biochemistry and Biophysics · 2025","doi":"10.1016/j.abb.2024.110256"},{"t":["Quimio"],"m":"ZIF-67","x":"ZIF-67 decorada com extrato de Ginkgo biloba e DNA de E. coli, levando doxorrubicina e sorafenibe ao mesmo tempo. A carga ficou perto de 60% para cada fármaco.","c":"Farasati et al. · Environmental Research · 2023","doi":"10.1016/j.envres.2023.115589"},{"t":["Quimio"],"m":"ZIF-8","x":"ZIF-8 com doxorrubicina e uma cobertura de pilar[6]areno com galactose, também um açúcar que o fígado reconhece, para tratar hepatoma.","c":"Yang et al. · Chemical Communications · 2018","doi":"10.1039/c8cc05665j"},{"t":["Quimio"],"m":"ZIF-8","x":"Di-hidroartemisinina (DHA) encapsulada em ZIF-8, com eficiência de encapsulamento de 77,2% e liberação controlada.","c":"Li et al. · Journal of Materials Chemistry B · 2020","doi":"10.1039/d0tb01330g"},{"t":["Pós-cirurgia"],"m":"ZIF-8","x":"Criogéis com ZIF-8 para estancar o sangramento depois da retirada do tumor e reduzir a chance de ele voltar.","c":"Liang et al. · Small · 2021","doi":"10.1002/smll.202101356"}],"nt":"Para sensores ligados ao fígado, veja a aba Diagnóstico."},
+ {"id":"mama","n":"Mama","col":"#FF6AA0","bx":142,"by":132,"g":"M14 30c0-9 7-15 14-15s14 6 14 15c0 7-5 11-14 11S14 37 14 30z","in":"Um dos tumores mais estudados com ZIF-8. O subtipo triplo-negativo não tem os alvos hormonais usados em outras terapias, e por isso precisa de estratégias novas.","fn":"Linhagens muito usadas: MCF-7 e MDA-MB-231 (humanas) e 4T1 (de camundongo).","cs":[{"t":["Quimio","Alvo: folato"],"m":"ZIF-8","x":"Ácido fólico e PEG na superfície de ZIF-8 carregada com baicalina, testada em células MCF-7 e em camundongos com tumor 4T1.","c":"Mi et al. · International Journal of Nanomedicine · 2021","doi":"10.2147/IJN.S340764"},{"t":["Quimio","Alvo: CD44"],"m":"ZIF-8","x":"ZIF-8 com curcumina coberta de ácido hialurônico, que o tumor reconhece pelo receptor CD44. Testada em células e em animais.","c":"Yu et al. · Colloids and Surfaces B: Biointerfaces · 2021","doi":"10.1016/j.colsurfb.2021.111759"},{"t":["Ferroptose"],"m":"MOF","x":"Camada de ferro(II) com ácido tânico sobre uma MOF com artemisinina. O ferro extra favorece a ferroptose, um tipo de morte por oxidação, no subtipo triplo-negativo.","c":"Li et al. · Nanoscale Research Letters · 2021","doi":"10.1186/s11671-021-03497-z"},{"t":["Quimio"],"m":"ZIF-8","x":"Quercetina em ZIF-8 com alginato. Libera cerca de 3,6 vezes mais em pH 5,4 que em 7,4, em 24 h, e em camundongos reduziu o tumor e a metástase no pulmão.","c":"Rostamkhani et al. · Nanotechnology · 2024","doi":"10.1088/1361-6528/ad713f"},{"t":["Peptídeo"],"m":"ZIF-8","x":"Peptídeo anticâncer em ZIF-8 produzida por microfluídica, uma técnica que mistura os componentes em canais minúsculos.","c":"Qiu et al. · Journal of Colloid and Interface Science · 2023","doi":"10.1016/j.jcis.2023.03.172"},{"t":["Revisão"],"m":"ZIF-8","x":"Revisão sobre ZIF-8 responsiva a estímulos (pH, luz, calor, ultrassom, redox, enzimas) para tratar e diagnosticar câncer de mama.","c":"Jha et al. · Next Materials · 2025","doi":"10.1016/j.nxmate.2025.100611"}],"nt":""},
+ {"id":"pulmao","n":"Pulmão","col":"#7CC3FF","bx":98,"by":110,"g":"M28 12v24M28 24c-4-8-12-6-14 4s3 14 10 10M28 24c4-8 12-6 14 4s-3 14-10 10","in":"O câncer de pulmão de células não pequenas costuma ganhar resistência aos fármacos-alvo. Vários estudos usam a própria ZIF-8 para driblar isso.","fn":"Zinco de dois gumes: o mesmo íon que forma o cristal pode, em excesso dentro da célula, virar arma contra o tumor.","cs":[{"t":["Zinco"],"m":"ZIF-8","x":"Gefitinibe e ácido hialurônico numa ZIF-8 que “estoura” zinco dentro da célula. Isso reverteu a resistência ao gefitinibe em células de câncer de pulmão.","c":"Li et al. · International Journal of Biological Sciences · 2024","doi":"10.7150/ijbs.95929"},{"t":["Zinco","Luz"],"m":"ZIF-90","x":"ZIF-90 com o corante ICG contra a resistência ao crizotinibe em câncer de pulmão ALK-positivo, por dano às mitocôndrias.","c":"Li et al. · Acta Biomaterialia · 2024","doi":"10.1016/j.actbio.2024.07.033"},{"t":["Quimio","Calor"],"m":"ZIF-8","x":"Doxorrubicina em MnO₂@ZIF-8, um sistema químico e fototérmico testado em células de pulmão de Lewis.","c":"Tan et al. · ACS Omega · 2021","doi":"10.1021/acsomega.0c05922"},{"t":["Membrana celular"],"m":"ZIF-8","x":"MOFs cobertas por membrana de célula, chamadas pelos autores de “bombas biológicas”, para tratar câncer de pulmão.","c":"Yang et al. · Journal of Colloid and Interface Science · 2022","doi":"10.1016/j.jcis.2022.06.008"},{"t":["Revisão"],"m":"ZIF","x":"Revisão sobre ZIFs para diagnóstico e terapia do câncer de pulmão.","c":"Jiang et al. · Biomaterials Science · 2026","doi":"10.1039/d6bm00962j"}],"nt":""},
+ {"id":"colorretal","n":"Colorretal","col":"#38D9C1","bx":150,"by":206,"g":"M14 14h24v8H20v8h20v8H14","in":"Tumores do intestino grosso e do reto. Faz parte dos testes mais antigos com ZIF-8, que usaram o 5-fluorouracil.","fn":"Imunidade de longa duração: a ideia moderna é fazer o tumor “pedir socorro” ao sistema imune, e não só matá-lo.","cs":[{"t":["Imuno","Zinco"],"m":"ZIF-8","x":"ZIF-8 com um agonista de STING (CDG) e siXkr8, dentro de um hidrogel. O zinco induz piroptose e a resposta imune ficou longa: sobrevida média acima de 60 dias em camundongos e menos recidiva após a cirurgia.","c":"Yang et al. · Advanced Functional Materials · 2025","doi":"10.1002/adfm.202506362"},{"t":["Imuno","Quimio"],"m":"ZIF-8","x":"Mitoxantrona encapsulada em ZIF-8 num só passo. Amplifica a morte celular imunogênica e reforça a quimio-imunoterapia.","c":"Li et al. · Advanced Science · 2025","doi":"10.1002/advs.202501542"},{"t":["Quimio","Radio"],"m":"ZIF-8","x":"Plataforma “três em um”: quimioterápico, radiossensibilizador e molécula de direcionamento na mesma ZIF-8.","c":"Iranpour et al. · Journal of Materials Chemistry B · 2024","doi":"10.1039/d3tb02571c"},{"t":["Alvo: folato"],"m":"ZIF-8","x":"ZIF-8 com polidopamina, ácido hialurônico e ácido fólico levando resveratrol. Cerca de 194 nm, 81,9% de encapsulamento e liberação de 59,9% em pH 5,5 contra 33,2% em pH 7,4 em 72 h.","c":"Seyedi et al. · Scientific Reports · 2026","doi":"10.1038/s41598-026-54335-0"},{"t":["Quimio"],"m":"ZIF-8","x":"Resveratrol em ZIF-8 com ácido tânico, que promoveu a apoptose de células de câncer de cólon.","c":"Sun et al. · Journal of Biomedical Materials Research - Part B Applied Biomaterials · 2024","doi":"10.1002/jbm.b.35320"},{"t":["Gene"],"m":"ZIF-8","x":"PBAE/ZIF-8 levando um RNA que desliga o gene LncRNA ASB16-AS1 e devolve a sensibilidade à doxorrubicina.","c":"Yang et al. · Journal of Biomaterials Science · 2025","doi":"10.1080/09205063.2024.2410060"},{"t":["Hipóxia","Fenton"],"m":"MOF","x":"Plataforma que combina quimioterapia ativada por hipóxia e terapia quimiodinâmica no câncer de cólon.","c":"Liu et al. · ACS Applied Materials and Interfaces · 2025","doi":"10.1021/acsami.5c13893"}],"nt":""},
+ {"id":"pancreas","n":"Pâncreas","col":"#C6A0FF","bx":120,"by":186,"g":"M10 30q10-14 22-6q8 4 14-2q0 12-12 14q-8 2-14-2q-6-2-10-4z","in":"Agressivo e de difícil acesso. Só cerca de 4% dos pacientes vivem cinco anos após o diagnóstico, segundo um dos estudos. Falta oxigênio no tumor, o que atrapalha várias terapias.","fn":"O “gerador de oxigênio”: se o tumor não tem oxigênio, a partícula leva uma catalisadora para fabricar o seu.","cs":[{"t":["Quimio","Ultrassom","Hipóxia"],"m":"ZIF-90","x":"ZIF-90 formada sobre platina, com gencitabina e o sonossensibilizador IR780. A platina converte peróxido de hidrogênio em oxigênio e alivia a hipóxia.","c":"Chen et al. · Cancer Letters · 2021","doi":"10.1016/j.canlet.2021.07.008"},{"t":["Quimio","Imuno"],"m":"ZIF-8","x":"Ácido hialurônico e ZIF-8 com benproperina e gencitabina. Bloqueia a fusão do autofagossomo com o lisossomo. Testada em modelos derivados de pacientes e ortotópicos.","c":"Zhang et al. · Journal of Controlled Release · 2025","doi":"10.1016/j.jconrel.2025.114187"},{"t":["Luz"],"m":"—","x":"Inibidores de PARP, que reduzem o reparo do DNA, somados à terapia fotodinâmica no câncer de pâncreas.","c":"Lei et al. · Photodiagnosis and Photodynamic Therapy · 2022","doi":"10.1016/j.pdpdt.2022.103058"}],"nt":"Sensores para CA125 e CA 19-9 estão na aba Diagnóstico."},
+ {"id":"cerebro","n":"Cérebro (glioma)","col":"#FF8A6A","bx":120,"by":24,"g":"M28 14c-8-4-18 2-16 12-4 6 0 14 6 14 2 6 10 6 10 0M28 14c8-4 18 2 16 12 4 6 0 14-6 14-2 6-10 6-10 0M28 14v26","in":"O glioblastoma é o tumor cerebral mais agressivo. A barreira hematoencefálica protege o cérebro e impede a passagem da maioria dos remédios.","fn":"Passar pela porta: peptídeos e proteínas como a ferritina funcionam como “senha” para cruzar a barreira.","cs":[{"t":["Quimio","Barreira"],"m":"ZIF-8","x":"Docetaxel em ZIF-8 com PEG e o peptídeo RVG15, que ajuda a cruzar a barreira hematoencefálica. Eficaz contra glioblastoma em camundongos.","c":"Wu et al. · International Journal of Nanomedicine · 2022","doi":"10.2147/IJN.S387715"},{"t":["Imuno","Barreira"],"m":"ZIF-8","x":"ZIF-8 coberta com H-ferritina, que usa o receptor TfR1 para atravessar a barreira. Carrega L820 e TP5, causa disfunção mitocondrial e o Zn²⁺ reduz GLUT1 e HIF-1α.","c":"Zuo et al. · Journal of Controlled Release · 2026","doi":"10.1016/j.jconrel.2026.114613"},{"t":["Imagem","Radio"],"m":"ZIF-8","x":"WS₂@ZIF-8 com gadolínio e ácido fólico-PEG para imagem e radiossensibilização de glioblastoma e próstata. A passagem pela barreira foi de 8,46% contra 4,72%.","c":"Almudaimeegh et al. · Methods · 2026","doi":"10.1016/j.ymeth.2026.09.002"},{"t":["Quimio"],"m":"ZIF-90","x":"Síntese e caracterização de nanopartículas de ZIF-90 como terapia potencial para tumor cerebral.","c":"Monarca et al. · Pharmaceutics · 2024","doi":"10.3390/pharmaceutics16030414"},{"t":["Quimio"],"m":"ZIF-8","x":"Temozolomida em ZIF-8 modificada com ácido tânico, sensível ao pH, contra glioma.","c":"Ren et al. · Journal of Biomaterials Science · 2024","doi":"10.1080/09205063.2024.2364533"},{"t":["Quimio"],"m":"ZIF-8","x":"Marizomibe, um inibidor de proteassoma que penetra no cérebro, em ZIF-8@MnO₂ para glioma.","c":"Jing et al. · Process Biochemistry · 2023","doi":"10.1016/j.procbio.2023.09.005"},{"t":["ROS"],"m":"ZIF-8","x":"Di-hidroartemisinina liberada por ZIF-8 em meio ácido para gerar espécies reativas de oxigênio.","c":"Yan et al. · International Journal of Nanomedicine · 2024","doi":"10.2147/IJN.S451042"}],"nt":""},
+ {"id":"colo","n":"Colo do útero","col":"#B79BFF","bx":104,"by":236,"g":"M28 14a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM28 30v14M22 38h12","in":"A linhagem HeLa, de câncer de colo do útero, é uma das mais usadas em laboratório. Por isso aparece em muitos dos primeiros estudos.","fn":"Muitos tumores têm mais receptores de folato que as células normais. O ácido fólico, uma vitamina, vira o “endereço” da partícula.","cs":[{"t":["Quimio"],"m":"ZIF-8","x":"Curcumina em ZIF-8 nanométrica, feita num só passo. 88,2% de encapsulamento, liberação rápida em meio ácido e efeito maior que a curcumina livre em células HeLa e em animais.","c":"Zheng et al. · ACS Applied Materials and Interfaces · 2015","doi":"10.1021/acsami.5b04315"},{"t":["Radio","Alvo: folato"],"m":"ZIF-8","x":"Mn₃O₄ coberto com ZIF-8 e ácido fólico como radiossensibilizador ativado por raios X. Alivia a hipóxia, gera mais espécies reativas e causa mais dano ao DNA.","c":"Pan et al. · Advanced Functional Materials · 2023","doi":"10.1002/adfm.202213364"},{"t":["Alvo: folato"],"m":"ZIF-8","x":"Folato-PEG@ZIF-8 levando fisetina até a aquaporina-3 no câncer de colo do útero.","c":"Yang et al. · iScience · 2026","doi":"10.1016/j.isci.2026.115521"},{"t":["Cuproptose","Imagem"],"m":"ZIF-8","x":"ZIF-8 com vários componentes (ICG, Cu²⁺, L-arginina, EGCG e doxorrubicina), guiada por imagem de fluorescência, com 83,3% de inibição do tumor.","c":"Xu et al. · Colloids and Surfaces A: Physicochemical and Engineering Aspects · 2026","doi":"10.1016/j.colsurfa.2026.140836"},{"t":["Radio"],"m":"MOF","x":"MOF biomimética que leva um inibidor de FAK e bismuto para vencer a radiorresistência causada por fibroblastos do tumor.","c":"Chang et al. · Advanced Composites and Hybrid Materials · 2025","doi":"10.1007/s42114-025-01242-z"}],"nt":""},
+ {"id":"ovario","n":"Ovário","col":"#E58AFF","bx":138,"by":230,"g":"M14 30a14 9 0 1 0 28 0a14 9 0 1 0-28 0zM24 28a3 3 0 1 0 .1 0M33 33a2.5 2.5 0 1 0 .1 0","in":"O ovário tem muito receptor de folato. O grande problema clínico é a resistência à cisplatina, e vários estudos tentam revertê-la.","fn":"Dois endereços: a partícula pode ter dois ligantes de alvo para acertar melhor a célula.","cs":[{"t":["Quimio","Alvo: folato"],"m":"ZIF-90","x":"ZIF-90 com ácido fólico e cisplatina, para reverter a resistência em células A2780/DDP. Responde ao ácido e ao ATP.","c":"Xing et al. · International Journal of Nanomedicine · 2024","doi":"10.2147/IJN.S434950"},{"t":["Quimio"],"m":"ZIF-8","x":"Di-hidroartemisinina em ZIF-8 induz apoptose no câncer de ovário ao bloquear a via ligada ao ROMO1.","c":"Yan et al. · Journal of Nanobiotechnology · 2023","doi":"10.1186/s12951-023-01959-3"},{"t":["Quimio","Alvo: biotina"],"m":"ZIF-8","x":"Celastrol em ZIF-8 decorada com biotina para o câncer epitelial de ovário.","c":"Zhou et al. · Biomedicine and Pharmacotherapy · 2023","doi":"10.1016/j.biopha.2023.115573"},{"t":["Proteína p53"],"m":"ZIF-8","x":"ZIF-8 engenheirada que leva à degradação de proteínas p53 mutantes por glutationilação.","c":"Zhang et al. · Biomaterials · 2021","doi":"10.1016/j.biomaterials.2021.120720"},{"t":["Ultrassom"],"m":"ZIF-8","x":"Núcleo de titanato de bário com casca de ZIF-8, ativado por ultrassom, para vencer a resistência à cisplatina por piroptose.","c":"Deng et al. · Tumor · 2026","doi":"10.3781/j.issn.1000-7431.2026.2503-0170"}],"nt":"Um imunossensor para CA-125 está na aba Diagnóstico."},
+ {"id":"prostata","n":"Próstata","col":"#7CE0FF","bx":120,"by":268,"g":"M16 24c0-6 24-6 24 0 0 10-6 18-12 18s-12-8-12-18zM28 42v8","in":"Os estudos misturam entrega de fármacos, imagem por ressonância e edição de genes.","fn":"Edição de genes: levar a “tesoura” CRISPR para dentro da célula sem que ela se quebre no caminho.","cs":[{"t":["Gene"],"m":"ZIF","x":"ZIF-C para entregar RNAi e CRISPR/Cas9, com cobertura de chá verde, no câncer de próstata.","c":"Poddar et al. · Chemical Communications · 2020","doi":"10.1039/d0cc06241c"},{"t":["Quimio","Imagem"],"m":"ZIF-8","x":"Ácido hialurônico, polidopamina e Fe³⁺ sobre ZIF-8 com doxorrubicina, também com contraste para ressonância magnética.","c":"Shu et al. · RSC Advances · 2018","doi":"10.1039/c7ra12969f"},{"t":["Quimio"],"m":"ZIF-8","x":"ZIF-8 com doxorrubicina e ácido hialurônico, com polímero molecularmente impresso para mirar células de próstata.","c":"Song et al. · ACS Applied Materials and Interfaces · 2023","doi":"10.1021/acsami.3c02647"},{"t":["Gene"],"m":"ZIF","x":"ZIF coberta com aminoácidos para entregar material genético em células de próstata.","c":"Polash et al. · Molecules · 2023","doi":"10.3390/molecules28124875"}],"nt":"Um sensor de sarcosina na urina está na aba Diagnóstico."},
+ {"id":"bexiga","n":"Bexiga","col":"#6AD5A0","bx":120,"by":248,"g":"M28 16c-10 0-14 8-14 16 0 6 6 10 14 10s14-4 14-10c0-8-4-16-14-16zM28 8v8","in":"A urina é fácil de coletar, e por isso a bexiga é um bom caso para diagnóstico não invasivo, além da terapia.","fn":"Fome e ferrugem: duas armas juntas. Uma enzima consome a glicose do tumor, e o metal causa ferroptose.","cs":[{"t":["Ferroptose","Fome do tumor"],"m":"ZIF-8","x":"ZIF-8 com PdCuAu e glicose oxidase coberta de ácido hialurônico, combinando ferroptose e privação de glicose.","c":"Wang et al. · Bioengineering and Translational Medicine · 2023","doi":"10.1002/btm2.10515"},{"t":["Gene"],"m":"ZIF-8","x":"ZIF-8 levando siRNA contra IFI44, com PEG-RGD, que freia o tumor pela via PI3K/AKT.","c":"Zhu et al. · Journal of Nanobiotechnology · 2026","doi":"10.1186/s12951-026-04419-w"}],"nt":"Sensores e captura de exossomos da urina estão na aba Diagnóstico."},
+ {"id":"estomago","n":"Estômago","col":"#FFD36A","bx":140,"by":162,"g":"M20 12v8q-8 6-6 16q4 8 16 6q12-2 12-12q0-6-8-6q-6 0-6-6v-6z","in":"Aqui a ZIF aparece na terapia e também nas bactérias que aumentam o risco, como o Helicobacter pylori.","fn":"Prevenir é melhor: eliminar a bactéria que causa gastrite reduz um fator de risco.","cs":[{"t":["Quimio"],"m":"ZIF-90","x":"Plumbagina em ZIF-90, que freia o câncer gástrico ao mirar a sinalização de YAP1.","c":"Li et al. · Chemical Engineering Journal · 2022","doi":"10.1016/j.cej.2022.135369"},{"t":["Piroptose"],"m":"ZIF-8","x":"ZIF-8@quercetina sensível ao pH induz piroptose no câncer gástrico.","c":"Xu et al. · Materials Today Bio · 2026","doi":"10.1016/j.mtbio.2026.102806"},{"t":["Luz","Imagem"],"m":"MOF","x":"Nanossonda com sonossensibilizador para eliminar H. pylori, com imagem fotoacústica.","c":"Zhang et al. · Acta Biomaterialia · 2025","doi":"10.1016/j.actbio.2025.06.008"}],"nt":"Sensores para H. pylori e ar exalado estão na aba Diagnóstico."},
+ {"id":"boca","n":"Boca e cabeça-pescoço","col":"#FF9AA2","bx":120,"by":45,"g":"M12 28q8-10 16-4q8-6 16 4q-8 12-16 12q-8 0-16-12zM12 28h32","in":"O carcinoma de células escamosas oral cresce em número. A ZIF-8 aparece em fototerapia e, de forma marcante, em testes de diagnóstico.","fn":"Cheirar o câncer: a respiração carrega moléculas que mudam com a doença.","cs":[{"t":["Luz","Membrana celular"],"m":"ZIF-8","x":"Verteporfina em ZIF-8 coberta por membrana de macrófago para fototerapia dirigida contra o câncer oral, em modelo animal.","c":"Yu et al. · International Journal of Nanomedicine · 2023","doi":"10.2147/IJN.S434917"},{"t":["Quimio"],"m":"ZIF-8","x":"MF-094 em nanopartículas inibe o carcinoma oral ao mirar a proteína USP30.","c":"Zhang et al. · Cellular and Molecular Biology Letters · 2022","doi":"10.1186/s11658-022-00407-8"}],"nt":"Sensores de DNA e de ar exalado para câncer oral estão na aba Diagnóstico."},
+ {"id":"pele","n":"Pele (melanoma)","col":"#FF8A6A","bx":52,"by":170,"g":"M28 12a16 16 0 1 0 0 32 16 16 0 0 0 0-32zM22 24a3 3 0 1 0 .1 0M34 30a3 3 0 1 0 .1 0M26 36a2 2 0 1 0 .1 0","in":"O melanoma de camundongo B16F10 é um modelo clássico para testar imunoterapia, inclusive as combinações mais novas.","fn":"Tirar o “capuz de invisibilidade”: o tumor esconde-se do sistema imune, e a ZIF ajuda a revelá-lo.","cs":[{"t":["Gás H₂","Imuno"],"m":"ZIF-8 fluorada","x":"Nanofolhas de ZIF fluorada (F7-ZIF) levando hidrogênio, que aumentam o CD47 e favorecem o anticorpo anti-CD47. A inibição do tumor foi de 90% e 83%, e com anti-PD-L1 houve imunidade sistêmica.","c":"Liu et al. · ACS Applied Materials and Interfaces · 2025","doi":"10.1021/acsami.5c15739"},{"t":["Imuno","Bactéria"],"m":"ZIF-8","x":"Microrrobôs de bactéria engenheirada cobertos com ZIF-8 liberam IL-2 no tumor e, com anti-PD-L1, levaram a regressão quase completa em camundongos.","c":"Li et al. · ACS Nano · 2026","doi":"10.1021/acsnano.5c21475"},{"t":["Vacina"],"m":"ZIF-8","x":"ZIF-8 macro-microporosa como vacina tumoral, com um composto que ajusta o pH do lisossomo.","c":"Zuo et al. · Biomaterials Science · 2023","doi":"10.1039/d3bm00306j"},{"t":["Gás H₂"],"m":"ZIF-8","x":"ZIF-8 dopada com zinco e parcialmente reduzida, que gera hidrogênio no tumor e reforça a resposta imune.","c":"Qin et al. · Advanced Healthcare Materials · 2026","doi":"10.1002/adhm.202502489"},{"t":["Fome do tumor","Calor"],"m":"ZIF-8","x":"ZIF-8 com glicose oxidase e azul da Prússia para terapia sinérgica responsiva ao tumor.","c":"Hur et al. · Journal of Colloid and Interface Science · 2023","doi":"10.1016/j.jcis.2023.04.161"},{"t":["Quimio"],"m":"ZIF-8","x":"Dacarbazina em ZIF-8 marcada com FITC, com liberação sensível ao pH, testada em células de melanoma A375.","c":"Arun et al. · BioNanoScience · 2026","doi":"10.1007/s12668-026-02537-1"}],"nt":""},
+ {"id":"osso","n":"Osso (osteossarcoma e metástase)","col":"#C9D3FF","bx":100,"by":360,"g":"M16 16a5 5 0 1 1 6 6l12 12a5 5 0 1 1 6 6a5 5 0 1 1-6-6L22 22a5 5 0 1 1-6-6z","in":"Dois desafios: matar o tumor e ajudar o osso a se recuperar. Alguns estudos usam andaimes impressos em 3D.","fn":"Atrair o osso: moléculas como o alendronato têm afinidade pelo osso e servem de endereço.","cs":[{"t":["Imuno","Autofagia"],"m":"ZIF-8","x":"CUR-BMS1166 em ZIF-8 com PEG-FA, que controla a autofagia e potencializa o anti-PD-1/PD-L1 no osteossarcoma.","c":"Ge et al. · Biomaterials · 2022","doi":"10.1016/j.biomaterials.2022.121407"},{"t":["Imuno","Quimio"],"m":"ZIF-8","x":"ZIF-8 com ácido hialurônico para quimio-imunoterapia do osteossarcoma, ao modular IDO e as células mieloides supressoras.","c":"Fan et al. · Journal of Experimental and Clinical Cancer Research · 2022","doi":"10.1186/s13046-022-02372-8"},{"t":["Quimio","Alvo: osso"],"m":"ZIF-8","x":"Curcumina em ZIF-8 coberta com ácido hialurônico e alendronato, para mirar osso e tumor (carga de 47,55%).","c":"Shen et al. · Colloids and Surfaces B: Biointerfaces · 2022","doi":"10.1016/j.colsurfb.2022.112826"},{"t":["Fenton","Calor"],"m":"MOF","x":"ICG@Cu₂₋ₓSe-ZIF-8 para metástase óssea de câncer de mama: quimiodinâmica, calor e supressão de osteoclastos.","c":"Zou et al. · Biomaterials · 2022","doi":"10.1016/j.biomaterials.2022.121549"},{"t":["Calor","Luz"],"m":"ZIF-8","x":"IrO₂@ZIF-8/BSA-FA com Ce6 para terapia fototérmica e fotodinâmica do osteossarcoma.","c":"Deng et al. · Drug Delivery · 2022","doi":"10.1080/10717544.2022.2127973"},{"t":["Calor","Quimio"],"m":"MOF","x":"Andaime impresso em 3D que erradica osteossarcoma por microondas e estimula a regeneração do osso.","c":"Ma et al. · Biomaterials · 2023","doi":"10.1016/j.biomaterials.2023.122236"}],"nt":""},
+ {"id":"sangue","n":"Sangue (leucemia)","col":"#FF6A6A","bx":146,"by":352,"g":"M28 10c8 12 14 18 14 26a14 14 0 0 1-28 0c0-8 6-14 14-26z","in":"A leucemia linfoblástica aguda de células T é um câncer comum e grave na infância. Aqui a ZIF protege uma enzima, a asparaginase, que “mata de fome” as células leucêmicas.","fn":"Proteger uma enzima: proteínas são frágeis, e a ZIF funciona como uma armadura.","cs":[{"t":["Enzima","Alvo: CD44"],"m":"ZIF-8","x":"Asparaginase em MOF com PEG-ácido hialurônico, bem captada por células de T-ALL resistentes ao fármaco. A liberação é sensível ao pH.","c":"Yuan et al. · Chinese Chemical Letters · 2026","doi":"10.1016/j.cclet.2025.111222"},{"t":["Enzima","Autofagia"],"m":"ZIF-8","x":"Asparaginase e cloroquina (inibidor de autofagia) em ZIF-8 para vencer a resistência à asparaginase.","c":"Shama et al. · Journal of Drug Delivery Science and Technology · 2024","doi":"10.1016/j.jddst.2024.105415"}],"nt":""}];
+ var svg=$('#a6b'),info=$('#a6i'),lst=$('#a6l');
+ var body='<g class="a6s"><circle cx="120" cy="34" r="24"/><rect x="104" y="54" width="32" height="26" rx="10"/><rect x="42" y="82" width="30" height="130" rx="15" transform="rotate(8 57 82)"/><rect x="168" y="82" width="30" height="130" rx="15" transform="rotate(-8 183 82)"/><rect x="76" y="72" width="88" height="196" rx="34"/><rect x="84" y="250" width="34" height="200" rx="17"/><rect x="122" y="250" width="34" height="200" rx="17"/></g>';
+ function glyph(g,c,s){return '<svg viewBox="0 0 56 56" width="'+s+'" height="'+s+'" aria-hidden="true"><path d="'+g+'" fill="none" stroke="'+c+'" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>'}
+ svg.innerHTML=body+CA.map(function(c,i){return '<g class="a6h" data-i="'+i+'" role="button" tabindex="0" aria-pressed="false" aria-label="'+c.n+'"><circle class="rg" cx="'+c.bx+'" cy="'+c.by+'" r="10" stroke="'+c.col+'"/><circle class="dt" cx="'+c.bx+'" cy="'+c.by+'" r="6.5" fill="'+c.col+'"/><circle cx="'+c.bx+'" cy="'+c.by+'" r="14" fill="transparent"/></g>'}).join('');
+ function sel(i){var c=CA[i];
+  svg.querySelectorAll('.a6h').forEach(function(g,j){g.setAttribute('aria-pressed',i===j?'true':'false')});
+  lst.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-pressed',i===j?'true':'false')});
+  info.style.setProperty('--c',c.col);
+  info.innerHTML='<div class="a6hd"><div class="ic">'+glyph(c.g,c.col,44)+'</div><div><div class="kick" style="margin:0">'+c.cs.length+' casos nos artigos</div><h3>'+c.n+'</h3></div></div><p style="color:var(--mut);margin:0">'+c.in+'</p><div class="a6fn"><b>Para entender:</b> '+c.fn+'</div><div class="a6c">'+c.cs.map(function(k){return '<article class="a6k"><div class="tg2"><span class="t2 m">'+k.m+'</span>'+k.t.map(function(t){return '<span class="t2">'+t+'</span>'}).join('')+'</div><p>'+k.x+'</p><small>'+k.c+' <a href="https://doi.org/'+k.doi+'" target="_blank" rel="noopener">doi.org/'+k.doi+'</a></small></article>'}).join('')+'</div>'+(c.nt?'<p class="a6n">'+c.nt+'</p>':'')}
+ svg.querySelectorAll('.a6h').forEach(function(g){var i=+g.dataset.i;g.addEventListener('click',function(){sel(i)});g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();sel(i)}})});
+ CA.forEach(function(c,i){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=c.n;b.addEventListener('click',function(){sel(i)});lst.appendChild(b)});
+ sel(0);
+ var F=[['ZIF-8','#8AA0FF','Zinco e 2-metilimidazol. É a estrela dos estudos: estável no sangue, se abre em meio ácido e libera o zinco, que também age contra o tumor.'],['ZIF-90','#FFAA4D','Zinco com um ligante que tem um grupo aldeído. Esse grupo permite ligar moléculas, como o ácido fólico, por uma ligação chamada base de Schiff. Aparece em casos de pâncreas, ovário, estômago, pulmão e cérebro.'],['ZIF-67','#FF6AA0','Troca o zinco por cobalto. Aparece em um caso de fígado, em sensores de marcadores de pâncreas e de H. pylori e em um híbrido com ZIF-8 e ouro.'],['ZIF + outros materiais','#38D9C1','A ZIF recebe ou cobre ouro, platina, MnO₂, Fe₃O₄, gadolínio, cobre ou MXene. O material extra dá calor, imagem, oxigênio ou radicais, e a ZIF cuida da carga. Num sensor, aparece junto de outra MOF, a UiO-66-NH₂.']];
+ $('#fam').innerHTML=F.map(function(f){return '<article style="--c:'+f[1]+'"><h3>'+f[0]+'</h3><p>'+f[2]+'</p></article>'}).join('');
+ /* pipeline */
  var P=[['Fabricar','Síntese e caracterização do material: forma, tamanho, carga, quanto fármaco entrou.','A ZIF-8 em oncologia está sobretudo nesta etapa e nas duas seguintes.'],['Células','Testes em células cultivadas (in vitro): a partícula entra? Libera em meio ácido? Mata as células tumorais mais que o fármaco livre?','Grande parte dos estudos para aqui, com resultados positivos.'],['Animais','Camundongos com tumor (in vivo): a partícula chega ao tumor? O tumor diminui? Os animais perdem peso ou adoecem?','Mais difícil e mais caro, e mostra se a ideia funciona num organismo inteiro.'],['Segurança','Toxicidade, destino do zinco, distribuição pelos órgãos, eliminação do corpo e efeitos em doses repetidas.','Passo obrigatório antes de qualquer teste em pessoas.'],['Pessoas','Ensaios clínicos em fases I, II e III, com vigilância regulatória.','Para a ZIF-8 em oncologia, ainda é um objetivo e não uma realidade.']];
  var pp=$('#pp'),pi=$('#ppi');
- function sel(i){pp.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-pressed',i===j?'true':'false')});pi.innerHTML='<h3>'+(i+1)+'. '+P[i][0]+'</h3><p>'+P[i][1]+'</p><p style="margin-top:10px;color:var(--ink)">'+P[i][2]+'</p>'}
- P.forEach(function(p,i){var b=document.createElement('button');b.type='button';b.innerHTML='<b>'+(i+1)+'</b>'+p[0];b.addEventListener('click',function(){sel(i)});pp.appendChild(b)});sel(1)})();
+ function sel2(i){pp.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-pressed',i===j?'true':'false')});pi.innerHTML='<h3>'+(i+1)+'. '+P[i][0]+'</h3><p>'+P[i][1]+'</p><p style="margin-top:10px;color:var(--ink)">'+P[i][2]+'</p>'}
+ P.forEach(function(p,i){var b=document.createElement('button');b.type='button';b.innerHTML='<b>'+(i+1)+'</b>'+p[0];b.addEventListener('click',function(){sel2(i)});pp.appendChild(b)});sel2(1);
+})();
 
 /* ===== HISTORIA ===== */
 var EV=[
@@ -698,12 +878,30 @@ var BK=[
  {t:'An O2 Self-Sufficient Biomimetic Nanoplatform for Highly Specific and Efficient Photodynamic Therapy',a:'Cheng H. et al.',j:'Advanced Functional Materials · 2016',doi:'10.1002/adfm.201603212',l:'Avançado',th:'Terapias com luz',w:'Combina membrana de célula tumoral, catalase e fotossensibilizador. Mostra engenharia em várias camadas.'},
  {t:'Yolk-Shell Structured Au Nanostar@Metal-Organic Framework for Synergistic Chemo-photothermal Therapy in the Second Near-Infrared Window',a:'Deng X. et al.',j:'Nano Letters · 2019',doi:'10.1021/acs.nanolett.9b01716',l:'Avançado',th:'Terapias com luz',w:'Calor com luz infravermelha mais liberação de fármaco ao mesmo tempo.'},
  {t:'ZIF-8 Nanoparticles Evoke Pyroptosis for High-Efficiency Cancer Immunotherapy',a:'Ding B. et al.',j:'Angewandte Chemie Int. Ed. · 2023',doi:'10.1002/anie.202215307',l:'Avançado',th:'Morte celular e imunidade',w:'Mostra que o material, e não só a carga, pode ter efeito biológico no tumor.'},
- {t:'Engineered Bacteria-Driven Biohybrid Microrobots Potentiate IL-2 Immunotherapy by Evoking Pyroptosis',a:'Li P. et al.',j:'ACS Nano · 2026',doi:'10.1021/acsnano.5c21475',l:'Avançado',th:'Morte celular e imunidade',w:'Combina bactéria engenheirada, ZIF-8, luz e bloqueio de PD-L1. Mostra para onde o campo está indo.'}];
+ {t:'Engineered Bacteria-Driven Biohybrid Microrobots Potentiate IL-2 Immunotherapy by Evoking Pyroptosis',a:'Li P. et al.',j:'ACS Nano · 2026',doi:'10.1021/acsnano.5c21475',l:'Avançado',th:'Morte celular e imunidade',w:'Combina bactéria engenheirada, ZIF-8, luz e bloqueio de PD-L1. Mostra para onde o campo está indo.'},
+ {t:"ZIF-8 Nanodrug Delivery Systems: Construction Strategies, Functional Modifications, and Advances in Synergistic Tumor Therapy",a:"Xie R. et al.",j:"International Journal of Nanomedicine · 2026",doi:"10.2147/IJN.S629238",l:"Iniciante",th:"Revisões",w:"Revisão atual sobre como construir, modificar e combinar terapias com a ZIF-8."},
+ {t:"Key Tumor Responsive ZIF-8 Nanocarriers for Effective Anti-Cancer Therapeutics",a:"He W. et al.",j:"International Journal of Nanomedicine · 2026",doi:"10.2147/IJN.S604563",l:"Iniciante",th:"Revisões",w:"Revisão sobre os gatilhos do tumor que abrem a ZIF-8: pH, redox, enzimas e outros."},
+ {t:"Targeted cancer treatment using folate-conjugated sponge-like ZIF-8 nanoparticles: a review",a:"Oryani M.A. et al.",j:"Naunyn-Schmiedeberg's Archives of Pharmacology · 2024",doi:"10.1007/s00210-023-02707-y",l:"Intermediário",th:"Revisões",w:"Tudo sobre ácido fólico e ZIF-8: como o folato vira endereço para o tumor."},
+ {t:"A review on integrated design and application of stimuli-responsive ZIF-8 metal-organic frameworks for breast cancer theranostics",a:"Jha A.K. et al.",j:"Next Materials · 2025",doi:"10.1016/j.nxmate.2025.100611",l:"Intermediário",th:"Cânceres específicos",w:"Revisão focada em câncer de mama: terapia e diagnóstico com ZIF-8 responsiva."},
+ {t:"Zeolitic imidazolate frameworks for lung cancer diagnosis and therapy: design principles and biomedical applications",a:"Jiang T. et al.",j:"Biomaterials Science · 2026",doi:"10.1039/d6bm00962j",l:"Intermediário",th:"Cânceres específicos",w:"Revisão sobre ZIFs no diagnóstico e no tratamento do câncer de pulmão."},
+ {t:"One-Step Synthesis of Nanoscale Zeolitic Imidazolate Frameworks with High Curcumin Loading for Treatment of Cervical Cancer",a:"Zheng M. et al.",j:"ACS Applied Materials and Interfaces · 2015",doi:"10.1021/acsami.5b04315",l:"Iniciante",th:"Quimioterapia",w:"Um clássico: curcumina em ZIF-8 feita num só passo, com 88,2% de encapsulamento e teste em células e animais."},
+ {t:"Enhanced anti-tumor and anti-metastatic activity of quercetin using pH-sensitive Alginate@ZIF-8 nanocomposites: in vitro and in vivo study",a:"Rostamkhani N. et al.",j:"Nanotechnology · 2024",doi:"10.1088/1361-6528/ad713f",l:"Intermediário",th:"Cânceres específicos",w:"Quercetina em ZIF-8 com alginato: bom exemplo de estudo completo, de síntese a camundongos, com metástase."},
+ {t:"Multipath Synergistic Immune Activation of Hydrogels Delivering STING Agonist and siXkr8 for Long-Lasting Colorectal Cancer Therapy",a:"Yang N. et al.",j:"Advanced Functional Materials · 2025",doi:"10.1002/adfm.202506362",l:"Avançado",th:"Morte celular e imunidade",w:"Hidrogel com ZIF-8 que combina imunoterapia, zinco e piroptose no câncer colorretal."},
+ {t:"Local Delivery of Molecular Hydrogen by Fluorinated Zeolitic Imidazole Framework Nanosheets Boosts Cancer Immunotherapy",a:"Liu X. et al.",j:"ACS Applied Materials and Interfaces · 2025",doi:"10.1021/acsami.5c15739",l:"Avançado",th:"Morte celular e imunidade",w:"Hidrogênio entregue por ZIF fluorada para reforçar a imunoterapia anti-CD47."},
+ {t:"Fe<sub>3</sub>O<sub>4</sub>-Incorporated Metal-Organic Framework for Chemo/Ferroptosis Synergistic Anti-Tumor via the Enhanced Chemodynamic Therapy",a:"Xu Y. et al.",j:"Advanced Healthcare Materials · 2024",doi:"10.1002/adhm.202303839",l:"Avançado",th:"Terapias com luz",w:"ZIF-8@Fe₃O₄ que gera radicais e causa ferroptose, mirando o lisossomo."},
+ {t:"RNA Encapsulation in Metal–Organic Frameworks for Targeting Cancer-Causing Genes",a:"Mishra M. et al.",j:"Advanced Therapeutics · 2024",doi:"10.1002/adtp.202400144",l:"Intermediário",th:"Fundamentos",w:"Revisão sobre RNA dentro de MOFs, como o siRNA contra Plk1 escondido por membranas de células tumorais."},
+ {t:"Biocompatible Au@Ag nanorod@ZIF-8 core-shell nanoparticles for surface-enhanced Raman scattering imaging and drug delivery",a:"Jiang P. et al.",j:"Talanta · 2019",doi:"10.1016/j.talanta.2019.03.057",l:"Intermediário",th:"Diagnóstico",w:"Sonda SERS com ácido fólico que une imagem de células de vários tumores e entrega de doxorrubicina."},
+ {t:"A development of sensor based on ZnO@ZIF-8 for detection of 5-Fluorouracil as a liver cancer medicine in serum samples",a:"Zeng D. et al.",j:"Inorganic Chemistry Communications · 2024",doi:"10.1016/j.inoche.2024.113179",l:"Intermediário",th:"Diagnóstico",w:"Sensor de ZnO@ZIF-8 para medir o 5-fluorouracil, remédio de câncer de fígado, no soro."},
+ {t:"Early-stage oral cancer diagnosis by artificial intelligence-based SERS using Ag NWs@ZIF core-shell nanochains",a:"Xie X. et al.",j:"Nanoscale · 2023",doi:"10.1039/d3nr02662k",l:"Avançado",th:"Diagnóstico",w:"Inteligência artificial e SERS para detectar câncer oral pelo ar exalado, com ZIF capturando moléculas."},
+ {t:"Highly sensitive and stable self-powered biosensing for exosomes based on dual metal-organic frameworks nanocarriers",a:"Gu C. et al.",j:"Biosensors and Bioelectronics · 2021",doi:"10.1016/j.bios.2020.112907",l:"Avançado",th:"Diagnóstico",w:"Biossensor autoalimentado com duas MOFs que detecta exossomos de células tumorais."},
+ {t:"Simultaneous Monitoring of Intracellular Glucose and Extracellular Lactate in Single Cells to Assess Cell Tumorigenicity",a:"Liu H. et al.",j:"Analytical Chemistry · 2025",doi:"10.1021/acs.analchem.5c03740",l:"Avançado",th:"Diagnóstico",w:"Glicose e lactato em células únicas para separar células normais e tumorais de mama."},
+ {t:"X-Ray-Responsive Zeolitic Imidazolate Framework-Capped Nanotherapeutics for Cervical Cancer-Targeting Radiosensitization",a:"Pan S. et al.",j:"Advanced Functional Materials · 2023",doi:"10.1002/adfm.202213364",l:"Avançado",th:"Terapias com luz",w:"ZIF-8 e ácido fólico para radiossensibilização no câncer de colo do útero."},
+ {t:"Gold nanoparticle encapsulated hybrid MOF: synthesis, characterization, and co-drug delivery of 5-fluorouracil and curcumin",a:"Rananaware P. et al.",j:"Discover Nano · 2024",doi:"10.1186/s11671-024-04152-z",l:"Intermediário",th:"Cânceres específicos",w:"Nanopartículas de ouro com duas ZIFs, ácido fólico e dois fármacos (curcumina e 5-fluorouracil)."}];
 (function(){var fl=$('#fl'),ft=$('#ft'),bk=$('#bk'),st={l:'Todos',t:'Todos'};
  bk.innerHTML=BK.map(function(b){return '<article class="bk" data-l="'+b.l+'" data-t="'+b.th+'"><div><span class="tag '+(b.l==='Iniciante'?'':b.l==='Intermediário'?'o':'p')+'">'+b.l+'</span><span class="tag v">'+b.th+'</span></div><h3>'+b.t+'</h3><div class="j">'+b.a+' · '+b.j+'</div><p>'+b.w+'</p><a class="go" href="https://doi.org/'+b.doi+'" target="_blank" rel="noopener">Abrir artigo →</a></article>'}).join('');
  function apply(){bk.querySelectorAll('.bk').forEach(function(e){e.hidden=!((st.l==='Todos'||e.dataset.l===st.l)&&(st.t==='Todos'||e.dataset.t===st.t))})}
  function mk(box,key,list){list.forEach(function(v,i){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=v;b.setAttribute('aria-pressed',i===0?'true':'false');b.addEventListener('click',function(){box.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');st[key]=v;apply()});box.appendChild(b)})}
- mk(fl,'l',['Todos','Iniciante','Intermediário','Avançado']);mk(ft,'t',['Todos','Revisões','Fundamentos','Quimioterapia','Terapias com luz','Zinco','Morte celular e imunidade']);
+ mk(fl,'l',['Todos','Iniciante','Intermediário','Avançado']);mk(ft,'t',['Todos','Revisões','Fundamentos','Quimioterapia','Terapias com luz','Zinco','Morte celular e imunidade','Diagnóstico','Cânceres específicos']);
  ['ZIF-8 drug delivery cancer','ZIF-8 doxorubicin','ZIF-8 photodynamic therapy','ZIF-8 nanoparticles review','ZIF-8 pH-responsive release','ZIF-8 tumor immunotherapy'].forEach(function(k){var a=document.createElement('a');a.className='chip';a.style.textDecoration='none';a.target='_blank';a.rel='noopener';a.href='https://scholar.google.com/scholar?q='+encodeURIComponent(k);a.textContent=k;$('#ks').appendChild(a)})})();
 
 /* ===== GLOSSARIO / QUIZ ===== */
